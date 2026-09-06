@@ -100,25 +100,23 @@ export default function Home() {
             </div>
 
             {/* Real storefront photos */}
-            <div className="relative animate-fade-in [animation-delay:200ms]">
+            <div className="relative animate-fade-in mb-10 [animation-delay:200ms] sm:mb-14">
               <div className="relative mx-auto max-w-md lg:max-w-none">
-                <div className="grid grid-cols-5 gap-4">
-                  <div className="col-span-3 overflow-hidden rounded-[2rem] shadow-2xl shadow-ink-300/30 ring-1 ring-ink-100">
-                    <img
-                      src="/images/storefront-1.jpg"
-                      alt="Home-Office Pharmacy & Clinic storefront at Buduburam, Estate Junction"
-                      className="h-[380px] w-full object-cover sm:h-[480px]"
-                      loading="eager"
-                    />
-                  </div>
-                  <div className="col-span-2 mt-10 overflow-hidden rounded-[2rem] shadow-xl shadow-ink-300/20 ring-1 ring-ink-100">
-                    <img
-                      src="/images/storefront-2.jpg"
-                      alt="Home-Office Pharmacy & Clinic entrance"
-                      className="h-[340px] w-full object-cover sm:h-[440px]"
-                      loading="eager"
-                    />
-                  </div>
+                <div className="overflow-hidden rounded-[2rem] shadow-2xl shadow-ink-300/30 ring-1 ring-ink-100">
+                  <img
+                    src="/images/storefront-1.png"
+                    alt="Home-Office Pharmacy & Clinic storefront at Buduburam, Estate Junction"
+                    className="aspect-[4/3] w-full object-cover"
+                    loading="eager"
+                  />
+                </div>
+                <div className="absolute -bottom-8 -left-4 w-[42%] overflow-hidden rounded-2xl shadow-xl ring-4 ring-white sm:-bottom-10 sm:-left-8">
+                  <img
+                    src="/images/storefront-2.png"
+                    alt="Home-Office Pharmacy & Clinic entrance"
+                    className="aspect-[4/3] w-full object-cover"
+                    loading="eager"
+                  />
                 </div>
               </div>
             </div>
@@ -262,9 +260,9 @@ export default function Home() {
             <div className="relative order-first lg:order-last">
               <div className="overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-ink-100">
                 <img
-                  src="/images/storefront-1.jpg"
+                  src="/images/storefront-2.png"
                   alt="Home-Office Pharmacy & Clinic building"
-                  className="h-[400px] w-full object-cover sm:h-[480px]"
+                  className="aspect-[4/3] w-full object-cover"
                   loading="lazy"
                 />
               </div>
