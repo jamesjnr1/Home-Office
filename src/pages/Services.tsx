@@ -1,38 +1,38 @@
 import { Link } from 'react-router-dom';
+import type { ComponentType } from 'react';
 import {
   Stethoscope,
   Pill,
-  HeartPulse,
   Syringe,
-  Microscope,
-  Baby,
-  Brain,
-  Eye,
+  Activity,
+  Users,
+  Plus,
+  Truck,
+  ShieldCheck,
   CheckCircle2,
   ArrowRight,
   Clock,
-  ShieldCheck,
-  Users,
+  MessageCircle,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { services } from '@/data/content';
 
-const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
+const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
   Stethoscope,
   Pill,
-  HeartPulse,
   Syringe,
-  Microscope,
-  Baby,
-  Brain,
-  Eye,
+  Activity,
+  Users,
+  Plus,
+  Truck,
+  ShieldCheck,
 };
 
 const processSteps = [
-  { icon: Clock, title: 'Book Your Visit', desc: 'Schedule online or call us. Same-day appointments are available.' },
-  { icon: Users, title: 'Meet Your Doctor', desc: 'A thorough consultation with a physician who takes time to listen.' },
-  { icon: ShieldCheck, title: 'Get Your Care', desc: 'Diagnosis, treatment, and prescriptions — all handled in one visit.' },
+  { icon: Clock, title: 'Walk In or Call', desc: 'Come by anytime we\'re open, or call ahead so we can prepare for your visit.' },
+  { icon: MessageCircle, title: 'Talk to Our Team', desc: 'A member of our pharmacy or clinic team listens and takes your needs seriously.' },
+  { icon: ShieldCheck, title: 'Get Your Care', desc: 'Consultation, treatment, and medicines — handled in one visit wherever possible.' },
 ];
 
 export default function Services() {
@@ -46,8 +46,8 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             eyebrow="Our Services"
-            title="Comprehensive Care Under One Roof"
-            desc="From routine check-ups to specialist treatments, our integrated team is here to support every stage of your health journey."
+            title="Pharmacy & Clinic Care Under One Roof"
+            desc="From prescriptions to walk-in consultations, our team supports the everyday health needs of our community."
           />
         </div>
       </section>

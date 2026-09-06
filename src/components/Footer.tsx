@@ -1,49 +1,20 @@
 import { Link } from 'react-router-dom';
-import {
-  Plus,
-  Phone,
-  Mail,
-  MapPin,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  ArrowUp,
-} from 'lucide-react';
+import { Phone, MapPin, Clock, ArrowUp, MessageCircle } from 'lucide-react';
+import Logo, { LogoTagline } from '@/components/Logo';
+import { business } from '@/data/business';
 
 const footerSections = [
   {
-    heading: 'Services',
+    heading: 'Explore',
     links: [
-      { label: 'Consultations', path: '/services' },
-      { label: 'Pharmacy & Refills', path: '/pharmacy' },
-      { label: 'Cardiology', path: '/services' },
-      { label: 'Vaccinations', path: '/services' },
-      { label: 'Lab Diagnostics', path: '/services' },
-    ],
-  },
-  {
-    heading: 'Clinic',
-    links: [
+      { label: 'Services', path: '/services' },
+      { label: 'Pharmacy', path: '/pharmacy' },
       { label: 'About Us', path: '/about' },
-      { label: 'Our Doctors', path: '/doctors' },
-      { label: 'Health Resources', path: '/resources' },
       { label: 'Book Appointment', path: '/book' },
       { label: 'Contact', path: '/contact' },
     ],
   },
-  {
-    heading: 'Legal',
-    links: [
-      { label: 'Privacy Policy', path: '#' },
-      { label: 'Terms of Service', path: '#' },
-      { label: 'Patient Rights', path: '#' },
-      { label: 'Accessibility', path: '#' },
-    ],
-  },
 ];
-
-const socials = [Facebook, Twitter, Instagram, Linkedin];
 
 export default function Footer() {
   return (
@@ -51,57 +22,53 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-lg shadow-brand-500/25">
-                <Plus className="h-6 w-6 text-white" strokeWidth={3} />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-display text-lg font-bold text-white">
-                  Home-Office
-                </span>
-                <span className="text-[11px] font-medium tracking-wide text-brand-400">
-                  Pharmacy & Clinic
-                </span>
-              </div>
+          <div className="lg:col-span-3">
+            <Link to="/">
+              <Logo theme="dark" />
             </Link>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-400">
-              Compassionate, comprehensive healthcare for our community since
-              1999. Your wellbeing is our lifelong commitment.
-            </p>
+            <LogoTagline className="mt-4 max-w-sm text-base" />
 
             <div className="mt-6 space-y-2.5">
-              <div className="flex items-center gap-3 text-sm text-ink-400">
+              <a
+                href={`tel:${business.phoneTel}`}
+                className="flex items-center gap-3 text-sm text-ink-400 transition-colors hover:text-white"
+              >
                 <Phone className="h-4 w-4 text-brand-400" />
-                +1 (555) 240-8800
-              </div>
-              <div className="flex items-center gap-3 text-sm text-ink-400">
-                <Mail className="h-4 w-4 text-brand-400" />
-                care@homeoffice-clinic.com
-              </div>
+                {business.phoneDisplay}
+              </a>
               <div className="flex items-start gap-3 text-sm text-ink-400">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-                128 Health Street, Wellness District, City 45210
+                {business.address}
+              </div>
+              <div className="flex items-center gap-3 text-sm text-ink-400">
+                <Clock className="h-4 w-4 text-brand-400" />
+                {business.hours}
               </div>
             </div>
 
-            <div className="mt-6 flex gap-3">
-              {socials.map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-ink-800 text-ink-400 transition-all duration-300 hover:bg-brand-600 hover:text-white"
-                  aria-label="Social link"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href={`tel:${business.phoneTel}`}
+                className="flex items-center gap-2 rounded-full bg-ink-800 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-600"
+              >
+                <Phone className="h-4 w-4" />
+                Call Us
+              </a>
+              <a
+                href={`https://wa.me/${business.whatsappNumber}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-full bg-[#25D366]/15 px-4 py-2.5 text-sm font-semibold text-[#25D366] transition-all duration-300 hover:bg-[#25D366] hover:text-white"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp
+              </a>
             </div>
           </div>
 
           {/* Link columns */}
           {footerSections.map((section) => (
-            <div key={section.heading}>
+            <div key={section.heading} className="lg:col-span-1">
               <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
                 {section.heading}
               </h4>
@@ -119,11 +86,23 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* Visit us */}
+          <div className="lg:col-span-1">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
+              Visit Us
+            </h4>
+            <p className="mt-4 text-sm leading-relaxed text-ink-400">
+              Open every day of the week — walk-ins are always welcome, no
+              appointment required for pharmacy visits.
+            </p>
+          </div>
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-ink-800 pt-8 sm:flex-row">
           <p className="text-sm text-ink-500">
-            © 2026 Home-Office Pharmacy & Clinic. All rights reserved.
+            © {new Date().getFullYear()} Home-Office Pharmacy & Clinic. All
+            rights reserved.
           </p>
           <Link
             to="/"
