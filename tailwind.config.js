@@ -9,33 +9,35 @@ export default {
         tagline: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       colors: {
-        // Primary blue, taken from the stethoscope in the Home-Office logo.
+        // Primary blue — sampled directly from the stethoscope in the real
+        // Home-Office logo (#198fcc sits at brand-600).
         brand: {
-          50: '#eff8ff',
-          100: '#dcefff',
-          200: '#b6e0fd',
-          300: '#7cc8fb',
-          400: '#3aa9f3',
-          500: '#128ed9',
-          600: '#0570b8',
-          700: '#065a95',
-          800: '#0b4b7a',
-          900: '#0f3f66',
-          950: '#092845',
+          50: '#ebf4f9',
+          100: '#d2e8f3',
+          200: '#a7d4eb',
+          300: '#75bfe5',
+          400: '#37a7e1',
+          500: '#1f9ee0',
+          600: '#198fcc',
+          700: '#1576a8',
+          800: '#11628c',
+          900: '#0e4f71',
+          950: '#09364d',
         },
-        // Secondary green, taken from the mortar & pestle / tagline in the logo.
+        // Secondary green — sampled directly from the mortar & pestle in the
+        // real Home-Office logo (#00b25e sits at accent-600).
         accent: {
-          50: '#f1fbf3',
-          100: '#dff7e4',
-          200: '#c1eecb',
-          300: '#8fdda2',
-          400: '#56c476',
-          500: '#2ea656',
-          600: '#1f8a44',
-          700: '#1b6f39',
-          800: '#1a5931',
-          900: '#17492a',
-          950: '#082b18',
+          50: '#cce5d9',
+          100: '#b3dfca',
+          200: '#85dbb2',
+          300: '#4ade98',
+          400: '#0fd678',
+          500: '#07c56b',
+          600: '#00b25e',
+          700: '#008948',
+          800: '#006b38',
+          900: '#004c28',
+          950: '#002313',
         },
         ink: {
           50: '#f8fafc',
@@ -89,7 +91,7 @@ export default {
       },
       backgroundImage: {
         'grid-pattern':
-          'linear-gradient(to right, rgba(11,75,122,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(11,75,122,0.05) 1px, transparent 1px)',
+          'linear-gradient(to right, rgba(17,98,140,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(17,98,140,0.05) 1px, transparent 1px)',
       },
     },
   },

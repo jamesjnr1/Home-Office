@@ -66,25 +66,15 @@ export default function About() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div ref={ref} className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className={`reveal ${visible ? 'is-visible' : ''} relative`}>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="overflow-hidden rounded-3xl shadow-xl ring-1 ring-ink-100">
-                  <img
-                    src="/images/storefront-1.png"
-                    alt="Home-Office Pharmacy & Clinic storefront"
-                    className="h-64 w-full object-cover sm:h-80"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="mt-8 overflow-hidden rounded-3xl shadow-xl ring-1 ring-ink-100">
-                  <img
-                    src="/images/storefront-2.png"
-                    alt="Home-Office Pharmacy & Clinic entrance"
-                    className="h-64 w-full object-cover sm:h-80"
-                    loading="lazy"
-                  />
-                </div>
+              <div className="overflow-hidden rounded-3xl shadow-xl ring-1 ring-ink-100">
+                <img
+                  src="/images/storefront-2.png"
+                  alt="Home-Office Pharmacy & Clinic entrance"
+                  className="aspect-[4/3] w-full object-cover"
+                  loading="lazy"
+                />
               </div>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-2xl bg-brand-600 px-8 py-5 text-center shadow-2xl shadow-brand-500/30">
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 rounded-2xl bg-brand-600 px-8 py-5 text-center shadow-2xl shadow-brand-500/30">
                 <p className="font-display text-lg font-bold text-white">Open Every Day</p>
                 <p className="text-sm text-brand-100">{business.hours}</p>
               </div>

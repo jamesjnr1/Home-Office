@@ -139,7 +139,7 @@ export default function Contact() {
                       <option>General question</option>
                       <option>Book an appointment</option>
                       <option>Prescription refill</option>
-                      <option>Delivery request</option>
+                      <option>Counselling</option>
                       <option>Other</option>
                     </select>
                   </div>

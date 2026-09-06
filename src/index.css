@@ -20,8 +20,8 @@
   }
 
   ::selection {
-    background: #b6e0fd;
-    color: #0f3f66;
+    background: #a7d4eb;
+    color: #0e4f71;
   }
 }
 
@@ -57,12 +57,12 @@
   background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3aa9f3, #0570b8);
+  background: linear-gradient(180deg, #37a7e1, #198fcc);
   border-radius: 5px;
   border: 2px solid #f1f5f9;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #128ed9, #065a95);
+  background: linear-gradient(180deg, #1f9ee0, #1576a8);
 }
 
 /* Page transition */

@@ -4,8 +4,6 @@ import {
   ShieldCheck,
   Clock,
   Home as HomeIcon,
-  Briefcase,
-  GraduationCap,
   ArrowRight,
   Stethoscope,
   Pill,
@@ -13,12 +11,11 @@ import {
   BookOpen,
   Microscope,
   Users,
-  Truck,
+  HeartHandshake,
   CheckCircle2,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
-import { LogoTagline } from '@/components/Logo';
 import { services } from '@/data/content';
 import { business } from '@/data/business';
 
@@ -31,16 +28,8 @@ const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: 
   Home: HomeIcon,
 };
 
-const audienceIconMap: Record<string, ComponentType<{ className?: string }>> = {
-  Home: HomeIcon,
-  Briefcase,
-  GraduationCap,
-  Users,
-};
-
 export default function Home() {
   const { ref: servicesRef, visible: servicesVisible } = useReveal();
-  const { ref: audienceRef, visible: audienceVisible } = useReveal();
   const { ref: ctaRef, visible: ctaVisible } = useReveal();
 
   return (
@@ -67,19 +56,17 @@ export default function Home() {
                 Open now — walk-ins welcome
               </div>
 
-              <h1 className="mt-6 text-balance font-display text-4xl font-bold leading-[1.1] tracking-tight text-ink-900 sm:text-5xl lg:text-6xl">
-                Your Health,
+              <h1 className="mt-6 text-balance font-display text-4xl font-bold leading-[1.15] tracking-tight text-ink-900 sm:text-5xl lg:text-6xl">
+                Our Care &amp; Medicines
                 <br />
-                <span className="bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">
-                  Our Lifelong Commitment
+                <span className="bg-gradient-to-r from-brand-600 to-accent-600 bg-clip-text text-transparent">
+                  are Channels of God&rsquo;s Healing
                 </span>
               </h1>
 
               <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-500 lg:mx-0">
                 {business.description}
               </p>
-
-              <LogoTagline className="mx-auto mt-4 max-w-xl text-lg lg:mx-0" />
 
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
                 <Link
@@ -99,25 +86,15 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Real storefront photos */}
-            <div className="relative animate-fade-in mb-10 [animation-delay:200ms] sm:mb-14">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                <div className="overflow-hidden rounded-[2rem] shadow-2xl shadow-ink-300/30 ring-1 ring-ink-100">
-                  <img
-                    src="/images/storefront-1.png"
-                    alt="Home-Office Pharmacy & Clinic storefront at Buduburam, Estate Junction"
-                    className="aspect-[4/3] w-full object-cover"
-                    loading="eager"
-                  />
-                </div>
-                <div className="absolute -bottom-8 -left-4 w-[42%] overflow-hidden rounded-2xl shadow-xl ring-4 ring-white sm:-bottom-10 sm:-left-8">
-                  <img
-                    src="/images/storefront-2.png"
-                    alt="Home-Office Pharmacy & Clinic entrance"
-                    className="aspect-[4/3] w-full object-cover"
-                    loading="eager"
-                  />
-                </div>
+            {/* Real storefront photo */}
+            <div className="relative animate-fade-in [animation-delay:200ms]">
+              <div className="mx-auto max-w-md overflow-hidden rounded-[2rem] shadow-2xl shadow-ink-300/30 ring-1 ring-ink-100 lg:max-w-none">
+                <img
+                  src="/images/storefront-1.png"
+                  alt="Home-Office Pharmacy & Clinic storefront at Buduburam, Estate Junction"
+                  className="aspect-[4/3] w-full object-cover"
+                  loading="eager"
+                />
               </div>
             </div>
           </div>
@@ -128,7 +105,7 @@ export default function Home() {
               { icon: Clock, label: 'Open 8AM – 10PM' },
               { icon: ShieldCheck, label: 'Licensed Pharmacy & Clinic' },
               { icon: Stethoscope, label: 'Walk-Ins Welcome' },
-              { icon: Truck, label: 'Service at Home & Office' },
+              { icon: HeartHandshake, label: 'Personal, Unhurried Care' },
             ].map((s) => (
               <div key={s.label} className="flex flex-col items-center text-center">
                 <s.icon className="h-6 w-6 text-brand-600" />
@@ -190,89 +167,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== WHEREVER YOU NEED US ===== */}
-      <section className="relative overflow-hidden bg-ink-50 py-24 sm:py-32">
+      {/* ===== WHY CHOOSE US ===== */}
+      <section className="bg-ink-50 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
-            eyebrow="Wherever You Need Us"
-            title="Tailored Care at Home, Office, or On-Site"
-            desc={business.descriptionExtra}
+            eyebrow="Why Choose Us"
+            title="Healthcare That Puts You First"
+            desc="Every person is unique, and our services are sensitive to individual needs."
           />
 
-          <div
-            ref={audienceRef}
-            className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {business.audiences.map((a, i) => {
-              const Icon = audienceIconMap[a.icon] || HomeIcon;
-              return (
-                <div
-                  key={a.label}
-                  className={`reveal ${audienceVisible ? 'is-visible' : ''} flex flex-col items-center gap-3 rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-ink-100 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg`}
-                  style={{ transitionDelay: `${i * 70}ms` }}
-                >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                    <Icon className="h-7 w-7" />
-                  </div>
-                  <p className="text-sm font-semibold text-ink-900">{a.label}</p>
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { icon: ShieldCheck, title: 'Registered Pharmacy Team', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
+              { icon: Clock, title: 'Open Every Day', desc: `Open ${business.hours.toLowerCase()} — no need to rush before closing time.` },
+              { icon: Users, title: 'Individual & Sensitive', desc: 'We understand that each person is unique, so our care is sensitive to your individual needs.' },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="flex gap-4 rounded-2xl border border-ink-100 bg-white p-5 transition-all duration-300 hover:border-brand-200 hover:shadow-md"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <item.icon className="h-6 w-6" />
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== WHY CHOOSE US ===== */}
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <SectionHeading
-                eyebrow="Why Choose Us"
-                title="Healthcare That Puts You First"
-                desc="Every person is unique, and our services are sensitive to individual needs."
-                align="left"
-              />
-              <div className="mt-8 space-y-4">
-                {[
-                  { icon: ShieldCheck, title: 'Registered Pharmacy Team', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
-                  { icon: Clock, title: 'Open Every Day', desc: `Open ${business.hours.toLowerCase()} — no need to rush before closing time.` },
-                  { icon: HomeIcon, title: 'Home-Office, by Name and Nature', desc: 'Care that reaches your home, office, school, church, or organisation — wherever is convenient.' },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="flex gap-4 rounded-2xl border border-ink-100 bg-white p-4 transition-all duration-300 hover:border-brand-200 hover:shadow-md"
-                  >
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                      <item.icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-ink-900">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-ink-500">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
+                <div>
+                  <h3 className="text-base font-semibold text-ink-900">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-ink-500">{item.desc}</p>
+                </div>
               </div>
-            </div>
-
-            <div className="relative order-first lg:order-last">
-              <div className="overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-ink-100">
-                <img
-                  src="/images/storefront-2.png"
-                  alt="Home-Office Pharmacy & Clinic building"
-                  className="aspect-[4/3] w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="pb-24 sm:pb-32">
+      <section className="py-24 sm:py-32">
         <div
           ref={ctaRef}
           className={`reveal ${ctaVisible ? 'is-visible' : ''} mx-auto max-w-7xl px-5 sm:px-8`}
@@ -310,7 +240,7 @@ export default function Home() {
                 </a>
               </div>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-                {['Walk-ins welcome', 'Open every day', 'Home & office service'].map((item) => (
+                {['Walk-ins welcome', 'Open every day', 'Personal & caring service'].map((item) => (
                   <div key={item} className="flex items-center gap-2 text-sm text-brand-100">
                     <CheckCircle2 className="h-4 w-4 text-brand-200" />
                     {item}
