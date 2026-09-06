@@ -52,25 +52,27 @@ export default function Services() {
       {/* Services Grid */}
       <section className="pb-24 sm:pb-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div ref={ref} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div ref={ref} className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {services.map((s, i) => {
               const Icon = iconMap[s.icon] || Stethoscope;
               return (
                 <div
                   key={s.title}
-                  className={`reveal ${visible ? 'is-visible' : ''} rounded-2xl border border-ink-100 bg-white p-7 transition-colors duration-300 hover:border-brand-200`}
+                  className={`reveal ${visible ? 'is-visible' : ''} flex gap-4 border-t border-ink-200 pt-6`}
                   style={{ transitionDelay: `${i * 70}ms` }}
                 >
-                  <Icon className="h-8 w-8 text-brand-600" strokeWidth={1.75} />
-                  <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                    {s.desc}
-                  </p>
-                  <p className="mt-4 text-sm text-ink-400">
-                    {s.features.join(' · ')}
-                  </p>
+                  <Icon className="mt-0.5 h-7 w-7 shrink-0 text-brand-600" strokeWidth={1.75} />
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-ink-900">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-500">
+                      {s.desc}
+                    </p>
+                    <p className="mt-3 text-sm text-ink-400">
+                      {s.features.join(' · ')}
+                    </p>
+                  </div>
                 </div>
               );
             })}
