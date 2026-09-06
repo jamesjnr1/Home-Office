@@ -11,9 +11,15 @@ export const business = {
   hours: '8:00 AM – 10:00 PM, Every Day',
   mapQuery: 'Home-Office Pharmacy, Buduburam Estate Junction, Ghana',
 
-  // TODO: replace with the real endpoint from https://formspree.io — looks
-  // like "https://formspree.io/f/xxxxxxxx". Forms fall back to WhatsApp
-  // until this is set.
+  // Formspree needs ONE destination email — no account/signup required.
+  // Set it below, then submit any form on the site once: Formspree emails
+  // that address a one-time confirmation link, and after you click it,
+  // every submission arrives by email automatically. Forms fall back to
+  // WhatsApp only until this is set.
+  // (If you'd rather use a dashboard-created form, put its full
+  // "https://formspree.io/f/xxxxxxxx" URL in formspreeEndpoint instead —
+  // that takes priority over the email below.)
+  formspreeEmail: '',
   formspreeEndpoint: '',
 
   description:
@@ -42,10 +48,17 @@ export function buildMapLinkUrl() {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.mapQuery)}`;
 }
 
+function formspreeUrl() {
+  if (business.formspreeEndpoint) return business.formspreeEndpoint;
+  if (business.formspreeEmail) return `https://formspree.io/${business.formspreeEmail}`;
+  return null;
+}
+
 export async function submitToFormspree(data: Record<string, unknown>) {
-  if (!business.formspreeEndpoint) return false;
+  const url = formspreeUrl();
+  if (!url) return false;
   try {
-    const res = await fetch(business.formspreeEndpoint, {
+    const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(data),

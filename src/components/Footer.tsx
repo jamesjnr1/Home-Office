@@ -24,7 +24,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-3">
             <Link to="/">
-              <Logo theme="dark" />
+              <Logo />
             </Link>
             <LogoTagline className="mt-4 max-w-sm text-base" />
 

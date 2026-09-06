@@ -69,7 +69,7 @@ export default function About() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="overflow-hidden rounded-3xl shadow-xl ring-1 ring-ink-100">
                   <img
-                    src="/images/storefront-1.jpg"
+                    src="/images/storefront-1.png"
                     alt="Home-Office Pharmacy & Clinic storefront"
                     className="h-64 w-full object-cover sm:h-80"
                     loading="lazy"
@@ -77,7 +77,7 @@ export default function About() {
                 </div>
                 <div className="mt-8 overflow-hidden rounded-3xl shadow-xl ring-1 ring-ink-100">
                   <img
-                    src="/images/storefront-2.jpg"
+                    src="/images/storefront-2.png"
                     alt="Home-Office Pharmacy & Clinic entrance"
                     className="h-64 w-full object-cover sm:h-80"
                     loading="lazy"
