@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Plus, Stethoscope, Phone } from 'lucide-react';
+import { Menu, X, Stethoscope, Phone } from 'lucide-react';
+import Logo from '@/components/Logo';
+import { business } from '@/data/business';
 
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Services', path: '/services' },
   { label: 'Pharmacy', path: '/pharmacy' },
   { label: 'About Us', path: '/about' },
-  { label: 'Doctors', path: '/doctors' },
-  { label: 'Health Resources', path: '/resources' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -46,19 +46,8 @@ export default function Header() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-lg shadow-brand-500/25 transition-transform duration-300 group-hover:scale-105">
-              <Plus className="h-6 w-6 text-white" strokeWidth={3} />
-              <span className="absolute inset-0 rounded-2xl bg-brand-400 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-40" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-display text-lg font-bold tracking-tight text-ink-900">
-                Home-Office
-              </span>
-              <span className="text-[11px] font-medium tracking-wide text-brand-600">
-                Pharmacy & Clinic
-              </span>
-            </div>
+          <Link to="/" className="shrink-0">
+            <Logo />
           </Link>
 
           {/* Desktop nav */}
@@ -90,6 +79,13 @@ export default function Header() {
 
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-3">
+            <a
+              href={`tel:${business.phoneTel}`}
+              className="hidden items-center gap-2 rounded-full border-2 border-ink-200 px-4 py-2.5 text-sm font-semibold text-ink-700 transition-all duration-300 hover:border-brand-300 hover:text-brand-700 md:flex"
+            >
+              <Phone className="h-4 w-4" />
+              {business.phoneDisplay}
+            </a>
             <Link
               to="/book"
               className="hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 sm:flex"
@@ -132,11 +128,18 @@ export default function Header() {
                 {link.label}
               </NavLink>
             ))}
-            <Link
-              to="/book"
-              className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white"
+            <a
+              href={`tel:${business.phoneTel}`}
+              className="mt-2 flex items-center justify-center gap-2 rounded-xl border-2 border-ink-200 px-4 py-3 text-sm font-semibold text-ink-700"
             >
               <Phone className="h-4 w-4" />
+              {business.phoneDisplay}
+            </a>
+            <Link
+              to="/book"
+              className="mt-1 flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white"
+            >
+              <Stethoscope className="h-4 w-4" />
               Book Appointment
             </Link>
           </nav>

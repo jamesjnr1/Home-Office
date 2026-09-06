@@ -1,18 +1,49 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, MessageCircle, Navigation } from 'lucide-react';
+import { Phone, MapPin, Clock, Send, CheckCircle2, MessageCircle, Navigation } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import { useReveal } from '@/hooks/useReveal';
+import { business, buildMapEmbedUrl, buildMapLinkUrl, buildWhatsAppLink, submitToFormspree } from '@/data/business';
 
 const contactInfo = [
-  { icon: MapPin, label: 'Visit Us', value: '128 Health Street, Wellness District, City 45210' },
-  { icon: Phone, label: 'Call Us', value: '+1 (555) 240-8800' },
-  { icon: Mail, label: 'Email Us', value: 'care@homeoffice-clinic.com' },
-  { icon: Clock, label: 'Opening Hours', value: 'Mon – Sun: 8:00 AM – 10:00 PM' },
+  { icon: MapPin, label: 'Visit Us', value: business.address },
+  { icon: Phone, label: 'Call Us', value: business.phoneDisplay },
+  { icon: MessageCircle, label: 'WhatsApp', value: business.phoneDisplay },
+  { icon: Clock, label: 'Opening Hours', value: business.hours },
 ];
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const { ref, visible } = useReveal();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    const form = new FormData(e.currentTarget);
+    const name = form.get('name');
+    const phone = form.get('phone');
+    const reason = form.get('reason');
+    const message = form.get('message');
+
+    await submitToFormspree({
+      _subject: 'New contact message — Home-Office Pharmacy & Clinic',
+      name,
+      phone,
+      reason,
+      message,
+    });
+
+    const text = [
+      `Hello Home-Office Pharmacy & Clinic, my name is ${name}.`,
+      `Phone: ${phone}`,
+      `Reason: ${reason}`,
+      `Message: ${message}`,
+    ].join('\n');
+
+    window.open(buildWhatsAppLink(text), '_blank');
+    setSubmitting(false);
+    setSubmitted(true);
+  };
 
   return (
     <div className="page-enter">
@@ -22,7 +53,7 @@ export default function Contact() {
           <SectionHeading
             eyebrow="Get In Touch"
             title="We're Here to Help"
-            desc="Have a question, need directions, or want to learn more? Reach out — our team responds within one business hour."
+            desc="Have a question, need directions, or want to learn more? Call, WhatsApp, or send us a message below."
           />
         </div>
       </section>
@@ -50,14 +81,14 @@ export default function Contact() {
 
               <div className="mt-6 overflow-hidden rounded-3xl border border-ink-100 shadow-sm">
                 <iframe
-                  title="Clinic location"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=-0.13%2C51.5%2C-0.1%2C51.52&layer=mapnik"
+                  title="Home-Office Pharmacy & Clinic location"
+                  src={buildMapEmbedUrl()}
                   className="h-80 w-full border-0"
                   loading="lazy"
                 />
               </div>
               <a
-                href="https://www.openstreetmap.org/"
+                href={buildMapLinkUrl()}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-700"
@@ -75,7 +106,7 @@ export default function Contact() {
                   </div>
                   <h3 className="mt-4 font-display text-2xl font-bold text-ink-900">Message Sent</h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-ink-500">
-                    Thank you for reaching out. A member of our team will get back to you within one business hour.
+                    Your message is on its way, and we opened WhatsApp with it pre-filled — hit send there for the fastest reply.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -85,48 +116,44 @@ export default function Contact() {
                   </button>
                 </div>
               ) : (
-                <form
-                  className="space-y-5"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
-                >
+                <form className="space-y-5" onSubmit={handleSubmit}>
                   <div>
                     <h3 className="font-display text-2xl font-bold text-ink-900">Send a Message</h3>
-                    <p className="mt-1 text-sm text-ink-500">Fill out the form and we will get back to you shortly.</p>
+                    <p className="mt-1 text-sm text-ink-500">
+                      Fill out the form to send us a message directly, or reach out on WhatsApp instantly.
+                    </p>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label className="mb-1.5 block text-sm font-medium text-ink-700">Full Name</label>
-                      <input required type="text" placeholder="Jane Doe" className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
+                      <input required name="name" type="text" placeholder="Jane Doe" className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                     </div>
                     <div>
                       <label className="mb-1.5 block text-sm font-medium text-ink-700">Phone</label>
-                      <input required type="tel" placeholder="+1 (555) 000-0000" className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
+                      <input required name="phone" type="tel" placeholder="055 000 0000" className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                     </div>
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-ink-700">Email</label>
-                    <input required type="email" placeholder="jane@example.com" className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
-                  </div>
-                  <div>
                     <label className="mb-1.5 block text-sm font-medium text-ink-700">How can we help?</label>
-                    <select className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100">
+                    <select name="reason" className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100">
                       <option>General question</option>
                       <option>Book an appointment</option>
-                      <option>Prescription transfer</option>
-                      <option>Insurance question</option>
+                      <option>Prescription refill</option>
+                      <option>Delivery request</option>
                       <option>Other</option>
                     </select>
                   </div>
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-ink-700">Message</label>
-                    <textarea required rows={5} placeholder="Tell us how we can help..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
+                    <textarea required name="message" rows={5} placeholder="Tell us how we can help..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                   </div>
-                  <button type="submit" className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5">
-                    Send Message
-                    <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+                  >
+                    {submitting ? 'Sending…' : 'Send Message'}
+                    {!submitting && <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />}
                   </button>
                 </form>
               )}
@@ -141,11 +168,22 @@ export default function Contact() {
             <MessageCircle className="h-8 w-8" />
           </div>
           <h2 className="mt-6 font-display text-3xl font-bold text-ink-900 sm:text-4xl">Need immediate assistance?</h2>
-          <p className="mt-4 text-lg text-ink-500">For urgent medical concerns, call us directly. If this is an emergency, call your local emergency services.</p>
-          <a href="tel:+15552408800" className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5">
-            <Phone className="h-5 w-5" />
-            +1 (555) 240-8800
-          </a>
+          <p className="mt-4 text-lg text-ink-500">For urgent needs, call or WhatsApp us directly. For a medical emergency, please go to your nearest hospital.</p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href={`tel:${business.phoneTel}`} className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5">
+              <Phone className="h-5 w-5" />
+              {business.phoneDisplay}
+            </a>
+            <a
+              href={`https://wa.me/${business.whatsappNumber}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-ink-200 bg-white px-7 py-3.5 text-base font-semibold text-ink-700 transition-all duration-300 hover:border-brand-300 hover:text-brand-700"
+            >
+              <MessageCircle className="h-5 w-5" />
+              WhatsApp Us
+            </a>
+          </div>
         </div>
       </section>
     </div>

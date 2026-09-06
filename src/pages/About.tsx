@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import type { ComponentType } from 'react';
 import {
   Award,
   Users,
@@ -8,36 +9,43 @@ import {
   Target,
   Eye,
   Lightbulb,
+  Clock,
+  ShieldCheck,
+  Home as HomeIcon,
+  Briefcase,
+  GraduationCap,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
-import { stats } from '@/data/content';
+import { LogoTagline } from '@/components/Logo';
+import { business } from '@/data/business';
+
+const audienceIconMap: Record<string, ComponentType<{ className?: string }>> = {
+  Home: HomeIcon,
+  Briefcase,
+  GraduationCap,
+  Users,
+};
 
 const values = [
   { icon: HeartHandshake, title: 'Compassion First', desc: 'Every patient is treated with empathy, dignity, and respect — no exceptions.' },
-  { icon: Award, title: 'Excellence in Care', desc: 'We hold ourselves to the highest clinical standards and continuously improve.' },
-  { icon: Users, title: 'Community Focused', desc: 'Proudly serving our community for over 25 years with accessible healthcare.' },
-];
-
-const milestones = [
-  { year: '1999', title: 'Founded', desc: 'Opened as a small neighborhood clinic with a vision for accessible care.' },
-  { year: '2006', title: 'Pharmacy Added', desc: 'Expanded to include a full-service pharmacy under one roof.' },
-  { year: '2015', title: 'New Facility', desc: 'Moved to our current state-of-the-art health center.' },
-  { year: '2026', title: 'Today', desc: 'Serving 40,000+ patients with 12 expert doctors and a dedicated team.' },
+  { icon: Award, title: 'Excellence in Care', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
+  { icon: Users, title: 'Individual & Sensitive', desc: 'We understand that each person is unique, so our services are sensitive to individual needs.' },
 ];
 
 const points = [
-  'Board-certified physicians',
-  'Same-day appointments',
-  'Multilingual staff',
-  'Affordable pricing',
-  'Modern equipment',
-  'Integrated pharmacy',
+  'Registered pharmacy team',
+  'Walk-ins always welcome',
+  'Home & office service',
+  'Schools, churches & organisations',
+  'Open seven days a week',
+  'Affordable, transparent pricing',
 ];
 
 export default function About() {
   const { ref, visible } = useReveal();
   const { ref: missionRef, visible: missionVisible } = useReveal();
+  const { ref: audienceRef, visible: audienceVisible } = useReveal();
 
   return (
     <div className="page-enter">
@@ -47,8 +55,8 @@ export default function About() {
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             eyebrow="About Us"
-            title="Trusted Healthcare Since 1999"
-            desc="Home-Office Pharmacy & Clinic was founded with a simple mission: to provide accessible, high-quality healthcare with a personal touch."
+            title="A Community Pharmacy & Clinic You Can Trust"
+            desc={business.description}
           />
         </div>
       </section>
@@ -61,24 +69,24 @@ export default function About() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="overflow-hidden rounded-3xl shadow-xl ring-1 ring-ink-100">
                   <img
-                    src="https://images.pexels.com/photos/7108325/pexels-photo-7108325.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Healthcare professionals at reception"
+                    src="/images/storefront-1.jpg"
+                    alt="Home-Office Pharmacy & Clinic storefront"
                     className="h-64 w-full object-cover sm:h-80"
                     loading="lazy"
                   />
                 </div>
                 <div className="mt-8 overflow-hidden rounded-3xl shadow-xl ring-1 ring-ink-100">
                   <img
-                    src="https://images.pexels.com/photos/8459996/pexels-photo-8459996.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Modern clinic waiting room"
+                    src="/images/storefront-2.jpg"
+                    alt="Home-Office Pharmacy & Clinic entrance"
                     className="h-64 w-full object-cover sm:h-80"
                     loading="lazy"
                   />
                 </div>
               </div>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-2xl bg-brand-600 px-8 py-5 text-center shadow-2xl shadow-brand-500/30">
-                <p className="font-display text-3xl font-bold text-white">25+</p>
-                <p className="text-sm text-brand-100">Years of Excellence</p>
+                <p className="font-display text-lg font-bold text-white">Open Every Day</p>
+                <p className="text-sm text-brand-100">{business.hours}</p>
               </div>
             </div>
 
@@ -87,16 +95,9 @@ export default function About() {
                 Our Story
               </h3>
               <p className="mt-4 text-lg leading-relaxed text-ink-500">
-                What started as a small neighborhood clinic has grown into a
-                comprehensive care center — but our commitment to each patient
-                has never changed. We believe healthcare should be personal,
-                accessible, and delivered with genuine compassion.
+                {business.descriptionExtra}
               </p>
-              <p className="mt-4 text-lg leading-relaxed text-ink-500">
-                Today, we serve over 40,000 patients with a team of 12 expert
-                doctors, a full-service pharmacy, and an on-site diagnostic
-                laboratory — all under one roof.
-              </p>
+              <LogoTagline className="mt-4 text-xl" />
 
               <div className="mt-6 grid grid-cols-2 gap-3">
                 {points.map((p) => (
@@ -111,14 +112,46 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission / Vision / Values */}
+      {/* Wherever You Need Us */}
       <section className="bg-ink-50 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="Wherever You Need Us"
+            title="Tailored Care, On Your Terms"
+            desc="Customised services at the time you need them — for individuals, families, schools, churches, and organisations."
+          />
+
+          <div
+            ref={audienceRef}
+            className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {business.audiences.map((a, i) => {
+              const Icon = audienceIconMap[a.icon] || HomeIcon;
+              return (
+                <div
+                  key={a.label}
+                  className={`reveal ${audienceVisible ? 'is-visible' : ''} flex flex-col items-center gap-3 rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-ink-100 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg`}
+                  style={{ transitionDelay: `${i * 70}ms` }}
+                >
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <p className="text-sm font-semibold text-ink-900">{a.label}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission / Vision / Values */}
+      <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div ref={missionRef} className="grid gap-6 md:grid-cols-3">
             {[
-              { icon: Target, title: 'Our Mission', desc: 'To provide accessible, high-quality healthcare with compassion, treating every patient as we would our own family.' },
-              { icon: Eye, title: 'Our Vision', desc: 'To be the most trusted healthcare provider in our community, known for excellence, innovation, and genuine care.' },
-              { icon: Lightbulb, title: 'Our Approach', desc: 'We combine medical expertise with a personal touch, ensuring every patient feels heard, respected, and well cared for.' },
+              { icon: Target, title: 'Our Mission', desc: 'To provide medicines, counselling, and clinical care that serve as channels for God\'s healing to all who desire lasting solutions to their medical problems.' },
+              { icon: Eye, title: 'Our Vision', desc: 'To be the most trusted healthcare provider in our community, known for reliability, warmth, and genuine care.' },
+              { icon: Lightbulb, title: 'Our Approach', desc: 'We understand that each person is unique, so our pharmacy and clinical services are sensitive to individual needs.' },
             ].map((item, i) => (
               <div
                 key={item.title}
@@ -141,7 +174,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="py-24 sm:py-32">
+      <section className="bg-ink-50 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             eyebrow="Our Values"
@@ -171,50 +204,19 @@ export default function About() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="bg-ink-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Our Journey"
-            title="25 Years of Growth & Care"
-            desc="From a small clinic to a comprehensive healthcare center — here is how we got here."
-          />
-
-          <div className="mt-16 grid gap-6 md:grid-cols-4">
-            {milestones.map((m, i) => (
-              <div
-                key={m.year}
-                className={`reveal ${visible ? 'is-visible' : ''} relative rounded-3xl border border-ink-100 bg-white p-6`}
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                <div className="font-display text-3xl font-bold text-brand-600">
-                  {m.year}
-                </div>
-                <h3 className="mt-2 text-base font-bold text-ink-900">
-                  {m.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                  {m.desc}
-                </p>
-                {i < milestones.length - 1 && (
-                  <div className="absolute -right-3 top-1/2 hidden h-0.5 w-6 -translate-y-1/2 bg-ink-200 md:block" />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
+      {/* Find us */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid grid-cols-2 gap-4 rounded-3xl bg-gradient-to-br from-brand-700 to-brand-600 p-8 sm:grid-cols-4 sm:gap-8 sm:p-12">
-            {stats.map((s) => (
+          <div className="grid grid-cols-1 gap-4 rounded-3xl bg-gradient-to-br from-brand-700 to-brand-600 p-8 sm:grid-cols-3 sm:gap-8 sm:p-12">
+            {[
+              { icon: Clock, label: 'Open Daily', value: business.hours },
+              { icon: ShieldCheck, label: 'Licensed Pharmacy', value: business.address },
+              { icon: HomeIcon, label: 'Service Wherever Needed', value: 'Home, office, schools & organisations' },
+            ].map((s) => (
               <div key={s.label} className="text-center">
-                <p className="font-display text-4xl font-bold text-white sm:text-5xl">
-                  {s.value}
-                </p>
-                <p className="mt-2 text-sm text-brand-100">{s.label}</p>
+                <s.icon className="mx-auto h-7 w-7 text-white" />
+                <p className="mt-3 font-display text-lg font-bold text-white">{s.label}</p>
+                <p className="mt-1 text-sm text-brand-100">{s.value}</p>
               </div>
             ))}
           </div>

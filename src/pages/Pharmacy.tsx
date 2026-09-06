@@ -5,27 +5,27 @@ import {
   Truck,
   ShieldCheck,
   PackageCheck,
-  CreditCard,
   ArrowRight,
-  CheckCircle2,
   Phone,
   FileText,
+  MessageCircle,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
+import { business } from '@/data/business';
 
 const features = [
-  { icon: Clock, title: 'Extended Hours', desc: 'Pharmacy open 8am – 10pm, every day of the week.' },
-  { icon: Truck, title: 'Free Delivery', desc: 'Same-day prescription delivery within 10 km.' },
-  { icon: ShieldCheck, title: 'Verified Medications', desc: 'Fully licensed and quality-assured supplies.' },
-  { icon: PackageCheck, title: 'Auto-Refills', desc: 'Never run out — we remind and refill for you.' },
+  { icon: Clock, title: 'Extended Hours', desc: `Open ${business.hours.toLowerCase()}.` },
+  { icon: Truck, title: 'Home & Office Delivery', desc: 'Call ahead and we\'ll bring your medicines to you.' },
+  { icon: ShieldCheck, title: 'Verified Medications', desc: 'Genuine, quality-assured medicines dispensed by our pharmacy team.' },
+  { icon: PackageCheck, title: 'Refill Reminders', desc: 'Ask us to remind you when it\'s time to refill.' },
 ];
 
-const services = [
-  { icon: FileText, title: 'Prescription Transfer', desc: 'Move your existing prescriptions to us in minutes — just bring your bottle or call ahead.' },
-  { icon: Pill, title: 'Medication Therapy Review', desc: 'Sit down with our pharmacist for a comprehensive review of all your medications.' },
-  { icon: ShieldCheck, title: 'Compounding Services', desc: 'Custom-compounded medications tailored to your specific needs and dosages.' },
-  { icon: Truck, title: 'Home Delivery', desc: 'Free same-day delivery for prescriptions within a 10 km radius of the clinic.' },
+const pharmacyServices = [
+  { icon: FileText, title: 'Prescription Filling & Refills', desc: 'Bring in your prescription or an existing bottle and we\'ll take it from there.' },
+  { icon: Pill, title: 'Medication Counselling', desc: 'Sit down with our pharmacist for guidance on how to take your medicines safely.' },
+  { icon: ShieldCheck, title: 'Trusted Suppliers', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
+  { icon: Truck, title: 'Home & Office Delivery', desc: 'True to our name — delivery to your home or workplace on request.' },
 ];
 
 export default function Pharmacy() {
@@ -40,7 +40,7 @@ export default function Pharmacy() {
           <SectionHeading
             eyebrow="Our Pharmacy"
             title="A Full-Service Pharmacy You Can Trust"
-            desc="Our licensed pharmacists are here to answer your questions, manage your prescriptions, and ensure you get the right medication at the right time — every time."
+            desc="Our pharmacy team is here to answer your questions, fill your prescriptions, and make sure you get the right medication at the right time."
           />
         </div>
       </section>
@@ -65,10 +65,10 @@ export default function Pharmacy() {
                   </div>
                   <div>
                     <p className="text-base font-bold text-ink-900">
-                      5,000+ medications in stock
+                      Prescription & OTC medicines
                     </p>
                     <p className="text-sm text-ink-500">
-                      Prescription & over-the-counter
+                      In stock and ready to go
                     </p>
                   </div>
                 </div>
@@ -80,9 +80,9 @@ export default function Pharmacy() {
                 Everything You Need from a Modern Pharmacy
               </h3>
               <p className="mt-4 text-lg leading-relaxed text-ink-500">
-                Whether you are picking up a one-time prescription or managing a
-                complex medication regimen, our team provides expert guidance
-                and friendly service at every step.
+                Whether you're picking up a one-time prescription or managing
+                an ongoing medication routine, our team provides clear
+                guidance and friendly service every time you visit.
               </p>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -112,10 +112,13 @@ export default function Pharmacy() {
                   Transfer Your Prescription
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-                <div className="flex items-center gap-2 text-sm text-ink-500">
-                  <CreditCard className="h-5 w-5 text-brand-500" />
-                  Most insurance plans accepted
-                </div>
+                <a
+                  href={`tel:${business.phoneTel}`}
+                  className="flex items-center gap-2 text-sm font-semibold text-ink-500 hover:text-brand-700"
+                >
+                  <Phone className="h-5 w-5 text-brand-500" />
+                  Or call {business.phoneDisplay}
+                </a>
               </div>
             </div>
           </div>
@@ -128,11 +131,11 @@ export default function Pharmacy() {
           <SectionHeading
             eyebrow="Pharmacy Services"
             title="More Than Just Prescriptions"
-            desc="We offer a full range of pharmacy services designed to make managing your health simpler and more convenient."
+            desc="A full range of pharmacy services designed to make managing your health simpler and more convenient."
           />
 
           <div className="mt-16 grid gap-6 md:grid-cols-2">
-            {services.map((s, i) => (
+            {pharmacyServices.map((s, i) => (
               <div
                 key={s.title}
                 className={`reveal ${visible ? 'is-visible' : ''} flex gap-5 rounded-3xl border border-ink-100 bg-white p-6 transition-all duration-300 hover:border-brand-200 hover:shadow-lg`}
@@ -168,7 +171,7 @@ export default function Pharmacy() {
                   Ready to switch your pharmacy?
                 </h2>
                 <p className="mt-3 text-brand-100">
-                  Transfer your prescriptions today — it only takes a few minutes.
+                  Transfer your prescription today — it only takes a few minutes.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -180,11 +183,13 @@ export default function Pharmacy() {
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <a
-                  href="tel:+15552408800"
+                  href={`https://wa.me/${business.whatsappNumber}`}
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-white/10"
                 >
-                  <Phone className="h-4 w-4" />
-                  Call Us
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp Us
                 </a>
               </div>
             </div>

@@ -1,38 +1,35 @@
 import { Link } from 'react-router-dom';
+import type { ComponentType } from 'react';
 import {
   Stethoscope,
   Pill,
-  HeartPulse,
-  Syringe,
+  MessageCircle,
+  BookOpen,
   Microscope,
-  Baby,
-  Brain,
-  Eye,
+  Home as HomeIcon,
   CheckCircle2,
   ArrowRight,
   Clock,
   ShieldCheck,
-  Users,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { services } from '@/data/content';
+import { business } from '@/data/business';
 
-const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
-  Stethoscope,
+const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
   Pill,
-  HeartPulse,
-  Syringe,
+  MessageCircle,
+  Stethoscope,
+  BookOpen,
   Microscope,
-  Baby,
-  Brain,
-  Eye,
+  Home: HomeIcon,
 };
 
 const processSteps = [
-  { icon: Clock, title: 'Book Your Visit', desc: 'Schedule online or call us. Same-day appointments are available.' },
-  { icon: Users, title: 'Meet Your Doctor', desc: 'A thorough consultation with a physician who takes time to listen.' },
-  { icon: ShieldCheck, title: 'Get Your Care', desc: 'Diagnosis, treatment, and prescriptions — all handled in one visit.' },
+  { icon: Clock, title: 'Walk In or Call', desc: 'Come by anytime we\'re open, or call ahead so we can prepare for your visit.' },
+  { icon: MessageCircle, title: 'Talk to Our Team', desc: 'A member of our pharmacy or clinic team listens and takes your needs seriously.' },
+  { icon: ShieldCheck, title: 'Get Your Care', desc: 'Consultation, treatment, and medicines — handled in one visit wherever possible.' },
 ];
 
 export default function Services() {
@@ -46,8 +43,8 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             eyebrow="Our Services"
-            title="Comprehensive Care Under One Roof"
-            desc="From routine check-ups to specialist treatments, our integrated team is here to support every stage of your health journey."
+            title="Medicines, Counselling & Clinical Care"
+            desc={business.description}
           />
         </div>
       </section>
@@ -76,13 +73,13 @@ export default function Services() {
                     <p className="mt-2 text-sm leading-relaxed text-ink-500">
                       {s.desc}
                     </p>
-                    <ul className="mt-4 space-y-2">
+                    <ul className="mt-4 flex flex-wrap gap-2">
                       {s.features.map((f) => (
                         <li
                           key={f}
-                          className="flex items-center gap-2 text-sm text-ink-600"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-brand-50/70 px-3 py-1 text-xs font-medium text-ink-600"
                         >
-                          <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-500" />
+                          <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-brand-500" />
                           {f}
                         </li>
                       ))}
