@@ -53,11 +53,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/60 to-brand-950/30" />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-          <h1 className="max-w-3xl text-balance font-display text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-7xl">
+          <h1 className="max-w-2xl text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">
             Our Care &amp; Medicines are Channels of God&rsquo;s Healing
           </h1>
 
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-white/80">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">
             {business.description}
           </p>
 
