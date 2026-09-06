@@ -52,26 +52,33 @@ export default function Services() {
       {/* Services Grid */}
       <section className="pb-24 sm:pb-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div ref={ref} className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
+          <div ref={ref} className="grid gap-6 sm:grid-cols-2">
             {services.map((s, i) => {
               const Icon = iconMap[s.icon] || Stethoscope;
               return (
                 <div
                   key={s.title}
-                  className={`reveal ${visible ? 'is-visible' : ''} flex gap-4 border-t border-ink-200 pt-6`}
+                  className={`reveal ${visible ? 'is-visible' : ''} group rounded-2xl border border-ink-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg`}
                   style={{ transitionDelay: `${i * 70}ms` }}
                 >
-                  <Icon className="mt-0.5 h-7 w-7 shrink-0 text-brand-600" strokeWidth={1.75} />
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-ink-900">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                      {s.desc}
-                    </p>
-                    <p className="mt-3 text-sm text-ink-400">
-                      {s.features.join(' · ')}
-                    </p>
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-600 group-hover:text-white">
+                    <Icon className="h-7 w-7" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-500">
+                    {s.desc}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {s.features.map((f) => (
+                      <span
+                        key={f}
+                        className="rounded-full bg-ink-50 px-3 py-1 text-xs font-medium text-ink-600"
+                      >
+                        {f}
+                      </span>
+                    ))}
                   </div>
                 </div>
               );
@@ -91,22 +98,24 @@ export default function Services() {
 
           <div className="mt-16 grid gap-8 md:grid-cols-3">
             {processSteps.map((step, i) => (
-              <div
-                key={step.title}
-                className="rounded-3xl border border-ink-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-lg"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 font-display text-sm font-bold text-white">
-                  {i + 1}
+              <div key={step.title} className="relative">
+                {i < processSteps.length - 1 && (
+                  <div className="absolute right-0 top-[3.25rem] hidden h-px w-8 translate-x-full bg-ink-200 md:block" />
+                )}
+                <div className="rounded-3xl border border-ink-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-lg">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 font-display text-sm font-bold text-white">
+                    {i + 1}
+                  </div>
+                  <div className="mt-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+                    <step.icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-500">
+                    {step.desc}
+                  </p>
                 </div>
-                <div className="mt-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                  <step.icon className="h-7 w-7" />
-                </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                  {step.desc}
-                </p>
               </div>
             ))}
           </div>
