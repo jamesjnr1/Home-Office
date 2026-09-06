@@ -60,43 +60,35 @@ export default function BookAppointment() {
       </section>
 
       <section className="pb-24 sm:pb-32">
-        <div className="mx-auto grid max-w-7xl items-start gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28">
-            <div className="overflow-hidden rounded-3xl shadow-xl ring-1 ring-ink-100">
-              <img
-                src="https://images.pexels.com/photos/7579823/pexels-photo-7579823.jpeg?auto=compress&cs=tinysrgb&w=900"
-                alt="Clinician consulting with a patient"
-                className="h-72 w-full object-cover sm:h-96"
-                loading="lazy"
-              />
-            </div>
-            <div className="mt-6 space-y-3">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               {[
                 { icon: CheckCircle2, text: 'Walk-ins are always welcome too' },
                 { icon: ShieldCheck, text: 'Your information stays private' },
                 { icon: Clock, text: `Open ${business.hours}` },
               ].map((item) => (
-                <div key={item.text} className="flex items-center gap-3 text-sm text-ink-600">
-                  <item.icon className="h-5 w-5 text-brand-500" />
+                <div key={item.text} className="flex items-center gap-2 text-sm text-ink-600">
+                  <item.icon className="h-5 w-5 shrink-0 text-brand-500" />
                   {item.text}
                 </div>
               ))}
             </div>
             <a
               href={`tel:${business.phoneTel}`}
-              className="mt-6 flex items-center gap-4 rounded-2xl border border-ink-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-brand-200 hover:shadow-md"
+              className="flex shrink-0 items-center gap-3 rounded-2xl border border-ink-100 bg-white px-4 py-3 shadow-sm transition-all duration-300 hover:border-brand-200 hover:shadow-md"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Stethoscope className="h-6 w-6" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                <Stethoscope className="h-5 w-5" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-ink-900">Prefer to call?</p>
+                <p className="text-xs font-semibold text-ink-900">Prefer to call?</p>
                 <p className="text-sm text-ink-500">{business.phoneDisplay}</p>
               </div>
             </a>
           </div>
 
-          <div className="rounded-3xl border border-ink-100 bg-white p-6 shadow-lg sm:p-8">
+          <div className="mt-8 rounded-3xl border border-ink-100 bg-white p-6 shadow-lg sm:p-8">
             {submitted ? (
               <div className="flex min-h-[620px] flex-col items-center justify-center text-center">
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-50">

@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import {
   Pill,
   Clock,
-  Truck,
+  Users,
   ShieldCheck,
   PackageCheck,
+  CreditCard,
   ArrowRight,
   Phone,
   FileText,
@@ -16,7 +17,7 @@ import { business } from '@/data/business';
 
 const features = [
   { icon: Clock, title: 'Extended Hours', desc: `Open ${business.hours.toLowerCase()}.` },
-  { icon: Truck, title: 'Home & Office Delivery', desc: 'Call ahead and we\'ll bring your medicines to you.' },
+  { icon: Users, title: 'Friendly Walk-In Service', desc: 'No appointment needed — walk in and our pharmacy team will help you right away.' },
   { icon: ShieldCheck, title: 'Verified Medications', desc: 'Genuine, quality-assured medicines dispensed by our pharmacy team.' },
   { icon: PackageCheck, title: 'Refill Reminders', desc: 'Ask us to remind you when it\'s time to refill.' },
 ];
@@ -25,7 +26,7 @@ const pharmacyServices = [
   { icon: FileText, title: 'Prescription Filling & Refills', desc: 'Bring in your prescription or an existing bottle and we\'ll take it from there.' },
   { icon: Pill, title: 'Medication Counselling', desc: 'Sit down with our pharmacist for guidance on how to take your medicines safely.' },
   { icon: ShieldCheck, title: 'Trusted Suppliers', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
-  { icon: Truck, title: 'Home & Office Delivery', desc: 'True to our name — delivery to your home or workplace on request.' },
+  { icon: CreditCard, title: 'Affordable, Transparent Pricing', desc: 'Clear pricing on every product, with no hidden costs.' },
 ];
 
 export default function Pharmacy() {
@@ -45,82 +46,54 @@ export default function Pharmacy() {
         </div>
       </section>
 
-      {/* Main split section */}
+      {/* Overview */}
       <section className="pb-24 sm:pb-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div ref={ref} className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className={`reveal ${visible ? 'is-visible' : ''} relative`}>
-              <div className="overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-ink-100">
-                <img
-                  src="https://images.pexels.com/photos/14797855/pexels-photo-14797855.jpeg?auto=compress&cs=tinysrgb&w=900"
-                  alt="Pharmacist organizing medication shelves"
-                  className="h-[400px] w-full object-cover sm:h-[480px]"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute -bottom-6 left-6 right-6 rounded-2xl bg-white p-5 shadow-xl ring-1 ring-ink-100 sm:left-8 sm:right-auto">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-white">
-                    <Pill className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-base font-bold text-ink-900">
-                      Prescription & OTC medicines
-                    </p>
-                    <p className="text-sm text-ink-500">
-                      In stock and ready to go
-                    </p>
-                  </div>
+          <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''} mx-auto max-w-2xl text-center`}>
+            <h3 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
+              Everything You Need from a Modern Pharmacy
+            </h3>
+            <p className="mt-4 text-lg leading-relaxed text-ink-500">
+              Whether you're picking up a one-time prescription or managing
+              an ongoing medication routine, our team provides clear
+              guidance and friendly service every time you visit.
+            </p>
+          </div>
+
+          <div className={`reveal ${visible ? 'is-visible' : ''} mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2`}>
+            {features.map((f) => (
+              <div
+                key={f.title}
+                className="flex gap-4 rounded-2xl border border-ink-100 bg-white p-4 transition-all duration-300 hover:border-brand-200 hover:shadow-md"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <f.icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-ink-900">
+                    {f.title}
+                  </h4>
+                  <p className="mt-1 text-sm text-ink-500">{f.desc}</p>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
 
-            <div className={`reveal ${visible ? 'is-visible' : ''}`}>
-              <h3 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
-                Everything You Need from a Modern Pharmacy
-              </h3>
-              <p className="mt-4 text-lg leading-relaxed text-ink-500">
-                Whether you're picking up a one-time prescription or managing
-                an ongoing medication routine, our team provides clear
-                guidance and friendly service every time you visit.
-              </p>
-
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {features.map((f) => (
-                  <div
-                    key={f.title}
-                    className="flex gap-4 rounded-2xl border border-ink-100 bg-white p-4 transition-all duration-300 hover:border-brand-200 hover:shadow-md"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                      <f.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-ink-900">
-                        {f.title}
-                      </h4>
-                      <p className="mt-1 text-sm text-ink-500">{f.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Link
-                  to="/book"
-                  className="group flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
-                >
-                  Transfer Your Prescription
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-                <a
-                  href={`tel:${business.phoneTel}`}
-                  className="flex items-center gap-2 text-sm font-semibold text-ink-500 hover:text-brand-700"
-                >
-                  <Phone className="h-5 w-5 text-brand-500" />
-                  Or call {business.phoneDisplay}
-                </a>
-              </div>
-            </div>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              to="/book"
+              className="group flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
+            >
+              Transfer Your Prescription
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <a
+              href={`tel:${business.phoneTel}`}
+              className="flex items-center gap-2 text-sm font-semibold text-ink-500 hover:text-brand-700"
+            >
+              <Phone className="h-5 w-5 text-brand-500" />
+              Or call {business.phoneDisplay}
+            </a>
           </div>
         </div>
       </section>
