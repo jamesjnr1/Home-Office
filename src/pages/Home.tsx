@@ -11,6 +11,7 @@ import {
   BookOpen,
   Microscope,
   Users,
+  ChevronDown,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
@@ -25,6 +26,14 @@ const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: 
   Microscope,
   Home: HomeIcon,
 };
+
+const faqs = [
+  { q: 'What are your opening hours?', a: `We're open ${business.hours.toLowerCase()}.` },
+  { q: 'Do I need an appointment?', a: 'No — walk-ins are always welcome. Booking ahead just helps us prepare for your visit.' },
+  { q: 'Do you visit homes or offices?', a: 'Yes. We provide tailored pharmaceutical and clinical services at home, at your office, or wherever is convenient — including schools, churches, and organisations.' },
+  { q: 'Where are you located?', a: business.address },
+  { q: 'How can I reach you?', a: `Call us on ${business.phoneDisplay}, or send a message through our Contact page.` },
+];
 
 export default function Home() {
   const { ref: servicesRef, visible: servicesVisible } = useReveal();
@@ -89,7 +98,7 @@ export default function Home() {
 
           <div
             ref={servicesRef}
-            className="mt-16 grid gap-x-12 gap-y-10 sm:grid-cols-2"
+            className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
             {services.map((s, i) => {
               const Icon = iconMap[s.icon] || Stethoscope;
@@ -97,18 +106,18 @@ export default function Home() {
                 <Link
                   key={s.title}
                   to="/services"
-                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group flex gap-4 border-t border-ink-200 pt-5 transition-colors duration-300`}
+                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group rounded-2xl border border-ink-100 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg`}
                   style={{ transitionDelay: `${i * 60}ms` }}
                 >
-                  <Icon className="mt-0.5 h-6 w-6 shrink-0 text-brand-600" strokeWidth={1.75} />
-                  <div>
-                    <h3 className="text-lg font-semibold text-ink-900 group-hover:text-brand-700">
-                      {s.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-ink-500">
-                      {s.desc}
-                    </p>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-600 group-hover:text-white">
+                    <Icon className="h-6 w-6" strokeWidth={1.75} />
                   </div>
+                  <h3 className="mt-5 text-lg font-semibold text-ink-900 group-hover:text-brand-700">
+                    {s.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-500">
+                    {s.desc}
+                  </p>
                 </Link>
               );
             })}
@@ -171,20 +180,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== FAQ ===== */}
+      <section className="py-24 sm:py-32">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="Frequently Asked"
+            title="Questions We Hear Often"
+          />
+          <div className="mt-10 divide-y divide-ink-200 border-t border-ink-200">
+            {faqs.map((item) => (
+              <details key={item.q} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-ink-900 marker:content-none">
+                  {item.q}
+                  <ChevronDown className="h-5 w-5 shrink-0 text-ink-400 transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-ink-500">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== CTA ===== */}
       <section className="py-24 sm:py-32">
         <div
           ref={ctaRef}
           className={`reveal ${ctaVisible ? 'is-visible' : ''} mx-auto max-w-7xl px-5 sm:px-8`}
         >
-          <div className="rounded-3xl bg-brand-700 px-8 py-14 sm:px-16 sm:py-16">
-            <h2 className="max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 via-brand-600 to-accent-700 px-8 py-14 sm:px-16 sm:py-16">
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+              <div className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-accent-300/20 blur-3xl" />
+            </div>
+            <h2 className="relative max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
               Ready to Take the Next Step for Your Health?
             </h2>
-            <p className="mt-4 max-w-xl text-lg text-brand-100">
+            <p className="relative mt-4 max-w-xl text-lg text-brand-100">
               Book an appointment today, or call us — {business.address}.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="relative mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
                 to="/book"
                 className="flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50 sm:w-auto"

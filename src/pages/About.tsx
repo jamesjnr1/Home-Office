@@ -57,16 +57,19 @@ export default function About() {
             are, with the same care and attention every time.
           </p>
 
-          <blockquote className="my-10 border-l-2 border-accent-400 pl-6">
-            <p className="font-tagline text-2xl italic leading-snug text-ink-800 sm:text-3xl">
-              &ldquo;{business.tagline}&rdquo;
-            </p>
-          </blockquote>
-
           <p className="text-lg leading-relaxed text-ink-600">
             We are open every day, {business.hours.toLowerCase()}, with a
             registered pharmacy team and pricing that stays affordable and
             transparent — because trust is built one visit at a time.
+          </p>
+        </div>
+      </section>
+
+      {/* Tagline banner */}
+      <section className="bg-brand-700 py-20 sm:py-28">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <p className="font-tagline text-3xl italic leading-snug text-white sm:text-4xl lg:text-5xl">
+            &ldquo;{business.tagline}&rdquo;
           </p>
         </div>
       </section>

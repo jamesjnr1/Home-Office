@@ -83,10 +83,12 @@ export default function Footer() {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
               Visit Us
             </h4>
-            <p className="mt-4 text-sm leading-relaxed text-ink-400">
-              Open every day of the week — walk-ins are always welcome, no
-              appointment required for pharmacy visits.
-            </p>
+            <div className="mt-4 rounded-2xl bg-ink-800/60 p-4">
+              <p className="text-sm leading-relaxed text-ink-400">
+                Open every day of the week — walk-ins are always welcome, no
+                appointment required for pharmacy visits.
+              </p>
+            </div>
           </div>
         </div>
 

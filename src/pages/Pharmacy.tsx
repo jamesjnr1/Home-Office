@@ -4,6 +4,9 @@ import {
   Users,
   ShieldCheck,
   PackageCheck,
+  Pill,
+  ClipboardList,
+  CreditCard,
   ArrowRight,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
@@ -18,14 +21,26 @@ const features = [
 ];
 
 const pharmacyServices = [
-  { title: 'Prescription Filling & Refills', desc: 'Bring in your prescription or an existing bottle and we\'ll take it from there.' },
-  { title: 'Medication Counselling', desc: 'Sit down with our pharmacist for guidance on how to take your medicines safely.' },
-  { title: 'Trusted Suppliers', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
-  { title: 'Affordable, Transparent Pricing', desc: 'Clear pricing on every product, with no hidden costs.' },
+  { icon: ClipboardList, title: 'Prescription Filling & Refills', desc: 'Bring in your prescription or an existing bottle and we\'ll take it from there.' },
+  { icon: Pill, title: 'Medication Counselling', desc: 'Sit down with our pharmacist for guidance on how to take your medicines safely.' },
+  { icon: ShieldCheck, title: 'Trusted Suppliers', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
+  { icon: CreditCard, title: 'Affordable, Transparent Pricing', desc: 'Clear pricing on every product, with no hidden costs.' },
+];
+
+// Categories as labelled on our own shelves in store.
+const stockCategories = [
+  'Analgesics',
+  'Multivitamins',
+  'Antibiotics',
+  'Anti-Malarials',
+  'Cough & Cold',
+  'Anti-Allergic',
+  'Herbal Products',
 ];
 
 export default function Pharmacy() {
   const { ref, visible } = useReveal();
+  const { ref: servicesRef, visible: servicesVisible } = useReveal();
 
   return (
     <div className="page-enter">
@@ -65,12 +80,13 @@ export default function Pharmacy() {
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {features.map((f) => (
-                  <div key={f.title} className="flex gap-3">
-                    <f.icon className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                    <div>
-                      <h4 className="text-sm font-semibold text-ink-900">{f.title}</h4>
-                      <p className="mt-1 text-sm text-ink-500">{f.desc}</p>
-                    </div>
+                  <div
+                    key={f.title}
+                    className="rounded-2xl border border-ink-100 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md"
+                  >
+                    <f.icon className="h-5 w-5 text-brand-600" />
+                    <h4 className="mt-3 text-sm font-semibold text-ink-900">{f.title}</h4>
+                    <p className="mt-1 text-sm text-ink-500">{f.desc}</p>
                   </div>
                 ))}
               </div>
@@ -80,7 +96,7 @@ export default function Pharmacy() {
                   to="/book"
                   className="flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
                 >
-                  Transfer Your Prescription
+                  Book a Visit
                 </Link>
                 <a
                   href={`tel:${business.phoneTel}`}
@@ -94,6 +110,27 @@ export default function Pharmacy() {
         </div>
       </section>
 
+      {/* What We Stock */}
+      <section className="pb-24 sm:pb-32">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="What We Stock"
+            title="A Well-Rounded Range, On the Shelf"
+            desc="A snapshot of what you'll find in store — ask our team if you don't see what you need."
+          />
+          <div className="mt-10 flex flex-wrap gap-3">
+            {stockCategories.map((category) => (
+              <span
+                key={category}
+                className="rounded-full border border-ink-200 px-4 py-2 text-sm font-medium text-ink-700 transition-colors duration-300 hover:border-brand-300 hover:text-brand-700"
+              >
+                {category}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Services list */}
       <section className="bg-ink-50 py-24 sm:py-32">
         <div className="mx-auto max-w-5xl px-5 sm:px-8">
@@ -103,10 +140,15 @@ export default function Pharmacy() {
             desc="A full range of pharmacy services designed to make managing your health simpler and more convenient."
           />
 
-          <div className="mt-14 grid gap-x-12 gap-y-8 sm:grid-cols-2">
-            {pharmacyServices.map((s) => (
-              <div key={s.title} className="border-t border-ink-200 pt-5">
-                <h3 className="font-display text-lg font-bold text-ink-900">
+          <div ref={servicesRef} className="mt-14 grid gap-6 sm:grid-cols-2">
+            {pharmacyServices.map((s, i) => (
+              <div
+                key={s.title}
+                className={`reveal ${servicesVisible ? 'is-visible' : ''} rounded-2xl border border-ink-100 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg`}
+                style={{ transitionDelay: `${i * 70}ms` }}
+              >
+                <s.icon className="h-6 w-6 text-brand-600" />
+                <h3 className="mt-4 font-display text-lg font-bold text-ink-900">
                   {s.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-500">
@@ -124,10 +166,10 @@ export default function Pharmacy() {
           <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-brand-700 px-8 py-14 sm:flex-row sm:items-center sm:px-16">
             <div>
               <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
-                Ready to switch your pharmacy?
+                Ready to visit our pharmacy?
               </h2>
               <p className="mt-3 text-brand-100">
-                Transfer your prescription today — it only takes a few minutes.
+                Walk in anytime we're open, or book ahead — it only takes a few minutes.
               </p>
             </div>
             <Link
