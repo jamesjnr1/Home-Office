@@ -93,17 +93,13 @@ export default function Services() {
             {processSteps.map((step, i) => (
               <div
                 key={step.title}
-                className="relative rounded-3xl border border-ink-100 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:shadow-lg"
+                className="rounded-3xl border border-ink-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-lg"
               >
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 font-display text-sm font-bold text-white shadow-lg">
-                    {i + 1}
-                  </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 font-display text-sm font-bold text-white">
+                  {i + 1}
                 </div>
-                <div className="mt-4 flex justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                    <step.icon className="h-8 w-8" />
-                  </div>
+                <div className="mt-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+                  <step.icon className="h-7 w-7" />
                 </div>
                 <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
                   {step.title}
@@ -115,7 +111,7 @@ export default function Services() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12">
             <Link
               to="/book"
               className="group inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"

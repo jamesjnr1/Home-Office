@@ -124,7 +124,7 @@ export default function BookAppointment() {
                 >
                   {submitting ? 'Sending…' : 'Request Appointment'}
                 </button>
-                <p className="text-center text-xs text-ink-400">
+                <p className="text-xs text-ink-400">
                   This is a request — we'll confirm availability by phone.
                 </p>
               </form>

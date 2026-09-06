@@ -140,7 +140,7 @@ export default function Contact() {
       </section>
 
       <section className="bg-ink-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-2xl px-5 text-center sm:px-8">
+        <div className="mx-auto max-w-2xl px-5 sm:px-8">
           <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">Need immediate assistance?</h2>
           <p className="mt-4 text-lg text-ink-500">For urgent needs, call us directly. For a medical emergency, please go to your nearest hospital.</p>
           <a href={`tel:${business.phoneTel}`} className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700">

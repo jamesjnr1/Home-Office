@@ -11,7 +11,7 @@ export default function SectionHeading({
   eyebrow,
   title,
   desc,
-  align = 'center',
+  align = 'left',
 }: SectionHeadingProps) {
   const { ref, visible } = useReveal();
 

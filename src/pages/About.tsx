@@ -96,7 +96,7 @@ export default function About() {
 
       {/* Find us */}
       <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
           <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
             Visit Us
           </h2>
