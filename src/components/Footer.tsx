@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Clock, ArrowUp, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, Clock, ArrowUp } from 'lucide-react';
 import Logo, { LogoTagline } from '@/components/Logo';
 import { business } from '@/data/business';
 
@@ -46,22 +46,13 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6">
               <a
                 href={`tel:${business.phoneTel}`}
-                className="flex items-center gap-2 rounded-full bg-ink-800 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-600"
+                className="inline-flex items-center gap-2 rounded-full bg-ink-800 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-600"
               >
                 <Phone className="h-4 w-4" />
                 Call Us
-              </a>
-              <a
-                href={`https://wa.me/${business.whatsappNumber}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 rounded-full bg-[#25D366]/15 px-4 py-2.5 text-sm font-semibold text-[#25D366] transition-all duration-300 hover:bg-[#25D366] hover:text-white"
-              >
-                <MessageCircle className="h-4 w-4" />
-                WhatsApp
               </a>
             </div>
           </div>

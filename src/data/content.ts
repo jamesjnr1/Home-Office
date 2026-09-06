@@ -13,7 +13,7 @@ export const services: Service[] = [
     features: ['Prescription filling & refills', 'Over-the-counter medicines', 'Quality-assured products'],
   },
   {
-    icon: 'MessageCircle',
+    icon: 'HeartHandshake',
     title: 'Counselling',
     desc: 'Confidential, personal counselling that treats you as the unique individual you are.',
     features: ['Medication counselling', 'Health & lifestyle counselling', 'Confidential & unhurried'],

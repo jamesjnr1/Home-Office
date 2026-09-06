@@ -3,13 +3,13 @@ import type { ComponentType } from 'react';
 import {
   Stethoscope,
   Pill,
-  MessageCircle,
+  HeartHandshake,
   BookOpen,
   Microscope,
   Home as HomeIcon,
-  CheckCircle2,
   ArrowRight,
   Clock,
+  Users,
   ShieldCheck,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
@@ -19,7 +19,7 @@ import { business } from '@/data/business';
 
 const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
   Pill,
-  MessageCircle,
+  HeartHandshake,
   Stethoscope,
   BookOpen,
   Microscope,
@@ -28,7 +28,7 @@ const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: 
 
 const processSteps = [
   { icon: Clock, title: 'Walk In or Call', desc: 'Come by anytime we\'re open, or call ahead so we can prepare for your visit.' },
-  { icon: MessageCircle, title: 'Talk to Our Team', desc: 'A member of our pharmacy or clinic team listens and takes your needs seriously.' },
+  { icon: Users, title: 'Talk to Our Team', desc: 'A member of our pharmacy or clinic team listens and takes your needs seriously.' },
   { icon: ShieldCheck, title: 'Get Your Care', desc: 'Consultation, treatment, and medicines — handled in one visit wherever possible.' },
 ];
 
@@ -58,33 +58,19 @@ export default function Services() {
               return (
                 <div
                   key={s.title}
-                  className={`reveal ${visible ? 'is-visible' : ''} group relative overflow-hidden rounded-3xl border border-ink-100 bg-white p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5`}
+                  className={`reveal ${visible ? 'is-visible' : ''} rounded-2xl border border-ink-100 bg-white p-7 transition-colors duration-300 hover:border-brand-200`}
                   style={{ transitionDelay: `${i * 70}ms` }}
                 >
-                  <div className="absolute right-0 top-0 h-32 w-32 -translate-y-12 translate-x-12 rounded-full bg-brand-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                  <div className="relative">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white">
-                      <Icon className="h-8 w-8" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                      {s.desc}
-                    </p>
-                    <ul className="mt-4 flex flex-wrap gap-2">
-                      {s.features.map((f) => (
-                        <li
-                          key={f}
-                          className="inline-flex items-center gap-1.5 rounded-full bg-brand-50/70 px-3 py-1 text-xs font-medium text-ink-600"
-                        >
-                          <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-brand-500" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <Icon className="h-8 w-8 text-brand-600" strokeWidth={1.75} />
+                  <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-500">
+                    {s.desc}
+                  </p>
+                  <p className="mt-4 text-sm text-ink-400">
+                    {s.features.join(' · ')}
+                  </p>
                 </div>
               );
             })}
