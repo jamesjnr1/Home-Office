@@ -41,29 +41,30 @@ export default function Home() {
           className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/60 to-brand-950/30" />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <h1 className="max-w-2xl text-balance font-display text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-6xl">
             Our Care &amp; Medicines are Channels of God&rsquo;s Healing
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
             {business.description}
           </p>
 
-          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link
               to="/book"
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50 sm:w-auto"
+              className="flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50"
             >
               Book an Appointment
             </Link>
             <Link
               to="/services"
-              className="flex w-full items-center justify-center gap-2 rounded-full border border-white/50 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/10 sm:w-auto"
+              className="group flex items-center gap-1.5 text-base font-semibold text-white"
             >
               Explore Services
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -89,7 +90,7 @@ export default function Home() {
 
           <div
             ref={servicesRef}
-            className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-16 grid gap-x-12 gap-y-10 sm:grid-cols-2"
           >
             {services.map((s, i) => {
               const Icon = iconMap[s.icon] || Stethoscope;
@@ -97,16 +98,18 @@ export default function Home() {
                 <Link
                   key={s.title}
                   to="/services"
-                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group rounded-2xl border border-ink-100 bg-white p-7 transition-all duration-300 hover:border-brand-200 hover:shadow-lg`}
+                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group flex gap-4 border-t border-ink-200 pt-5 transition-colors duration-300`}
                   style={{ transitionDelay: `${i * 60}ms` }}
                 >
-                  <Icon className="h-7 w-7 text-brand-600" strokeWidth={1.75} />
-                  <h3 className="mt-5 text-lg font-semibold text-ink-900">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                    {s.desc}
-                  </p>
+                  <Icon className="mt-0.5 h-6 w-6 shrink-0 text-brand-600" strokeWidth={1.75} />
+                  <div>
+                    <h3 className="text-lg font-semibold text-ink-900 group-hover:text-brand-700">
+                      {s.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink-500">
+                      {s.desc}
+                    </p>
+                  </div>
                 </Link>
               );
             })}
