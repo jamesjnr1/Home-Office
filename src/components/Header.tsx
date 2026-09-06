@@ -37,10 +37,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'glass shadow-[0_2px_24px_rgba(0,0,0,0.06)]'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 glass transition-all duration-500 ${
+        scrolled ? 'shadow-[0_2px_24px_rgba(0,0,0,0.06)]' : ''
       }`}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
