@@ -1,5 +1,5 @@
 // Single source of truth for real business details.
-// Update this file if the address, phone, or hours ever change.
+// Update this file if the address, phone, hours, or Formspree endpoint change.
 
 export const business = {
   name: 'Home-Office Pharmacy & Clinic',
@@ -10,6 +10,24 @@ export const business = {
   whatsappNumber: '233558802400',
   hours: '8:00 AM – 10:00 PM, Every Day',
   mapQuery: 'Home-Office Pharmacy, Buduburam Estate Junction, Ghana',
+
+  // TODO: replace with the real endpoint from https://formspree.io — looks
+  // like "https://formspree.io/f/xxxxxxxx". Forms fall back to WhatsApp
+  // until this is set.
+  formspreeEndpoint: '',
+
+  description:
+    "Home-Office Pharmacy and Clinic provides customers with medicines, counselling, clinical care and other services that meet their needs. Our medicines, counselling and clinical care are channels for God's healing to all who desire lasting healing and solutions to their medical problems.",
+
+  descriptionExtra:
+    'We provide tailored pharmaceutical and clinical services at home and office, or wherever clients may deem convenient. We are open to schools, churches, and organizations who want customised services at the time they need it. We understand that each person is unique, so our services are sensitive to individual needs. We work with leading organisations in the medical and pharmaceutical industry to provide quality pharmaceutical products.',
+
+  audiences: [
+    { icon: 'Home', label: 'At Home' },
+    { icon: 'Briefcase', label: 'At Your Office' },
+    { icon: 'GraduationCap', label: 'Schools' },
+    { icon: 'Users', label: 'Churches & Organisations' },
+  ],
 };
 
 export function buildWhatsAppLink(message: string) {
@@ -22,4 +40,18 @@ export function buildMapEmbedUrl() {
 
 export function buildMapLinkUrl() {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.mapQuery)}`;
+}
+
+export async function submitToFormspree(data: Record<string, unknown>) {
+  if (!business.formspreeEndpoint) return false;
+  try {
+    const res = await fetch(business.formspreeEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(data),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
 }

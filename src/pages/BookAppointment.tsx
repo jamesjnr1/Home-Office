@@ -2,20 +2,32 @@ import { useState } from 'react';
 import { CalendarDays, User, Phone, CheckCircle2, ArrowRight, Stethoscope, ShieldCheck, Clock, ChevronDown, MessageCircle } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import { departments, timeSlots } from '@/data/content';
-import { business, buildWhatsAppLink } from '@/data/business';
+import { business, buildWhatsAppLink, submitToFormspree } from '@/data/business';
 
 export default function BookAppointment() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [dept, setDept] = useState(departments[0]);
   const [time, setTime] = useState(timeSlots[0]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitting(true);
     const form = new FormData(e.currentTarget);
     const name = form.get('name');
     const phone = form.get('phone');
     const date = form.get('date');
     const notes = form.get('notes');
+
+    await submitToFormspree({
+      _subject: 'New appointment request — Home-Office Pharmacy & Clinic',
+      name,
+      phone,
+      reason: dept,
+      preferredDate: date,
+      preferredTime: time,
+      notes,
+    });
 
     const text = [
       `Hello Home-Office Pharmacy & Clinic, I'd like to book an appointment.`,
@@ -30,6 +42,7 @@ export default function BookAppointment() {
       .join('\n');
 
     window.open(buildWhatsAppLink(text), '_blank');
+    setSubmitting(false);
     setSubmitted(true);
   };
 
@@ -91,7 +104,7 @@ export default function BookAppointment() {
                 </div>
                 <h3 className="mt-6 font-display text-2xl font-bold text-ink-900">Almost done!</h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-500">
-                  We opened WhatsApp with your request for <strong className="text-ink-700">{dept}</strong> at <strong className="text-ink-700">{time}</strong> pre-filled. Just tap send and we'll confirm your appointment.
+                  Your request for <strong className="text-ink-700">{dept}</strong> at <strong className="text-ink-700">{time}</strong> has been sent, and we opened WhatsApp with it pre-filled — just tap send there and we'll confirm your appointment.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
@@ -165,10 +178,14 @@ export default function BookAppointment() {
                   <textarea name="notes" rows={3} placeholder="Share any details that might help us prepare for your visit..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-800 outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                 </div>
 
-                <button type="submit" className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5 hover:shadow-xl">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5 hover:shadow-xl disabled:opacity-70 disabled:hover:translate-y-0"
+                >
                   <MessageCircle className="h-5 w-5" />
-                  Request via WhatsApp
-                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  {submitting ? 'Sending…' : 'Request Appointment'}
+                  {!submitting && <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />}
                 </button>
                 <p className="flex items-center justify-center gap-2 text-center text-xs text-ink-400">
                   <Stethoscope className="h-3.5 w-3.5" />

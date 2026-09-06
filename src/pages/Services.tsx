@@ -3,30 +3,27 @@ import type { ComponentType } from 'react';
 import {
   Stethoscope,
   Pill,
-  Syringe,
-  Activity,
-  Users,
-  Plus,
-  Truck,
-  ShieldCheck,
+  MessageCircle,
+  BookOpen,
+  Microscope,
+  Home as HomeIcon,
   CheckCircle2,
   ArrowRight,
   Clock,
-  MessageCircle,
+  ShieldCheck,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { services } from '@/data/content';
+import { business } from '@/data/business';
 
 const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
-  Stethoscope,
   Pill,
-  Syringe,
-  Activity,
-  Users,
-  Plus,
-  Truck,
-  ShieldCheck,
+  MessageCircle,
+  Stethoscope,
+  BookOpen,
+  Microscope,
+  Home: HomeIcon,
 };
 
 const processSteps = [
@@ -46,8 +43,8 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             eyebrow="Our Services"
-            title="Pharmacy & Clinic Care Under One Roof"
-            desc="From prescriptions to walk-in consultations, our team supports the everyday health needs of our community."
+            title="Medicines, Counselling & Clinical Care"
+            desc={business.description}
           />
         </div>
       </section>
@@ -76,13 +73,13 @@ export default function Services() {
                     <p className="mt-2 text-sm leading-relaxed text-ink-500">
                       {s.desc}
                     </p>
-                    <ul className="mt-4 space-y-2">
+                    <ul className="mt-4 flex flex-wrap gap-2">
                       {s.features.map((f) => (
                         <li
                           key={f}
-                          className="flex items-center gap-2 text-sm text-ink-600"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-brand-50/70 px-3 py-1 text-xs font-medium text-ink-600"
                         >
-                          <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-500" />
+                          <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-brand-500" />
                           {f}
                         </li>
                       ))}

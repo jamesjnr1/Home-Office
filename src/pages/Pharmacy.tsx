@@ -8,7 +8,6 @@ import {
   ArrowRight,
   Phone,
   FileText,
-  Heart,
   MessageCircle,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
@@ -25,7 +24,7 @@ const features = [
 const pharmacyServices = [
   { icon: FileText, title: 'Prescription Filling & Refills', desc: 'Bring in your prescription or an existing bottle and we\'ll take it from there.' },
   { icon: Pill, title: 'Medication Counselling', desc: 'Sit down with our pharmacist for guidance on how to take your medicines safely.' },
-  { icon: Heart, title: 'Health & Wellness Products', desc: 'Vitamins, supplements, and mother & baby care essentials, in stock and ready.' },
+  { icon: ShieldCheck, title: 'Trusted Suppliers', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
   { icon: Truck, title: 'Home & Office Delivery', desc: 'True to our name — delivery to your home or workplace on request.' },
 ];
 

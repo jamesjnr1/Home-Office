@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Phone, MapPin, Clock, Send, CheckCircle2, MessageCircle, Navigation } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import { useReveal } from '@/hooks/useReveal';
-import { business, buildMapEmbedUrl, buildMapLinkUrl, buildWhatsAppLink } from '@/data/business';
+import { business, buildMapEmbedUrl, buildMapLinkUrl, buildWhatsAppLink, submitToFormspree } from '@/data/business';
 
 const contactInfo = [
   { icon: MapPin, label: 'Visit Us', value: business.address },
@@ -13,15 +13,25 @@ const contactInfo = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const { ref, visible } = useReveal();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitting(true);
     const form = new FormData(e.currentTarget);
     const name = form.get('name');
     const phone = form.get('phone');
     const reason = form.get('reason');
     const message = form.get('message');
+
+    await submitToFormspree({
+      _subject: 'New contact message — Home-Office Pharmacy & Clinic',
+      name,
+      phone,
+      reason,
+      message,
+    });
 
     const text = [
       `Hello Home-Office Pharmacy & Clinic, my name is ${name}.`,
@@ -31,6 +41,7 @@ export default function Contact() {
     ].join('\n');
 
     window.open(buildWhatsAppLink(text), '_blank');
+    setSubmitting(false);
     setSubmitted(true);
   };
 
@@ -93,9 +104,9 @@ export default function Contact() {
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-50">
                     <CheckCircle2 className="h-8 w-8 text-brand-600" />
                   </div>
-                  <h3 className="mt-4 font-display text-2xl font-bold text-ink-900">Message Ready</h3>
+                  <h3 className="mt-4 font-display text-2xl font-bold text-ink-900">Message Sent</h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-ink-500">
-                    We opened WhatsApp with your message pre-filled — just hit send there to reach us directly.
+                    Your message is on its way, and we opened WhatsApp with it pre-filled — hit send there for the fastest reply.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -109,7 +120,7 @@ export default function Contact() {
                   <div>
                     <h3 className="font-display text-2xl font-bold text-ink-900">Send a Message</h3>
                     <p className="mt-1 text-sm text-ink-500">
-                      Fill out the form and it will open as a WhatsApp message to us.
+                      Fill out the form to send us a message directly, or reach out on WhatsApp instantly.
                     </p>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
@@ -136,9 +147,13 @@ export default function Contact() {
                     <label className="mb-1.5 block text-sm font-medium text-ink-700">Message</label>
                     <textarea required name="message" rows={5} placeholder="Tell us how we can help..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                   </div>
-                  <button type="submit" className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5">
-                    Send via WhatsApp
-                    <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+                  >
+                    {submitting ? 'Sending…' : 'Send Message'}
+                    {!submitting && <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />}
                   </button>
                 </form>
               )}
