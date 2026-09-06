@@ -121,7 +121,7 @@ export default function Pharmacy() {
       {/* CTA */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="flex flex-col items-center justify-between gap-6 rounded-3xl bg-brand-700 px-8 py-14 text-center sm:flex-row sm:px-16 sm:text-left">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-brand-700 px-8 py-14 sm:flex-row sm:items-center sm:px-16">
             <div>
               <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
                 Ready to switch your pharmacy?

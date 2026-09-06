@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <div className="page-enter">
       {/* ===== HERO — simple photo with a soft gradient for legibility ===== */}
-      <section id="home" className="relative w-full overflow-hidden pt-36 pb-16 sm:pt-48 sm:pb-24">
+      <section id="home" className="relative w-full overflow-hidden pt-36 pb-24 sm:pt-48 sm:pb-32 lg:pb-40">
         <img
           src="/images/storefront-1.png"
           alt="Home-Office Pharmacy & Clinic storefront at Buduburam, Estate Junction"
@@ -44,15 +44,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/60 to-brand-950/30" />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-          <h1 className="max-w-2xl text-balance font-display text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-3xl text-balance font-display text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-7xl">
             Our Care &amp; Medicines are Channels of God&rsquo;s Healing
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-white/80">
             {business.description}
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link
               to="/book"
               className="flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50"
@@ -61,10 +61,9 @@ export default function Home() {
             </Link>
             <Link
               to="/services"
-              className="group flex items-center gap-1.5 text-base font-semibold text-white"
+              className="text-base font-semibold text-white"
             >
               Explore Services
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -72,7 +71,7 @@ export default function Home() {
 
       {/* Key facts — plain, no cards or icons */}
       <div className="border-b border-ink-100 bg-white py-6">
-        <p className="mx-auto max-w-7xl px-5 text-center text-sm font-medium text-ink-600 sm:px-8">
+        <p className="mx-auto max-w-7xl px-5 text-sm font-medium text-ink-600 sm:px-8">
           Open {business.hours} <span className="mx-2 text-ink-300">·</span>
           Licensed Pharmacy &amp; Clinic <span className="mx-2 text-ink-300">·</span>
           Walk-Ins Welcome
@@ -115,7 +114,7 @@ export default function Home() {
             })}
           </div>
 
-          <div className="mt-10 text-center">
+          <div className="mt-10">
             <Link
               to="/services"
               className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
@@ -145,7 +144,6 @@ export default function Home() {
                 eyebrow="Why Choose Us"
                 title="Healthcare That Puts You First"
                 desc="Every person is unique, and our services are sensitive to individual needs."
-                align="left"
               />
               <div ref={whyRef} className="mt-8 space-y-5">
                 {[
@@ -179,23 +177,23 @@ export default function Home() {
           ref={ctaRef}
           className={`reveal ${ctaVisible ? 'is-visible' : ''} mx-auto max-w-7xl px-5 sm:px-8`}
         >
-          <div className="rounded-3xl bg-brand-700 px-8 py-16 text-center sm:px-16 sm:py-20">
-            <h2 className="text-balance font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+          <div className="rounded-3xl bg-brand-700 px-8 py-14 sm:px-16 sm:py-16">
+            <h2 className="max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
               Ready to Take the Next Step for Your Health?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-brand-100">
+            <p className="mt-4 max-w-xl text-lg text-brand-100">
               Book an appointment today, or call us — {business.address}.
             </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
                 to="/book"
-                className="flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50"
+                className="flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50 sm:w-auto"
               >
                 Book an Appointment
               </Link>
               <a
                 href={`tel:${business.phoneTel}`}
-                className="flex items-center gap-2 rounded-full border border-white/50 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/10"
+                className="flex items-center justify-center gap-2 rounded-full border border-white/50 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/10 sm:w-auto"
               >
                 Call {business.phoneDisplay}
               </a>
