@@ -7,15 +7,14 @@ export const business = {
   address: 'Buduburam, Estate Junction, Ghana',
   phoneDisplay: '055 880 2400',
   phoneTel: '+233558802400',
-  whatsappNumber: '233558802400',
   hours: '8:00 AM – 10:00 PM, Every Day',
   mapQuery: 'Home-Office Pharmacy, Buduburam Estate Junction, Ghana',
 
   // Formspree needs ONE destination email — no account/signup required.
   // Set it below, then submit any form on the site once: Formspree emails
   // that address a one-time confirmation link, and after you click it,
-  // every submission arrives by email automatically. Forms fall back to
-  // WhatsApp only until this is set.
+  // every submission arrives by email automatically. Forms won't deliver
+  // anywhere until this is set.
   // (If you'd rather use a dashboard-created form, put its full
   // "https://formspree.io/f/xxxxxxxx" URL in formspreeEndpoint instead —
   // that takes priority over the email below.)
@@ -35,10 +34,6 @@ export const business = {
     { icon: 'Users', label: 'Churches & Organisations' },
   ],
 };
-
-export function buildWhatsAppLink(message: string) {
-  return `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(message)}`;
-}
 
 export function buildMapEmbedUrl() {
   return `https://www.google.com/maps?q=${encodeURIComponent(business.mapQuery)}&output=embed`;
