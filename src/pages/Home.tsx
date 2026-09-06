@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="page-enter">
       {/* ===== HERO — simple photo with a soft gradient for legibility ===== */}
-      <section id="home" className="relative w-full overflow-hidden pt-36 pb-24 sm:pt-48 sm:pb-32 lg:pb-40">
+      <section id="home" className="relative w-full overflow-hidden pt-44 pb-32 sm:pt-56 sm:pb-40 lg:pb-48">
         <img
           src="/images/storefront-1.png"
           alt="Home-Office Pharmacy & Clinic storefront at Buduburam, Estate Junction"

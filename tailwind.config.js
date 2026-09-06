@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'system-ui', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'Poppins', 'system-ui', 'sans-serif'],
+        sans: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Inter', 'Poppins', 'system-ui', 'sans-serif'],
         tagline: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       colors: {
