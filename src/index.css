@@ -12,7 +12,10 @@
   body {
     font-family: 'Poppins', system-ui, sans-serif;
     color: #0f172a;
-    background: #ffffff;
+    /* A warm, slightly off-white page background — white cards and panels
+       sit on top of it, giving the whole site a quiet two-tone depth
+       instead of flat white-on-white. */
+    background: #faf9f6;
   }
 
   h1, h2, h3, h4 {

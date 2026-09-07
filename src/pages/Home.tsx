@@ -45,7 +45,13 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/40 to-transparent" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <h1 className="max-w-2xl text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-white/50" aria-hidden="true" />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+              Home-Office Pharmacy &amp; Clinic
+            </span>
+          </div>
+          <h1 className="mt-4 max-w-2xl text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">
             Our Care &amp; Medicines are Channels of God&rsquo;s Healing
           </h1>
 
@@ -65,56 +71,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Key facts — plain, no cards or icons */}
-      <div className="border-b border-ink-100 bg-white py-6">
-        <p className="mx-auto max-w-7xl px-5 text-sm font-medium text-ink-600 sm:px-8">
-          Open {business.hours} <span className="mx-2 text-ink-300">·</span>
-          Licensed Pharmacy &amp; Clinic <span className="mx-2 text-ink-300">·</span>
-          Walk-Ins Welcome
-        </p>
+      {/* Key facts strip */}
+      <div className="border-b border-ink-100 bg-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-ink-100 px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8">
+          {[
+            { label: 'Opening Hours', value: business.hours },
+            { label: 'What We Are', value: 'Licensed Pharmacy & Clinic' },
+            { label: 'Walk-Ins', value: 'Always Welcome' },
+          ].map((item) => (
+            <div key={item.label} className="py-6 sm:px-8 sm:first:pl-0 sm:last:pr-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
+                {item.label}
+              </p>
+              <p className="mt-1.5 text-base font-semibold text-ink-900">{item.value}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* ===== SERVICES PREVIEW ===== */}
+      {/* ===== SERVICES PREVIEW — an editorial index, not another card grid ===== */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="What We Offer"
-            title="Medicines, Counselling & Clinical Care"
-            desc="Services that meet you where you are — medically and physically."
-          />
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.7fr)] lg:gap-16">
+            <div>
+              <SectionHeading
+                eyebrow="What We Offer"
+                title="Medicines, Counselling & Clinical Care"
+                desc="Services that meet you where you are — medically and physically."
+              />
+              <div className="mt-8">
+                <ButtonLink to="/services" variant="primary" size="md">
+                  View All Services
+                  <ArrowRight className="h-4 w-4" />
+                </ButtonLink>
+              </div>
+            </div>
 
-          <div
-            ref={servicesRef}
-            className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {services.map((s, i) => {
-              const Icon = iconMap[s.icon] || Stethoscope;
-              return (
-                <Link
-                  key={s.title}
-                  to="/services"
-                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group rounded-2xl border border-ink-100 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg`}
-                  style={{ transitionDelay: `${i * 60}ms` }}
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-600 group-hover:text-white">
-                    <Icon className="h-6 w-6" strokeWidth={1.75} />
-                  </div>
-                  <h3 className="mt-5 text-lg font-semibold text-ink-900 group-hover:text-brand-700">
-                    {s.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-500">
-                    {s.desc}
-                  </p>
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="mt-10">
-            <ButtonLink to="/services" variant="primary" size="md">
-              View All Services
-              <ArrowRight className="h-4 w-4" />
-            </ButtonLink>
+            <div ref={servicesRef} className="border-t border-ink-100">
+              {services.map((s, i) => {
+                const Icon = iconMap[s.icon] || Stethoscope;
+                return (
+                  <Link
+                    key={s.title}
+                    to="/services"
+                    className={`reveal ${servicesVisible ? 'is-visible' : ''} group flex items-start gap-5 border-b border-ink-100 py-6 transition-colors duration-300 hover:bg-ink-50/60 sm:-mx-4 sm:px-4`}
+                    style={{ transitionDelay: `${i * 50}ms` }}
+                  >
+                    <span className="mt-0.5 font-display text-sm font-bold text-ink-300 transition-colors duration-300 group-hover:text-brand-500">
+                      0{i + 1}
+                    </span>
+                    <Icon
+                      className="mt-0.5 h-5 w-5 shrink-0 text-brand-600"
+                      strokeWidth={1.75}
+                    />
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-ink-900 group-hover:text-brand-700">
+                        {s.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-ink-500">
+                        {s.desc}
+                      </p>
+                    </div>
+                    <ArrowRight className="mt-1.5 h-4 w-4 shrink-0 -translate-x-1 text-ink-300 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-brand-600 group-hover:opacity-100" />
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
