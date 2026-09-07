@@ -11,7 +11,6 @@ import {
   BookOpen,
   Microscope,
   Users,
-  ChevronDown,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
@@ -26,14 +25,6 @@ const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: 
   Microscope,
   Home: HomeIcon,
 };
-
-const faqs = [
-  { q: 'What are your opening hours?', a: `We're open ${business.hours.toLowerCase()}.` },
-  { q: 'Do I need an appointment?', a: 'No — walk-ins are always welcome. Booking ahead just helps us prepare for your visit.' },
-  { q: 'Do you visit homes or offices?', a: 'Yes. We provide tailored pharmaceutical and clinical services at home, at your office, or wherever is convenient — including schools, churches, and organisations.' },
-  { q: 'Where are you located?', a: business.address },
-  { q: 'How can I reach you?', a: `Call us on ${business.phoneDisplay}, or send a message through our Contact page.` },
-];
 
 export default function Home() {
   const { ref: servicesRef, visible: servicesVisible } = useReveal();
@@ -177,27 +168,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FAQ ===== */}
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Frequently Asked"
-            title="Questions We Hear Often"
-          />
-          <div className="mt-10 divide-y divide-ink-200 border-t border-ink-200">
-            {faqs.map((item) => (
-              <details key={item.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-ink-900 marker:content-none">
-                  {item.q}
-                  <ChevronDown className="h-5 w-5 shrink-0 text-ink-400 transition-transform duration-300 group-open:rotate-180" />
-                </summary>
-                <p className="mt-3 text-sm leading-relaxed text-ink-500">{item.a}</p>
-              </details>
-            ))}
           </div>
         </div>
       </section>
