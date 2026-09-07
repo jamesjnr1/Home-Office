@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
+import Button from '@/components/Button';
 import { departments, timeSlots } from '@/data/content';
 import { business, submitToFormspree } from '@/data/business';
 
@@ -58,12 +59,14 @@ export default function BookAppointment() {
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-500">
                   Your request for <strong className="text-ink-700">{dept}</strong> at <strong className="text-ink-700">{time}</strong> has been sent. We'll confirm your appointment by phone.
                 </p>
-                <button
+                <Button
                   onClick={() => setSubmitted(false)}
-                  className="mt-8 rounded-full border border-ink-200 px-5 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
+                  variant="ghost"
+                  size="sm"
+                  className="mt-8"
                 >
                   Book Another Appointment
-                </button>
+                </Button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-7">
@@ -117,13 +120,9 @@ export default function BookAppointment() {
                   <textarea name="notes" rows={3} placeholder="Share any details that might help us prepare for your visit..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-800 outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full rounded-full bg-brand-600 px-6 py-4 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700 disabled:opacity-70"
-                >
+                <Button type="submit" disabled={submitting} variant="primary" className="w-full">
                   {submitting ? 'Sending…' : 'Request Appointment'}
-                </button>
+                </Button>
                 <p className="text-xs text-ink-400">
                   This is a request — we'll confirm availability by phone.
                 </p>
