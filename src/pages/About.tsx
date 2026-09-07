@@ -42,10 +42,11 @@ export default function About() {
       <section className="pb-24 sm:pb-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''} max-w-3xl`}>
-            <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
+            <span className="block h-px w-8 bg-brand-500" aria-hidden="true" />
+            <h2 className="mt-4 font-display text-2xl font-bold text-ink-900 sm:text-3xl">
               Our Story
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-ink-600">
+            <p className="mt-6 text-xl leading-snug text-ink-700 sm:text-2xl">
               {business.descriptionExtra}
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink-600">
@@ -99,7 +100,8 @@ export default function About() {
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="max-w-3xl">
-            <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
+            <span className="block h-px w-8 bg-brand-500" aria-hidden="true" />
+            <h2 className="mt-4 font-display text-2xl font-bold text-ink-900 sm:text-3xl">
               Visit Us
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-600">

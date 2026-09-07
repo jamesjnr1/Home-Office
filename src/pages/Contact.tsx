@@ -141,7 +141,8 @@ export default function Contact() {
       <section className="bg-ink-50 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="max-w-2xl">
-            <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">Need immediate assistance?</h2>
+            <span className="block h-px w-8 bg-brand-500" aria-hidden="true" />
+            <h2 className="mt-4 font-display text-3xl font-bold text-ink-900 sm:text-4xl">Need immediate assistance?</h2>
             <p className="mt-4 text-lg text-ink-500">For urgent needs, call us directly. For a medical emergency, please go to your nearest hospital.</p>
             <ButtonAnchor href={`tel:${business.phoneTel}`} variant="primary" className="mt-8">
               Call {business.phoneDisplay}
