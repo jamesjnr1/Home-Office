@@ -40,28 +40,26 @@ export default function About() {
 
       {/* Our Story — reflective, text-led */}
       <section className="pb-24 sm:pb-32">
-        <div
-          ref={ref}
-          className={`reveal ${visible ? 'is-visible' : ''} mx-auto max-w-3xl px-5 sm:px-8`}
-        >
-          <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
-            Our Story
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-ink-600">
-            {business.descriptionExtra}
-          </p>
-          <p className="mt-5 text-lg leading-relaxed text-ink-600">
-            Whether that means a quiet consultation at home, a visit to our
-            counter at Buduburam, Estate Junction, or a health talk arranged
-            for your school, church, or organisation — we meet you where you
-            are, with the same care and attention every time.
-          </p>
-
-          <p className="text-lg leading-relaxed text-ink-600">
-            We are open every day, {business.hours.toLowerCase()}, with a
-            registered pharmacy team and pricing that stays affordable and
-            transparent — because trust is built one visit at a time.
-          </p>
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''} max-w-3xl`}>
+            <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
+              Our Story
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-ink-600">
+              {business.descriptionExtra}
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-ink-600">
+              Whether that means a quiet consultation at home, a visit to our
+              counter at Buduburam, Estate Junction, or a health talk arranged
+              for your school, church, or organisation — we meet you where you
+              are, with the same care and attention every time.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-ink-600">
+              We are open {business.hours.toLowerCase()}, with a registered
+              pharmacy team and pricing that stays affordable and transparent
+              — because trust is built one visit at a time.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -99,21 +97,23 @@ export default function About() {
 
       {/* Find us */}
       <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
-            Visit Us
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-ink-600">
-            {business.address} — open {business.hours.toLowerCase()}. Walk-ins
-            are always welcome.
-          </p>
-          <div className="mt-8">
-            <Link
-              to="/book"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
-            >
-              Book an Appointment
-            </Link>
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="max-w-3xl">
+            <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
+              Visit Us
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-ink-600">
+              {business.address} — open {business.hours.toLowerCase()}.
+              Walk-ins are always welcome.
+            </p>
+            <div className="mt-8">
+              <Link
+                to="/book"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
+              >
+                Book an Appointment
+              </Link>
+            </div>
           </div>
         </div>
       </section>
