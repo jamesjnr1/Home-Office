@@ -100,19 +100,19 @@ export default function Services() {
             {processSteps.map((step, i) => (
               <div key={step.title} className="relative">
                 {i < processSteps.length - 1 && (
-                  <div className="absolute right-0 top-[3.25rem] hidden h-px w-8 translate-x-full bg-ink-200 md:block" />
+                  <div className="absolute left-full top-[3.75rem] hidden w-8 border-t-2 border-dashed border-brand-200 md:block" />
                 )}
-                <div className="rounded-3xl border border-ink-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-lg">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 font-display text-sm font-bold text-white">
-                    {i + 1}
+                <div className="group relative overflow-hidden rounded-3xl border border-ink-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <span className="pointer-events-none absolute -right-2 -top-6 select-none font-display text-8xl font-bold text-ink-50 transition-colors duration-300 group-hover:text-brand-50">
+                    0{i + 1}
+                  </span>
+                  <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-lg shadow-brand-500/25">
+                    <step.icon className="h-7 w-7" strokeWidth={1.75} />
                   </div>
-                  <div className="mt-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-                    <step.icon className="h-7 w-7" />
-                  </div>
-                  <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
+                  <h3 className="relative mt-6 font-display text-xl font-bold text-ink-900">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-500">
+                  <p className="relative mt-2 text-sm leading-relaxed text-ink-500">
                     {step.desc}
                   </p>
                 </div>
