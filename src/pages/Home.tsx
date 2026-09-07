@@ -42,17 +42,17 @@ export default function Home() {
 
   return (
     <div className="page-enter">
-      {/* ===== HERO — simple photo with a soft gradient for legibility ===== */}
-      <section id="home" className="relative w-full overflow-hidden pt-44 pb-32 sm:pt-56 sm:pb-40 lg:pb-48">
+      {/* ===== HERO — full-height photo, text pinned to the bottom ===== */}
+      <section id="home" className="relative flex min-h-screen w-full flex-col justify-end overflow-hidden pb-16 pt-32 sm:pb-20">
         <img
           src="/images/storefront-1.png"
           alt="Home-Office Pharmacy & Clinic storefront at Buduburam, Estate Junction"
           className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/60 to-brand-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/40 to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8">
           <h1 className="max-w-2xl text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">
             Our Care &amp; Medicines are Channels of God&rsquo;s Healing
           </h1>
@@ -61,18 +61,19 @@ export default function Home() {
             {business.description}
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/book"
-              className="flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50"
+              className="flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
             >
               Book an Appointment
             </Link>
             <Link
               to="/services"
-              className="text-base font-semibold text-white"
+              className="flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/20"
             >
               Explore Services
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
