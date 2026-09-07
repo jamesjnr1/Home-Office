@@ -12,32 +12,16 @@
   body {
     font-family: 'Poppins', system-ui, sans-serif;
     color: #0f172a;
-    /* A warm, slightly off-white page background — white cards and panels
-       sit on top of it, giving the whole site a quiet two-tone depth
-       instead of flat white-on-white. */
-    background: #faf9f6;
+    background: #ffffff;
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Poppins', system-ui, sans-serif;
   }
 
   ::selection {
     background: #a7d4eb;
     color: #0e4f71;
-  }
-
-  /* Keyboard focus ring — only shown for keyboard/assistive navigation,
-     never on a mouse click, via the browser's :focus-visible heuristic. */
-  a:focus-visible,
-  button:focus-visible,
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible,
-  [tabindex]:focus-visible {
-    outline: 2px solid #198fcc;
-    outline-offset: 2px;
-    border-radius: 4px;
   }
 }
 
@@ -60,6 +44,12 @@
 
   .glass {
     background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-dark {
+    background: rgba(2, 6, 23, 0.6);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
@@ -95,4 +85,12 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* FAQ accordion */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
 }

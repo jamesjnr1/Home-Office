@@ -22,13 +22,10 @@ export default function SectionHeading({
         align === 'center' ? 'mx-auto text-center' : 'text-left'
       }`}
     >
-      <div className={`flex items-center gap-3 ${align === 'center' ? 'justify-center' : ''}`}>
-        <span className="h-px w-8 bg-brand-500" aria-hidden="true" />
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
-          {eyebrow}
-        </span>
-      </div>
-      <h2 className="mt-4 text-balance font-display text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl lg:text-5xl">
+      <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+        {eyebrow}
+      </span>
+      <h2 className="mt-3 text-balance font-display text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {desc && (

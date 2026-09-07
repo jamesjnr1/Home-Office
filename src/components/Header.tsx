@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Stethoscope, Phone } from 'lucide-react';
 import Logo from '@/components/Logo';
-import { ButtonLink, ButtonAnchor } from '@/components/Button';
 import { business } from '@/data/business';
 
 const navLinks = [
@@ -38,8 +37,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 glass transition-all duration-500 ${
-        scrolled ? 'shadow-[0_2px_24px_rgba(0,0,0,0.06)]' : ''
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'glass shadow-[0_2px_24px_rgba(0,0,0,0.06)]'
+          : 'bg-transparent'
       }`}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -57,7 +58,7 @@ export default function Header() {
                 to={link.path}
                 end={link.path === '/'}
                 className={({ isActive }) =>
-                  `relative rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                  `relative rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
                     isActive
                       ? 'text-brand-700'
                       : 'text-ink-600 hover:text-brand-700'
@@ -78,19 +79,20 @@ export default function Header() {
 
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-3">
-            <ButtonAnchor
+            <a
               href={`tel:${business.phoneTel}`}
-              variant="ghost"
-              size="sm"
-              className="hidden md:inline-flex"
+              className="hidden items-center gap-2 rounded-full border-2 border-ink-200 px-4 py-2.5 text-sm font-semibold text-ink-700 transition-all duration-300 hover:border-brand-300 hover:text-brand-700 md:flex"
             >
               <Phone className="h-4 w-4" />
               {business.phoneDisplay}
-            </ButtonAnchor>
-            <ButtonLink to="/book" variant="primary" size="sm" className="hidden sm:inline-flex">
+            </a>
+            <Link
+              to="/book"
+              className="group hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 sm:flex"
+            >
               <Stethoscope className="h-4 w-4" />
               Book Appointment
-            </ButtonLink>
+            </Link>
             <button
               onClick={() => setOpen(!open)}
               className="flex h-10 w-10 items-center justify-center rounded-xl text-ink-700 transition-colors hover:bg-ink-100 xl:hidden"

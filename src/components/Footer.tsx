@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Clock, ArrowUp } from 'lucide-react';
+import { Phone, MapPin, Clock, ArrowUp, Navigation } from 'lucide-react';
 import Logo, { LogoTagline } from '@/components/Logo';
-import { ButtonLink } from '@/components/Button';
-import { business } from '@/data/business';
+import { business, buildMapLinkUrl } from '@/data/business';
 
 const footerSections = [
   {
@@ -15,27 +14,25 @@ const footerSections = [
       { label: 'Contact', path: '/contact' },
     ],
   },
+  {
+    heading: 'Services',
+    links: [
+      { label: 'Medicines & Prescriptions', path: '/services' },
+      { label: 'Counselling', path: '/services' },
+      { label: 'Clinical Consultation', path: '/services' },
+      { label: 'Health Education', path: '/services' },
+      { label: 'Lab Tests', path: '/services' },
+    ],
+  },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-ink-900 text-ink-300">
-      {/* Closing CTA — a real moment, not just a link directory */}
-      <div className="border-b border-ink-800">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-5 py-14 sm:flex-row sm:items-center sm:px-8 sm:py-16">
-          <h2 className="max-w-lg text-balance font-display text-2xl font-bold text-white sm:text-3xl">
-            Ready when you are — walk in, call, or book ahead.
-          </h2>
-          <ButtonLink to="/book" variant="primary" className="shrink-0">
-            Book an Appointment
-          </ButtonLink>
-        </div>
-      </div>
-
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
             <Link to="/">
               <Logo />
             </Link>
@@ -57,6 +54,15 @@ export default function Footer() {
                 <Clock className="h-4 w-4 text-brand-400" />
                 {business.hours}
               </div>
+              <a
+                href={buildMapLinkUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-3 text-sm text-ink-400 transition-colors hover:text-white"
+              >
+                <Navigation className="h-4 w-4 text-brand-400" />
+                Get directions
+              </a>
             </div>
 
             <div className="mt-6">
@@ -73,7 +79,7 @@ export default function Footer() {
           {/* Link columns */}
           {footerSections.map((section) => (
             <div key={section.heading} className="lg:col-span-1">
-              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
                 {section.heading}
               </h4>
               <ul className="mt-4 space-y-2.5">
@@ -93,7 +99,7 @@ export default function Footer() {
 
           {/* Visit us */}
           <div className="lg:col-span-1">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
               Visit Us
             </h4>
             <div className="mt-4 rounded-2xl bg-ink-800/60 p-4">

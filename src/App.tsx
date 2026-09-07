@@ -8,7 +8,6 @@ import Pharmacy from '@/pages/Pharmacy';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import BookAppointment from '@/pages/BookAppointment';
-import NotFound from '@/pages/NotFound';
 
 function App() {
   return (
@@ -23,7 +22,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/book" element={<BookAppointment />} />
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

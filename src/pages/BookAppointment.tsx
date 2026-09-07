@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
-import SectionHeading from '@/components/SectionHeading';
-import Button from '@/components/Button';
+import { CheckCircle2, ArrowRight, ShieldCheck, Clock, ChevronDown, Stethoscope, Phone } from 'lucide-react';
+import PageHero from '@/components/PageHero';
 import { departments, timeSlots } from '@/data/content';
 import { business, submitToFormspree } from '@/data/business';
 
@@ -32,15 +31,11 @@ export default function BookAppointment() {
 
   return (
     <div className="page-enter">
-      <section className="bg-gradient-to-b from-brand-50 to-white pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Book an Appointment"
-            title="Schedule Your Visit in Minutes"
-            desc="Choose a reason for your visit, pick a time that works, and we'll confirm with you by phone."
-          />
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Book an Appointment"
+        title="Schedule Your Visit in Minutes"
+        desc="Choose a reason for your visit, pick a time that works, and we will confirm with you by phone."
+      />
 
       <section className="pb-24 sm:pb-32">
         <div className="mx-auto max-w-3xl px-5 sm:px-8">
@@ -51,22 +46,23 @@ export default function BookAppointment() {
             </a>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-ink-100 bg-white p-6 sm:p-8">
+          <div className="mt-8 rounded-3xl border border-ink-100 bg-white p-6 shadow-lg sm:p-8">
             {submitted ? (
               <div className="flex min-h-[560px] flex-col items-center justify-center text-center">
-                <CheckCircle2 className="h-12 w-12 text-brand-600" />
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-50">
+                  <CheckCircle2 className="h-10 w-10 text-brand-600" />
+                </div>
                 <h3 className="mt-6 font-display text-2xl font-bold text-ink-900">Request Received</h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-500">
-                  Your request for <strong className="text-ink-700">{dept}</strong> at <strong className="text-ink-700">{time}</strong> has been sent. We'll confirm your appointment by phone.
+                  Your request for <strong className="text-ink-700">{dept}</strong> at{' '}
+                  <strong className="text-ink-700">{time}</strong> has been sent. We will confirm your appointment by phone.
                 </p>
-                <Button
+                <button
                   onClick={() => setSubmitted(false)}
-                  variant="ghost"
-                  size="sm"
-                  className="mt-8"
+                  className="mt-8 rounded-full border-2 border-ink-200 px-5 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
                 >
                   Book Another Appointment
-                </Button>
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-7">
@@ -109,25 +105,74 @@ export default function BookAppointment() {
                   </div>
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-ink-700">Preferred Time</label>
-                    <select value={time} onChange={(e) => setTime(e.target.value)} className="w-full rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-800 outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100">
-                      {timeSlots.map((slot) => <option key={slot}>{slot}</option>)}
-                    </select>
+                    <div className="relative">
+                      <select value={time} onChange={(e) => setTime(e.target.value)} className="w-full appearance-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-800 outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100">
+                        {timeSlots.map((slot) => <option key={slot}>{slot}</option>)}
+                      </select>
+                      <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" />
+                    </div>
                   </div>
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-ink-700">Anything we should know? <span className="font-normal text-ink-400">(Optional)</span></label>
+                  <label className="mb-1.5 block text-sm font-medium text-ink-700">
+                    Anything we should know? <span className="font-normal text-ink-400">(Optional)</span>
+                  </label>
                   <textarea name="notes" rows={3} placeholder="Share any details that might help us prepare for your visit..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-800 outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                 </div>
 
-                <Button type="submit" disabled={submitting} variant="primary" className="w-full">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5 disabled:opacity-70"
+                >
                   {submitting ? 'Sending…' : 'Request Appointment'}
-                </Button>
-                <p className="text-xs text-ink-400">
-                  This is a request — we'll confirm availability by phone.
-                </p>
+                  {!submitting && <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />}
+                </button>
+
+                <div className="flex flex-col items-center gap-2 text-center">
+                  <p className="text-xs text-ink-400">
+                    This is a request — we will confirm availability by phone.
+                  </p>
+                  <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                    <span className="flex items-center gap-1.5 text-xs text-ink-500">
+                      <ShieldCheck className="h-3.5 w-3.5 text-brand-500" />
+                      Your information stays private
+                    </span>
+                    <span className="flex items-center gap-1.5 text-xs text-ink-500">
+                      <Clock className="h-3.5 w-3.5 text-brand-500" />
+                      Confirmation within the hour
+                    </span>
+                  </div>
+                </div>
               </form>
             )}
+          </div>
+
+          {/* Quick contact cards */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <a
+              href={`tel:${business.phoneTel}`}
+              className="group flex items-center gap-4 rounded-2xl border border-ink-100 bg-white p-5 transition-all duration-300 hover:border-brand-200 hover:shadow-md"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                <Phone className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-ink-900">Call Us Directly</p>
+                <p className="text-sm text-ink-500">{business.phoneDisplay}</p>
+              </div>
+              <ArrowRight className="ml-auto h-4 w-4 text-ink-300 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+            <div className="flex items-center gap-4 rounded-2xl border border-ink-100 bg-white p-5">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                <Stethoscope className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-ink-900">Walk-Ins Welcome</p>
+                <p className="text-sm text-ink-500">No appointment needed</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
