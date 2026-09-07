@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
+import { ButtonLink, ButtonAnchor } from '@/components/Button';
 import { services } from '@/data/content';
 import { business } from '@/data/business';
 
@@ -53,19 +54,13 @@ export default function Home() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/book"
-              className="flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
-            >
+            <ButtonLink to="/book" variant="primary">
               Book an Appointment
-            </Link>
-            <Link
-              to="/services"
-              className="flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/20"
-            >
+            </ButtonLink>
+            <ButtonLink to="/services" variant="outline">
               Explore Services
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </section>
@@ -116,13 +111,10 @@ export default function Home() {
           </div>
 
           <div className="mt-10">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
-            >
+            <ButtonLink to="/services" variant="primary" size="md">
               View All Services
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </section>
@@ -190,18 +182,12 @@ export default function Home() {
               Book an appointment today, or call us — {business.address}.
             </p>
             <div className="relative mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link
-                to="/book"
-                className="flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50 sm:w-auto"
-              >
+              <ButtonLink to="/book" variant="secondary">
                 Book an Appointment
-              </Link>
-              <a
-                href={`tel:${business.phoneTel}`}
-                className="flex items-center justify-center gap-2 rounded-full border border-white/50 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/10 sm:w-auto"
-              >
+              </ButtonLink>
+              <ButtonAnchor href={`tel:${business.phoneTel}`} variant="outline">
                 Call {business.phoneDisplay}
-              </a>
+              </ButtonAnchor>
             </div>
           </div>
         </div>

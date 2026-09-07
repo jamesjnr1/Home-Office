@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import type { ComponentType } from 'react';
 import {
   Stethoscope,
@@ -14,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
+import { ButtonLink } from '@/components/Button';
 import { services } from '@/data/content';
 import { business } from '@/data/business';
 
@@ -121,13 +121,10 @@ export default function Services() {
           </div>
 
           <div className="mt-12">
-            <Link
-              to="/book"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
-            >
+            <ButtonLink to="/book" variant="primary" className="group">
               Book an Appointment
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </section>

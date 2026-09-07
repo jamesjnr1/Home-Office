@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Phone, MapPin, Clock, CheckCircle2 } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
+import Button, { ButtonAnchor } from '@/components/Button';
 import { useReveal } from '@/hooks/useReveal';
 import { business, buildMapEmbedUrl, buildMapLinkUrl, submitToFormspree } from '@/data/business';
 
@@ -86,12 +87,14 @@ export default function Contact() {
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-ink-500">
                     Thank you for reaching out. We'll get back to you soon.
                   </p>
-                  <button
+                  <Button
                     onClick={() => setSubmitted(false)}
-                    className="mt-6 rounded-full border border-ink-200 px-5 py-2 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
+                    variant="ghost"
+                    size="sm"
+                    className="mt-6"
                   >
                     Send Another Message
-                  </button>
+                  </Button>
                 </div>
               ) : (
                 <form className="space-y-5" onSubmit={handleSubmit}>
@@ -125,13 +128,9 @@ export default function Contact() {
                     <label className="mb-1.5 block text-sm font-medium text-ink-700">Message</label>
                     <textarea required name="message" rows={5} placeholder="Tell us how we can help..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                   </div>
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-brand-700 disabled:opacity-70"
-                  >
+                  <Button type="submit" disabled={submitting} variant="primary" className="w-full">
                     {submitting ? 'Sending…' : 'Send Message'}
-                  </button>
+                  </Button>
                 </form>
               )}
             </div>
@@ -140,12 +139,14 @@ export default function Contact() {
       </section>
 
       <section className="bg-ink-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-2xl px-5 sm:px-8">
-          <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">Need immediate assistance?</h2>
-          <p className="mt-4 text-lg text-ink-500">For urgent needs, call us directly. For a medical emergency, please go to your nearest hospital.</p>
-          <a href={`tel:${business.phoneTel}`} className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700">
-            Call {business.phoneDisplay}
-          </a>
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">Need immediate assistance?</h2>
+            <p className="mt-4 text-lg text-ink-500">For urgent needs, call us directly. For a medical emergency, please go to your nearest hospital.</p>
+            <ButtonAnchor href={`tel:${business.phoneTel}`} variant="primary" className="mt-8">
+              Call {business.phoneDisplay}
+            </ButtonAnchor>
+          </div>
         </div>
       </section>
     </div>

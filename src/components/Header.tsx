@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Stethoscope, Phone } from 'lucide-react';
 import Logo from '@/components/Logo';
+import { ButtonLink, ButtonAnchor } from '@/components/Button';
 import { business } from '@/data/business';
 
 const navLinks = [
@@ -77,20 +78,19 @@ export default function Header() {
 
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-3">
-            <a
+            <ButtonAnchor
               href={`tel:${business.phoneTel}`}
-              className="hidden items-center gap-2 rounded-full border-2 border-ink-200 px-4 py-2.5 text-sm font-semibold text-ink-700 transition-all duration-300 hover:border-brand-300 hover:text-brand-700 md:flex"
+              variant="ghost"
+              size="sm"
+              className="hidden md:inline-flex"
             >
               <Phone className="h-4 w-4" />
               {business.phoneDisplay}
-            </a>
-            <Link
-              to="/book"
-              className="hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 sm:flex"
-            >
+            </ButtonAnchor>
+            <ButtonLink to="/book" variant="primary" size="sm" className="hidden sm:inline-flex">
               <Stethoscope className="h-4 w-4" />
               Book Appointment
-            </Link>
+            </ButtonLink>
             <button
               onClick={() => setOpen(!open)}
               className="flex h-10 w-10 items-center justify-center rounded-xl text-ink-700 transition-colors hover:bg-ink-100 xl:hidden"

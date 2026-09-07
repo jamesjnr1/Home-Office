@@ -23,6 +23,19 @@
     background: #a7d4eb;
     color: #0e4f71;
   }
+
+  /* Keyboard focus ring — only shown for keyboard/assistive navigation,
+     never on a mouse click, via the browser's :focus-visible heuristic. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid #198fcc;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @layer utilities {

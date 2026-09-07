@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import SectionHeading from '@/components/SectionHeading';
+import { ButtonLink } from '@/components/Button';
 import { useReveal } from '@/hooks/useReveal';
 import { business } from '@/data/business';
 
@@ -107,12 +107,9 @@ export default function About() {
               Walk-ins are always welcome.
             </p>
             <div className="mt-8">
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
-              >
+              <ButtonLink to="/book" variant="primary">
                 Book an Appointment
-              </Link>
+              </ButtonLink>
             </div>
           </div>
         </div>

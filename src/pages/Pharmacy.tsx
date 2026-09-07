@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import {
   Clock,
   Users,
@@ -11,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
+import { ButtonLink } from '@/components/Button';
 import { business } from '@/data/business';
 
 const features = [
@@ -92,12 +92,9 @@ export default function Pharmacy() {
               </div>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Link
-                  to="/book"
-                  className="flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
-                >
+                <ButtonLink to="/book" variant="primary" size="md">
                   Book a Visit
-                </Link>
+                </ButtonLink>
                 <a
                   href={`tel:${business.phoneTel}`}
                   className="text-sm font-semibold text-ink-500 hover:text-brand-700"
@@ -172,13 +169,10 @@ export default function Pharmacy() {
                 Walk in anytime we're open, or book ahead — it only takes a few minutes.
               </p>
             </div>
-            <Link
-              to="/book"
-              className="flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50"
-            >
+            <ButtonLink to="/book" variant="secondary" size="md" className="shrink-0">
               Get Started
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </section>
