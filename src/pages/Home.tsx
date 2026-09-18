@@ -35,23 +35,15 @@ export default function Home() {
   return (
     <div className="page-enter">
       {/* ===== HERO — full-bleed photo with a left-to-right gradient for legibility ===== */}
-      <section id="home" className="relative flex min-h-screen w-full flex-col justify-end overflow-hidden bg-gradient-to-r from-ink-950 via-brand-950 to-ink-900 pb-16 pt-32 sm:pb-20">
+      <section id="home" className="relative flex min-h-screen w-full flex-col justify-end overflow-hidden pb-16 pt-32 sm:pb-20">
         <img
           src="/images/hero-staff.png"
           alt="Home-Office Pharmacy & Clinic pharmacy team member in scrubs with a stethoscope"
-          className="absolute inset-0 h-full w-full object-cover lg:hidden"
+          className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
         />
-        <div className="absolute right-0 top-32 bottom-20 hidden lg:block">
-          <img
-            src="/images/hero-staff.png"
-            alt="Home-Office Pharmacy & Clinic pharmacy team member in scrubs with a stethoscope"
-            className="h-full w-auto"
-            loading="eager"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/60 to-ink-950/10 lg:hidden" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent lg:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/60 to-ink-950/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8">
           <h1 className="max-w-2xl text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">

@@ -36,6 +36,13 @@ export function buildMapLinkUrl() {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.mapQuery)}`;
 }
 
+// Opens WhatsApp with a pre-filled message — this is the same number as
+// phoneTel. If that number isn't on WhatsApp, update it here.
+export function buildWhatsAppUrl(message: string) {
+  const digits = business.phoneTel.replace(/[^\d]/g, '');
+  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+}
+
 function formspreeUrl() {
   if (business.formspreeEndpoint) return business.formspreeEndpoint;
   if (business.formspreeEmail) return `https://formspree.io/${business.formspreeEmail}`;
