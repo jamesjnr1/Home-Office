@@ -35,9 +35,9 @@ export default function Home() {
   return (
     <div className="page-enter">
       {/* ===== HERO — gradient background, photo shown at its own size ===== */}
-      <section id="home" className="relative overflow-hidden bg-gradient-to-br from-ink-950 via-brand-950 to-ink-900 pb-16 pt-32 sm:pb-24">
-        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
-          <div>
+      <section id="home" className="relative overflow-hidden bg-gradient-to-br from-ink-950 via-brand-950 to-ink-900">
+        <div className="relative mx-auto grid w-full max-w-7xl lg:grid-cols-2">
+          <div className="px-5 py-32 sm:px-8 sm:py-40 lg:py-24 lg:pr-12">
             <h1 className="text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">
               Our Care &amp; Medicines are Channels of God&rsquo;s Healing
             </h1>
@@ -68,11 +68,11 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="mx-auto w-full max-w-xs lg:max-w-sm">
+          <div className="h-72 sm:h-96 lg:h-auto">
             <img
               src="/images/hero-staff.png"
               alt="Home-Office Pharmacy & Clinic pharmacy team member in scrubs with a stethoscope"
-              className="w-full"
+              className="h-full w-full object-cover"
               loading="eager"
             />
           </div>
