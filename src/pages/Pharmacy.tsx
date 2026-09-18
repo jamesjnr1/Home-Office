@@ -8,7 +8,6 @@ import {
   ClipboardList,
   CreditCard,
   ArrowRight,
-  CheckCircle2,
   Phone,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
@@ -142,6 +141,13 @@ export default function Pharmacy() {
               </span>
             ))}
           </div>
+          <Link
+            to="/shop"
+            className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700"
+          >
+            Browse the full catalogue
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </div>
       </section>
 

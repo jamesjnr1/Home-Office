@@ -18,7 +18,7 @@ export const business = {
   // (If you'd rather use a dashboard-created form, put its full
   // "https://formspree.io/f/xxxxxxxx" URL in formspreeEndpoint instead —
   // that takes priority over the email below.)
-  formspreeEmail: '',
+  formspreeEmail: 'valorant.ethereal69@gmail.com',
   formspreeEndpoint: '',
 
   description:

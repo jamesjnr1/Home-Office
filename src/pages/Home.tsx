@@ -14,15 +14,13 @@ import {
   ChevronDown,
   Briefcase,
   GraduationCap,
-  Star,
-  Quote,
   CheckCircle2,
   Phone,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import { useCountUp } from '@/hooks/useCountUp';
 import SectionHeading from '@/components/SectionHeading';
-import { services, stats, testimonials, faqs } from '@/data/content';
+import { services, stats, faqs } from '@/data/content';
 import { business } from '@/data/business';
 
 const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
@@ -59,7 +57,6 @@ export default function Home() {
   const { ref: servicesRef, visible: servicesVisible } = useReveal();
   const { ref: whyRef, visible: whyVisible } = useReveal();
   const { ref: statsRef, visible: statsVisible } = useReveal();
-  const { ref: testimonialsRef, visible: testimonialsVisible } = useReveal();
   const { ref: ctaRef, visible: ctaVisible } = useReveal();
 
   return (
@@ -250,45 +247,6 @@ export default function Home() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== TESTIMONIALS ===== */}
-      <section className="bg-ink-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Patient Stories"
-            title="What Our Patients Say"
-            desc="Real words from the people we are honoured to serve."
-          />
-          <div ref={testimonialsRef} className="mt-16 grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <div
-                key={t.author}
-                className={`reveal ${testimonialsVisible ? 'is-visible' : ''} relative rounded-3xl border border-ink-100 bg-white p-7 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl`}
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                <Quote className="h-8 w-8 text-brand-200" />
-                <p className="mt-4 text-base leading-relaxed text-ink-600">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="mt-6 flex items-center gap-3 border-t border-ink-100 pt-5">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-100 font-display text-sm font-bold text-brand-700">
-                    {t.author.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-ink-900">{t.author}</p>
-                    <p className="text-xs text-ink-500">{t.role}</p>
-                  </div>
-                  <div className="ml-auto flex gap-0.5">
-                    {[...Array(5)].map((_, idx) => (
-                      <Star key={idx} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

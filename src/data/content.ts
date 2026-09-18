@@ -77,33 +77,6 @@ export const stats = [
   { value: '7', suffix: '', label: 'Lab Tests On-Site' },
 ];
 
-export interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-}
-
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      'The pharmacist took time to explain every medication. I have never felt so cared for at a pharmacy before.',
-    author: 'Abena D.',
-    role: 'Patient',
-  },
-  {
-    quote:
-      'They came to our school for a health talk and the children loved it. Professional, warm, and genuinely helpful.',
-    author: 'Mr. Osei',
-    role: 'Headteacher',
-  },
-  {
-    quote:
-      'I called in the morning and was seen the same day. The consultation was thorough and the medicines were ready before I left.',
-    author: 'Grace M.',
-    role: 'Patient',
-  },
-];
-
 export interface FAQ {
   q: string;
   a: string;
