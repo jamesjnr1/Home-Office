@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle2, ArrowRight, ShieldCheck, Clock, ChevronDown, Stethoscope, Phone } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ShieldCheck, Clock, ChevronDown } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import { departments, timeSlots } from '@/data/content';
 import { business, submitToFormspree } from '@/data/business';
@@ -150,28 +150,20 @@ export default function BookAppointment() {
           </div>
 
           {/* Quick contact cards */}
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <a
               href={`tel:${business.phoneTel}`}
-              className="group flex items-center gap-4 rounded-2xl border border-ink-100 bg-white p-5 transition-all duration-300 hover:border-brand-200 hover:shadow-md"
+              className="group flex items-center justify-between border-t border-ink-200 pt-4"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Phone className="h-5 w-5" />
-              </div>
               <div>
                 <p className="text-sm font-semibold text-ink-900">Call Us Directly</p>
                 <p className="text-sm text-ink-500">{business.phoneDisplay}</p>
               </div>
-              <ArrowRight className="ml-auto h-4 w-4 text-ink-300 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 text-ink-300 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
-            <div className="flex items-center gap-4 rounded-2xl border border-ink-100 bg-white p-5">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Stethoscope className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-ink-900">Walk-Ins Welcome</p>
-                <p className="text-sm text-ink-500">No appointment needed</p>
-              </div>
+            <div className="border-t border-ink-200 pt-4">
+              <p className="text-sm font-semibold text-ink-900">Walk-Ins Welcome</p>
+              <p className="text-sm text-ink-500">No appointment needed</p>
             </div>
           </div>
         </div>

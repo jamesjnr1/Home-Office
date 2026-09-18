@@ -4,17 +4,16 @@ export interface StockCategory {
   id: string;
   label: string;
   icon: string;
-  tint: 'brand' | 'accent' | 'amber' | 'rose';
 }
 
 export const stockCategories: StockCategory[] = [
-  { id: 'analgesics', label: 'Analgesics', icon: 'Pill', tint: 'brand' },
-  { id: 'multivitamins', label: 'Multivitamins', icon: 'Sparkles', tint: 'amber' },
-  { id: 'antibiotics', label: 'Antibiotics', icon: 'ShieldCheck', tint: 'accent' },
-  { id: 'antimalarials', label: 'Anti-Malarials', icon: 'Thermometer', tint: 'rose' },
-  { id: 'coughcold', label: 'Cough & Cold', icon: 'Wind', tint: 'brand' },
-  { id: 'antiallergic', label: 'Anti-Allergic', icon: 'Droplet', tint: 'accent' },
-  { id: 'herbal', label: 'Herbal Products', icon: 'Leaf', tint: 'amber' },
+  { id: 'analgesics', label: 'Analgesics', icon: 'Pill' },
+  { id: 'multivitamins', label: 'Multivitamins', icon: 'Sparkles' },
+  { id: 'antibiotics', label: 'Antibiotics', icon: 'ShieldCheck' },
+  { id: 'antimalarials', label: 'Anti-Malarials', icon: 'Thermometer' },
+  { id: 'coughcold', label: 'Cough & Cold', icon: 'Wind' },
+  { id: 'antiallergic', label: 'Anti-Allergic', icon: 'Droplet' },
+  { id: 'herbal', label: 'Herbal Products', icon: 'Leaf' },
 ];
 
 // Individual products, priced for browsing only (see the Shop page's notice
