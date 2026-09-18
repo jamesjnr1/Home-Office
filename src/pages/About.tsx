@@ -1,3 +1,8 @@
+// This page is temporarily removed from the site — no nav link and no
+// route in App.tsx point here for now. The component itself is left in
+// place so the About Us page can be brought back quickly later: re-add
+// the import and <Route path="/about" .../> in App.tsx, and the nav
+// links in Header.tsx / Footer.tsx.
 import { Link } from 'react-router-dom';
 import {
   Target,
