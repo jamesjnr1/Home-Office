@@ -96,8 +96,8 @@ export default function About() {
           <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
           <div className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-accent-300/20 blur-3xl" />
         </div>
-        <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <p className="font-tagline text-3xl italic leading-snug text-white sm:text-4xl lg:text-5xl">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <p className="max-w-2xl font-tagline text-3xl italic leading-snug text-white sm:text-4xl lg:text-5xl">
             &ldquo;{business.tagline}&rdquo;
           </p>
         </div>
@@ -134,32 +134,34 @@ export default function About() {
 
       {/* Find us */}
       <section className="bg-ink-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
-            Visit Us
-          </h2>
-          <div className="mt-6 space-y-3">
-            <div className="flex items-center justify-center gap-3 text-lg text-ink-600">
-              <MapPin className="h-5 w-5 text-brand-500" />
-              {business.address}
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="max-w-xl">
+            <h2 className="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
+              Visit Us
+            </h2>
+            <div className="mt-6 space-y-3">
+              <div className="flex items-center gap-3 text-lg text-ink-600">
+                <MapPin className="h-5 w-5 text-brand-500" />
+                {business.address}
+              </div>
+              <div className="flex items-center gap-3 text-lg text-ink-600">
+                <Clock className="h-5 w-5 text-brand-500" />
+                {business.hours}
+              </div>
+              <div className="flex items-center gap-3 text-lg text-ink-600">
+                <Phone className="h-5 w-5 text-brand-500" />
+                {business.phoneDisplay}
+              </div>
             </div>
-            <div className="flex items-center justify-center gap-3 text-lg text-ink-600">
-              <Clock className="h-5 w-5 text-brand-500" />
-              {business.hours}
+            <div className="mt-8">
+              <Link
+                to="/book"
+                className="group inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
+              >
+                Book an Appointment
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </div>
-            <div className="flex items-center justify-center gap-3 text-lg text-ink-600">
-              <Phone className="h-5 w-5 text-brand-500" />
-              {business.phoneDisplay}
-            </div>
-          </div>
-          <div className="mt-8">
-            <Link
-              to="/book"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
-            >
-              Book an Appointment
-              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
           </div>
         </div>
       </section>

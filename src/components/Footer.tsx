@@ -29,7 +29,7 @@ const footerSections = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-100 text-ink-600">
+    <footer className="bg-footer text-white/80">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-8">
           {/* Brand */}
@@ -42,26 +42,26 @@ export default function Footer() {
             <div className="mt-6 space-y-2.5">
               <a
                 href={`tel:${business.phoneTel}`}
-                className="flex items-center gap-3 text-sm text-ink-600 transition-colors hover:text-brand-700"
+                className="flex items-center gap-3 text-sm transition-colors hover:text-white"
               >
-                <Phone className="h-4 w-4 text-brand-600" />
+                <Phone className="h-4 w-4 text-white/60" />
                 {business.phoneDisplay}
               </a>
-              <div className="flex items-start gap-3 text-sm text-ink-600">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+              <div className="flex items-start gap-3 text-sm">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/60" />
                 {business.address}
               </div>
-              <div className="flex items-center gap-3 text-sm text-ink-600">
-                <Clock className="h-4 w-4 text-brand-600" />
+              <div className="flex items-center gap-3 text-sm">
+                <Clock className="h-4 w-4 text-white/60" />
                 {business.hours}
               </div>
               <a
                 href={buildMapLinkUrl()}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-sm text-ink-600 transition-colors hover:text-brand-700"
+                className="flex items-center gap-3 text-sm transition-colors hover:text-white"
               >
-                <Navigation className="h-4 w-4 text-brand-600" />
+                <Navigation className="h-4 w-4 text-white/60" />
                 Get directions
               </a>
             </div>
@@ -69,7 +69,7 @@ export default function Footer() {
             <div className="mt-6">
               <a
                 href={`tel:${business.phoneTel}`}
-                className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-700"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-footer transition-all duration-300 hover:bg-brand-50"
               >
                 <Phone className="h-4 w-4" />
                 Call Us
@@ -80,7 +80,7 @@ export default function Footer() {
           {/* Link columns */}
           {footerSections.map((section) => (
             <div key={section.heading} className="lg:col-span-1">
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-900">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
                 {section.heading}
               </h4>
               <ul className="mt-4 space-y-2.5">
@@ -88,7 +88,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       to={link.path}
-                      className="text-sm text-ink-600 transition-colors duration-200 hover:text-brand-700"
+                      className="text-sm transition-colors duration-200 hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -100,11 +100,11 @@ export default function Footer() {
 
           {/* Visit us */}
           <div className="lg:col-span-1">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-900">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
               Visit Us
             </h4>
-            <div className="mt-4 rounded-2xl border border-brand-200 bg-white p-4">
-              <p className="text-sm leading-relaxed text-ink-600">
+            <div className="mt-4 rounded-2xl border border-white/20 bg-white/10 p-4">
+              <p className="text-sm leading-relaxed">
                 Open every day of the week — walk-ins are always welcome, no
                 appointment required for pharmacy visits.
               </p>
@@ -112,14 +112,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-brand-200 pt-8 sm:flex-row">
-          <p className="text-sm text-ink-600">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/20 pt-8 sm:flex-row">
+          <p className="text-sm">
             © {new Date().getFullYear()} Home-Office Pharmacy & Clinic. All
             rights reserved.
           </p>
           <Link
             to="/"
-            className="flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-medium text-ink-700 transition-all duration-300 hover:bg-brand-600 hover:text-white"
+            className="flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-white hover:text-footer"
           >
             Back to top
             <ArrowUp className="h-4 w-4" />

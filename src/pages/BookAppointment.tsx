@@ -48,7 +48,7 @@ export default function BookAppointment() {
 
           <div className="mt-8 rounded-3xl border border-ink-100 bg-white p-6 shadow-lg sm:p-8">
             {submitted ? (
-              <div className="flex min-h-[560px] flex-col items-center justify-center text-center">
+              <div className="flex min-h-[560px] flex-col justify-center">
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-50">
                   <CheckCircle2 className="h-10 w-10 text-brand-600" />
                 </div>
@@ -59,7 +59,7 @@ export default function BookAppointment() {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-8 rounded-full border-2 border-ink-200 px-5 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
+                  className="mt-8 self-start rounded-full border-2 border-ink-200 px-5 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
                 >
                   Book Another Appointment
                 </button>
@@ -130,11 +130,11 @@ export default function BookAppointment() {
                   {!submitting && <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />}
                 </button>
 
-                <div className="flex flex-col items-center gap-2 text-center">
+                <div className="flex flex-col gap-2">
                   <p className="text-xs text-ink-400">
                     This is a request — we will confirm availability by phone.
                   </p>
-                  <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
                     <span className="flex items-center gap-1.5 text-xs text-ink-500">
                       <ShieldCheck className="h-3.5 w-3.5 text-brand-500" />
                       Your information stays private
