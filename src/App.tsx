@@ -6,7 +6,8 @@ import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import Pharmacy from '@/pages/Pharmacy';
 import Shop from '@/pages/Shop';
-import About from '@/pages/About';
+// About.tsx is temporarily unrouted — see the note at the top of that
+// file. Re-add the import and <Route> below to bring the page back.
 import Contact from '@/pages/Contact';
 import BookAppointment from '@/pages/BookAppointment';
 
@@ -21,7 +22,6 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/pharmacy" element={<Pharmacy />} />
           <Route path="/shop" element={<Shop />} />
-          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/book" element={<BookAppointment />} />
         </Routes>
