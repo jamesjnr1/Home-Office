@@ -11,7 +11,6 @@ import {
   BookOpen,
   Microscope,
   Users,
-  CheckCircle2,
   Phone,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
@@ -153,10 +152,9 @@ export default function Home() {
       {/* ===== CTA ===== */}
       <section className="py-24 sm:py-32">
         <div ref={ctaRef} className={`reveal ${ctaVisible ? 'is-visible' : ''} mx-auto max-w-7xl px-5 sm:px-8`}>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 via-brand-600 to-accent-700 px-8 py-14 sm:px-16 sm:py-16">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 px-8 py-14 sm:px-16 sm:py-16">
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
               <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
-              <div className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-accent-300/20 blur-3xl" />
             </div>
             <div className="relative">
               <h2 className="max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
@@ -180,14 +178,6 @@ export default function Home() {
                   <Phone className="h-5 w-5" />
                   Call {business.phoneDisplay}
                 </a>
-              </div>
-              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
-                {['No referral needed', 'Walk-ins welcome', 'Open 7 days a week'].map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-sm text-brand-100">
-                    <CheckCircle2 className="h-4 w-4 text-accent-300" />
-                    {item}
-                  </div>
-                ))}
               </div>
             </div>
           </div>
