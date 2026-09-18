@@ -52,6 +52,9 @@ export default {
           900: '#0f172a',
           950: '#020617',
         },
+        // Requested footer color — a specific mid-tone blue, kept separate
+        // from the brand scale since it was picked for this one purpose.
+        footer: '#3c7fb3',
       },
       animation: {
         'fade-up': 'fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards',

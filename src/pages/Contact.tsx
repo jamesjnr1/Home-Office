@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, MapPin, Clock, CheckCircle2, Send, Navigation, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, Clock, CheckCircle2, Send, Navigation } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import PageHero from '@/components/PageHero';
 import { business, buildMapEmbedUrl, buildMapLinkUrl, submitToFormspree } from '@/data/business';
@@ -80,7 +80,7 @@ export default function Contact() {
 
             <div className={`reveal ${visible ? 'is-visible' : ''} rounded-3xl border border-ink-100 bg-white p-6 shadow-lg sm:p-8`}>
               {submitted ? (
-                <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
+                <div className="flex min-h-[420px] flex-col justify-center">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-50">
                     <CheckCircle2 className="h-8 w-8 text-brand-600" />
                   </div>
@@ -90,7 +90,7 @@ export default function Contact() {
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-6 rounded-full border-2 border-ink-200 px-5 py-2 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
+                    className="mt-6 self-start rounded-full border-2 border-ink-200 px-5 py-2 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
                   >
                     Send Another Message
                   </button>
@@ -143,23 +143,22 @@ export default function Contact() {
       </section>
 
       <section className="bg-ink-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
-            <MessageCircle className="h-8 w-8" />
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="max-w-xl">
+            <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
+              Need immediate assistance?
+            </h2>
+            <p className="mt-4 text-lg text-ink-500">
+              For urgent needs, call us directly. For a medical emergency, please go to your nearest hospital.
+            </p>
+            <a
+              href={`tel:${business.phoneTel}`}
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
+            >
+              <Phone className="h-5 w-5" />
+              Call {business.phoneDisplay}
+            </a>
           </div>
-          <h2 className="mt-6 font-display text-3xl font-bold text-ink-900 sm:text-4xl">
-            Need immediate assistance?
-          </h2>
-          <p className="mt-4 text-lg text-ink-500">
-            For urgent needs, call us directly. For a medical emergency, please go to your nearest hospital.
-          </p>
-          <a
-            href={`tel:${business.phoneTel}`}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
-          >
-            <Phone className="h-5 w-5" />
-            Call {business.phoneDisplay}
-          </a>
         </div>
       </section>
     </div>
