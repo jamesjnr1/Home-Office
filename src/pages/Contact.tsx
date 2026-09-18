@@ -1,14 +1,8 @@
 import { useState } from 'react';
-import { Phone, MapPin, Clock, CheckCircle2, Send, Navigation } from 'lucide-react';
+import { Phone, CheckCircle2, Send, Navigation } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import PageHero from '@/components/PageHero';
 import { business, buildMapEmbedUrl, buildMapLinkUrl, submitToFormspree } from '@/data/business';
-
-const contactInfo = [
-  { icon: MapPin, label: 'Visit Us', value: business.address },
-  { icon: Phone, label: 'Call Us', value: business.phoneDisplay },
-  { icon: Clock, label: 'Opening Hours', value: business.hours },
-];
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -44,22 +38,7 @@ export default function Contact() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div ref={ref} className="grid gap-8 lg:grid-cols-2">
             <div className={`reveal ${visible ? 'is-visible' : ''}`}>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {contactInfo.map((c) => (
-                  <div
-                    key={c.label}
-                    className="rounded-2xl border border-ink-100 bg-white p-5 transition-all duration-300 hover:border-brand-200 hover:shadow-md"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                      <c.icon className="h-5 w-5" />
-                    </div>
-                    <p className="mt-3 text-sm font-semibold text-ink-900">{c.label}</p>
-                    <p className="mt-1 text-sm text-ink-500">{c.value}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 overflow-hidden rounded-2xl border border-ink-100 shadow-sm">
+              <div className="overflow-hidden rounded-2xl border border-ink-100 shadow-sm">
                 <iframe
                   title="Home-Office Pharmacy & Clinic location"
                   src={buildMapEmbedUrl()}
