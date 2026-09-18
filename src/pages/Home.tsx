@@ -59,13 +59,20 @@ export default function Home() {
               Book an Appointment
             </Link>
             <Link
-              to="/services"
+              to="/shop"
               className="flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/20"
             >
-              Explore Services
+              Browse Medicines
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+          <a
+            href={`tel:${business.phoneTel}`}
+            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white"
+          >
+            <Phone className="h-4 w-4" />
+            Or call {business.phoneDisplay} to talk to a pharmacist
+          </a>
         </div>
       </section>
 
@@ -77,31 +84,26 @@ export default function Home() {
             title="Medicines, Counselling & Clinical Care"
             desc="Services that meet you where you are — medically and physically."
           />
-          <div ref={servicesRef} className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div ref={servicesRef} className="mt-16 grid border-l border-t border-ink-200 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s, i) => {
               const Icon = iconMap[s.icon] || Stethoscope;
               return (
                 <Link
                   key={s.title}
                   to="/services"
-                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5`}
+                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group border-b border-r border-ink-200 bg-white p-7 transition-colors duration-300 hover:bg-brand-50/40`}
                   style={{ transitionDelay: `${i * 60}ms` }}
                 >
-                  <div className="absolute right-0 top-0 h-24 w-24 -translate-y-8 translate-x-8 rounded-full bg-brand-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white">
-                      <Icon className="h-7 w-7" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="mt-5 text-lg font-semibold text-ink-900 group-hover:text-brand-700">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                      {s.desc}
-                    </p>
-                    <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      Learn more
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </div>
+                  <Icon className="h-6 w-6 text-brand-600" strokeWidth={1.5} />
+                  <h3 className="mt-5 text-lg font-semibold text-ink-900">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-500">
+                    {s.desc}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    Learn more
+                    <ArrowRight className="h-3.5 w-3.5" />
                   </div>
                 </Link>
               );
@@ -127,7 +129,7 @@ export default function Home() {
             title="Healthcare That Puts You First"
             desc="Every person is unique, and our services are sensitive to individual needs."
           />
-          <div ref={whyRef} className="mt-12 grid gap-6 sm:grid-cols-3">
+          <div ref={whyRef} className="mt-12 grid gap-10 sm:grid-cols-3">
             {[
               { icon: ShieldCheck, title: 'Registered Pharmacy Team', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
               { icon: Clock, title: 'Open Every Day', desc: `Open ${business.hours.toLowerCase()} — no need to rush before closing time.` },
@@ -135,12 +137,10 @@ export default function Home() {
             ].map((item, i) => (
               <div
                 key={item.title}
-                className={`reveal ${whyVisible ? 'is-visible' : ''} rounded-2xl border border-ink-100 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg`}
+                className={`reveal ${whyVisible ? 'is-visible' : ''} border-t border-ink-300 pt-6`}
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <item.icon className="h-6 w-6" />
-                </div>
+                <item.icon className="h-6 w-6 text-brand-600" strokeWidth={1.5} />
                 <h3 className="mt-4 text-base font-semibold text-ink-900">{item.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{item.desc}</p>
               </div>
@@ -152,33 +152,28 @@ export default function Home() {
       {/* ===== CTA ===== */}
       <section className="py-24 sm:py-32">
         <div ref={ctaRef} className={`reveal ${ctaVisible ? 'is-visible' : ''} mx-auto max-w-7xl px-5 sm:px-8`}>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 px-8 py-14 sm:px-16 sm:py-16">
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
-            </div>
-            <div className="relative">
-              <h2 className="max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
-                Ready to Take the Next Step for Your Health?
-              </h2>
-              <p className="mt-4 max-w-xl text-lg text-brand-100">
-                Book an appointment today, or call us — we are here to help.
-              </p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  to="/book"
-                  className="group flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl sm:w-auto"
-                >
-                  Book an Appointment
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-                <a
-                  href={`tel:${business.phoneTel}`}
-                  className="flex items-center justify-center gap-2 rounded-full border border-white/50 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/10 sm:w-auto"
-                >
-                  <Phone className="h-5 w-5" />
-                  Call {business.phoneDisplay}
-                </a>
-              </div>
+          <div className="rounded-3xl bg-ink-950 px-8 py-14 sm:px-16 sm:py-16">
+            <h2 className="max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
+              Ready to Take the Next Step for Your Health?
+            </h2>
+            <p className="mt-4 max-w-xl text-lg text-ink-300">
+              Book an appointment today, or call us — we are here to help.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link
+                to="/book"
+                className="group flex items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-400 sm:w-auto"
+              >
+                Book an Appointment
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <a
+                href={`tel:${business.phoneTel}`}
+                className="flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/10 sm:w-auto"
+              >
+                <Phone className="h-5 w-5" />
+                Call {business.phoneDisplay}
+              </a>
             </div>
           </div>
         </div>
