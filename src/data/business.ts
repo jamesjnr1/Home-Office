@@ -26,13 +26,6 @@ export const business = {
 
   descriptionExtra:
     'We provide tailored pharmaceutical and clinical services at home and office, or wherever clients may deem convenient. We are open to schools, churches, and organizations who want customised services at the time they need it. We understand that each person is unique, so our services are sensitive to individual needs. We work with leading organisations in the medical and pharmaceutical industry to provide quality pharmaceutical products.',
-
-  audiences: [
-    { icon: 'Home', label: 'At Home' },
-    { icon: 'Briefcase', label: 'At Your Office' },
-    { icon: 'GraduationCap', label: 'Schools' },
-    { icon: 'Users', label: 'Churches & Organisations' },
-  ],
 };
 
 export function buildMapEmbedUrl() {

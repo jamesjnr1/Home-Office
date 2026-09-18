@@ -11,16 +11,12 @@ import {
   BookOpen,
   Microscope,
   Users,
-  ChevronDown,
-  Briefcase,
-  GraduationCap,
   CheckCircle2,
   Phone,
 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
-import { useCountUp } from '@/hooks/useCountUp';
 import SectionHeading from '@/components/SectionHeading';
-import { services, stats, faqs } from '@/data/content';
+import { services } from '@/data/content';
 import { business } from '@/data/business';
 
 const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
@@ -32,31 +28,9 @@ const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: 
   Home: HomeIcon,
 };
 
-const audienceIcons: Record<string, ComponentType<{ className?: string }>> = {
-  Home: HomeIcon,
-  Briefcase,
-  GraduationCap,
-  Users,
-};
-
-function StatCard({ stat, visible }: { stat: { value: string; suffix: string; label: string }; visible: boolean }) {
-  const num = parseInt(stat.value, 10) || 0;
-  const count = useCountUp(num, 1400, visible);
-  return (
-    <div className="text-center">
-      <p className="font-display text-4xl font-bold text-brand-600 sm:text-5xl">
-        {count}
-        {stat.suffix}
-      </p>
-      <p className="mt-1.5 text-sm text-ink-500">{stat.label}</p>
-    </div>
-  );
-}
-
 export default function Home() {
   const { ref: servicesRef, visible: servicesVisible } = useReveal();
   const { ref: whyRef, visible: whyVisible } = useReveal();
-  const { ref: statsRef, visible: statsVisible } = useReveal();
   const { ref: ctaRef, visible: ctaVisible } = useReveal();
 
   return (
@@ -95,15 +69,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ===== Stats Bar ===== */}
-      <div ref={statsRef} className="border-b border-ink-100 bg-white py-10">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-5 sm:grid-cols-4 sm:px-8">
-          {stats.map((s) => (
-            <StatCard key={s.label} stat={s} visible={statsVisible} />
-          ))}
-        </div>
-      </div>
 
       {/* ===== SERVICES PREVIEW ===== */}
       <section className="py-24 sm:py-32">
@@ -158,105 +123,28 @@ export default function Home() {
       {/* ===== WHY CHOOSE US ===== */}
       <section className="bg-ink-50 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="relative">
-              <div className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-ink-100">
-                <img
-                  src="/images/storefront-2.png"
-                  alt="Home-Office Pharmacy & Clinic entrance"
-                  className="aspect-[4/3] w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute -bottom-6 left-6 right-6 rounded-2xl bg-white p-5 shadow-xl ring-1 ring-ink-100 sm:left-8 sm:right-auto">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-white">
-                    <Clock className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-base font-bold text-ink-900">Open Every Day</p>
-                    <p className="text-sm text-ink-500">8:00 AM – 10:00 PM</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <SectionHeading
-                eyebrow="Why Choose Us"
-                title="Healthcare That Puts You First"
-                desc="Every person is unique, and our services are sensitive to individual needs."
-              />
-              <div ref={whyRef} className="mt-8 space-y-5">
-                {[
-                  { icon: ShieldCheck, title: 'Registered Pharmacy Team', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
-                  { icon: Clock, title: 'Open Every Day', desc: `Open ${business.hours.toLowerCase()} — no need to rush before closing time.` },
-                  { icon: Users, title: 'Individual & Sensitive', desc: 'We understand that each person is unique, so our care is sensitive to your individual needs.' },
-                ].map((item, i) => (
-                  <div
-                    key={item.title}
-                    className={`reveal ${whyVisible ? 'is-visible' : ''} flex gap-4 rounded-2xl border border-ink-100 bg-white p-4 transition-all duration-300 hover:border-brand-200 hover:shadow-md`}
-                    style={{ transitionDelay: `${i * 80}ms` }}
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                      <item.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-ink-900">{item.title}</h3>
-                      <p className="mt-1 text-sm text-ink-500">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== SERVICE AREAS ===== */}
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
-            eyebrow="Where We Serve"
-            title="Care That Comes to You"
-            desc="True to our name, we bring pharmaceutical and clinical services to wherever is most convenient for you."
+            eyebrow="Why Choose Us"
+            title="Healthcare That Puts You First"
+            desc="Every person is unique, and our services are sensitive to individual needs."
           />
-          <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {business.audiences.map((a, i) => {
-              const Icon = audienceIcons[a.icon] || Users;
-              return (
-                <div
-                  key={a.label}
-                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group rounded-2xl border border-ink-100 bg-white p-6 text-center transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl`}
-                  style={{ transitionDelay: `${i * 70}ms` }}
-                >
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white">
-                    <Icon className="h-8 w-8" />
-                  </div>
-                  <h3 className="mt-5 text-base font-semibold text-ink-900">{a.label}</h3>
+          <div ref={whyRef} className="mt-12 grid gap-6 sm:grid-cols-3">
+            {[
+              { icon: ShieldCheck, title: 'Registered Pharmacy Team', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
+              { icon: Clock, title: 'Open Every Day', desc: `Open ${business.hours.toLowerCase()} — no need to rush before closing time.` },
+              { icon: Users, title: 'Individual & Sensitive', desc: 'We understand that each person is unique, so our care is sensitive to your individual needs.' },
+            ].map((item, i) => (
+              <div
+                key={item.title}
+                className={`reveal ${whyVisible ? 'is-visible' : ''} rounded-2xl border border-ink-100 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg`}
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <item.icon className="h-6 w-6" />
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FAQ ===== */}
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Frequently Asked"
-            title="Questions We Hear Often"
-          />
-          <div className="mt-10 divide-y divide-ink-200 border-t border-b border-ink-200">
-            {faqs.map((item) => (
-              <details key={item.q} className="group py-5">
-                <summary className="flex cursor-pointer items-center justify-between gap-4 text-base font-semibold text-ink-900">
-                  {item.q}
-                  <ChevronDown className="h-5 w-5 shrink-0 text-ink-400 transition-transform duration-300 group-open:rotate-180" />
-                </summary>
-                <p className="mt-3 text-sm leading-relaxed text-ink-500">{item.a}</p>
-              </details>
+                <h3 className="mt-4 text-base font-semibold text-ink-900">{item.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{item.desc}</p>
+              </div>
             ))}
           </div>
         </div>

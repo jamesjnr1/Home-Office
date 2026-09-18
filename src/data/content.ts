@@ -44,12 +44,6 @@ export const services: Service[] = [
       'Obstetric scan',
     ],
   },
-  {
-    icon: 'Home',
-    title: 'Home, Office & Group Service',
-    desc: 'True to our name — tailored pharmaceutical and clinical services wherever it is convenient for you.',
-    features: ['At your home or office', 'Schools, churches & organisations', 'Scheduled at your convenience'],
-  },
 ];
 
 export const departments = [
@@ -70,23 +64,3 @@ export const timeSlots = [
   '07:00 PM',
 ];
 
-export const stats = [
-  { value: '14', suffix: '+', label: 'Hours Daily' },
-  { value: '7', suffix: '', label: 'Days a Week' },
-  { value: '6', suffix: '', label: 'Core Services' },
-  { value: '7', suffix: '', label: 'Lab Tests On-Site' },
-];
-
-export interface FAQ {
-  q: string;
-  a: string;
-}
-
-export const faqs: FAQ[] = [
-  { q: 'What are your opening hours?', a: 'We are open 8:00 AM to 10:00 PM, every single day of the week.' },
-  { q: 'Do I need an appointment?', a: 'No — walk-ins are always welcome. Booking ahead just helps us prepare for your visit so you spend less time waiting.' },
-  { q: 'Do you visit homes or offices?', a: 'Yes. We provide tailored pharmaceutical and clinical services at home, at your office, or wherever is convenient — including schools, churches, and organisations.' },
-  { q: 'Where are you located?', a: 'Buduburam, Estate Junction, Ghana. Walk-ins are welcome any time we are open.' },
-  { q: 'What lab tests do you offer?', a: 'Haemoglobin, blood glucose, malaria, pregnancy, and typhoid tests, plus wound dressing and obstetric scans — all on-site.' },
-  { q: 'How can I reach you?', a: 'Call us on 055 880 2400, or send a message through our Contact page and we will get back to you quickly.' },
-];
