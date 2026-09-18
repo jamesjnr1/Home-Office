@@ -131,16 +131,16 @@ export default function Pharmacy() {
             title="A Well-Rounded Range, On the Shelf"
             desc="A snapshot of what you will find in store — ask our team if you do not see what you need."
           />
-          <div className="mt-10 flex flex-wrap gap-3">
-            {stockCategories.map((category) => (
-              <span
-                key={category}
-                className="rounded-full border border-ink-200 bg-white px-4 py-2 text-sm font-medium text-ink-700 shadow-sm transition-all duration-300 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
-              >
+          <p className="mt-10 text-lg leading-relaxed text-ink-700">
+            {stockCategories.map((category, i) => (
+              <span key={category}>
                 {category}
+                {i < stockCategories.length - 1 && (
+                  <span className="mx-3 text-ink-300">·</span>
+                )}
               </span>
             ))}
-          </div>
+          </p>
           <Link
             to="/shop"
             className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700"

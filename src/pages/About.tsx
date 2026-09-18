@@ -24,15 +24,7 @@ const principles = [
   { icon: Users, title: 'Individual & Sensitive', desc: 'We understand that each person is unique, so our services are sensitive to individual needs.' },
 ];
 
-const milestones = [
-  { title: 'Our Foundation', desc: 'Opened as a neighborhood pharmacy and clinic with a vision for accessible, compassionate care.' },
-  { title: 'Growing Trust', desc: 'Expanded our services to include lab diagnostics, health education, and home visits.' },
-  { title: 'Community Care', desc: 'Began serving schools, churches, and organisations with tailored health programmes.' },
-  { title: 'Today', desc: 'Open every day, 8:00 AM to 10:00 PM, with a registered team and a full range of services.' },
-];
-
 export default function About() {
-  const { ref, visible } = useReveal();
   const { ref: valuesRef, visible: valuesVisible } = useReveal();
   const { ref: storyRef, visible: storyVisible } = useReveal();
 
@@ -134,34 +126,6 @@ export default function About() {
                 <p className="mt-2 text-base leading-relaxed text-ink-500">
                   {p.desc}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Our Journey"
-            title="Built on Trust, One Visit at a Time"
-          />
-          <div ref={ref} className="mt-16 grid gap-6 md:grid-cols-4">
-            {milestones.map((m, i) => (
-              <div
-                key={m.title}
-                className={`reveal ${visible ? 'is-visible' : ''} relative rounded-2xl border border-ink-100 bg-white p-6`}
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 font-display text-sm font-bold text-white shadow-lg">
-                  {i + 1}
-                </div>
-                <h3 className="mt-4 text-base font-bold text-ink-900">{m.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-500">{m.desc}</p>
-                {i < milestones.length - 1 && (
-                  <div className="absolute -right-3 top-5 hidden h-px w-6 bg-ink-200 md:block" />
-                )}
               </div>
             ))}
           </div>
