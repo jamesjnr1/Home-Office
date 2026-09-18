@@ -72,7 +72,7 @@ export default function Home() {
             <img
               src="/images/hero-staff.png"
               alt="Home-Office Pharmacy & Clinic pharmacy team member in scrubs with a stethoscope"
-              className="w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
+              className="w-full"
               loading="eager"
             />
           </div>
