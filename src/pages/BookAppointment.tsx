@@ -1,32 +1,47 @@
 import { useState } from 'react';
-import { CheckCircle2, ArrowRight, ShieldCheck, Clock, ChevronDown } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ShieldCheck, Clock, ChevronDown, MessageCircle, AlertCircle } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import { departments, timeSlots } from '@/data/content';
-import { business, submitToFormspree } from '@/data/business';
+import { business, buildWhatsAppUrl, submitToFormspree } from '@/data/business';
 
 export default function BookAppointment() {
   const [submitted, setSubmitted] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [dept, setDept] = useState(departments[0]);
   const [time, setTime] = useState(timeSlots[0]);
+  const [fallbackWhatsAppUrl, setFallbackWhatsAppUrl] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     const form = new FormData(e.currentTarget);
+    const name = String(form.get('name') || '');
+    const phone = String(form.get('phone') || '');
+    const date = String(form.get('date') || '');
+    const notes = String(form.get('notes') || '');
 
-    await submitToFormspree({
+    const ok = await submitToFormspree({
       _subject: 'New appointment request — Home-Office Pharmacy & Clinic',
-      name: form.get('name'),
-      phone: form.get('phone'),
+      name,
+      phone,
       reason: dept,
-      preferredDate: form.get('date'),
+      preferredDate: date,
       preferredTime: time,
-      notes: form.get('notes'),
+      notes,
     });
 
     setSubmitting(false);
-    setSubmitted(true);
+    if (ok) {
+      setSubmitted(true);
+    } else {
+      setFallbackWhatsAppUrl(
+        buildWhatsAppUrl(
+          `Hi, my name is ${name} (${phone}). I'd like to book an appointment for ${dept}${date ? ` on ${date}` : ''} at ${time}. ${notes}`
+        )
+      );
+      setFailed(true);
+    }
   };
 
   return (
@@ -62,6 +77,39 @@ export default function BookAppointment() {
                   className="mt-8 self-start rounded-full border-2 border-ink-200 px-5 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
                 >
                   Book Another Appointment
+                </button>
+              </div>
+            ) : failed ? (
+              <div className="flex min-h-[560px] flex-col justify-center">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-amber-50">
+                  <AlertCircle className="h-10 w-10 text-amber-600" />
+                </div>
+                <h3 className="mt-6 font-display text-2xl font-bold text-ink-900">Couldn&rsquo;t Send That</h3>
+                <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-500">
+                  Something went wrong on our end. Please message us on WhatsApp or call us directly to book instead.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href={fallbackWhatsAppUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Message on WhatsApp
+                  </a>
+                  <a
+                    href={`tel:${business.phoneTel}`}
+                    className="flex items-center justify-center gap-2 rounded-full border-2 border-ink-200 px-5 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
+                  >
+                    Call {business.phoneDisplay}
+                  </a>
+                </div>
+                <button
+                  onClick={() => setFailed(false)}
+                  className="mt-4 self-start text-sm font-semibold text-ink-500 hover:text-brand-700"
+                >
+                  Try the form again
                 </button>
               </div>
             ) : (
@@ -129,6 +177,16 @@ export default function BookAppointment() {
                   {submitting ? 'Sending…' : 'Request Appointment'}
                   {!submitting && <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />}
                 </button>
+
+                <a
+                  href={buildWhatsAppUrl("Hi, I'd like to book an appointment at Home-Office Pharmacy & Clinic.")}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Or book via WhatsApp
+                </a>
 
                 <div className="flex flex-col gap-2">
                   <p className="text-xs text-ink-400">
