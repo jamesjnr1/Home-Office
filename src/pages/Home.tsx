@@ -37,8 +37,8 @@ export default function Home() {
       {/* ===== HERO — full-height photo, text pinned to the bottom ===== */}
       <section id="home" className="relative flex min-h-screen w-full flex-col justify-end overflow-hidden pb-16 pt-32 sm:pb-20">
         <img
-          src="/images/storefront-1.png"
-          alt="Home-Office Pharmacy & Clinic storefront at Buduburam, Estate Junction"
+          src="/images/hero-staff.png"
+          alt="Home-Office Pharmacy & Clinic pharmacy team member in scrubs with a stethoscope"
           className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
         />
