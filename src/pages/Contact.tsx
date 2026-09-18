@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { Phone, MapPin, Clock, CheckCircle2, Send, Navigation } from 'lucide-react';
+import { Phone, CheckCircle2, Send, Navigation } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import PageHero from '@/components/PageHero';
 import { business, buildMapEmbedUrl, buildMapLinkUrl, submitToFormspree } from '@/data/business';
 
 const contactInfo = [
-  { icon: MapPin, label: 'Visit Us', value: business.address },
-  { icon: Phone, label: 'Call Us', value: business.phoneDisplay },
-  { icon: Clock, label: 'Opening Hours', value: business.hours },
+  { label: 'Visit Us', value: business.address },
+  { label: 'Call Us', value: business.phoneDisplay },
+  { label: 'Opening Hours', value: business.hours },
 ];
 
 export default function Contact() {
@@ -48,12 +48,9 @@ export default function Contact() {
                 {contactInfo.map((c) => (
                   <div
                     key={c.label}
-                    className="rounded-2xl border border-ink-100 bg-white p-5 transition-all duration-300 hover:border-brand-200 hover:shadow-md"
+                    className="border border-ink-100 bg-white p-5 transition-colors duration-300 hover:border-brand-200"
                   >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                      <c.icon className="h-5 w-5" />
-                    </div>
-                    <p className="mt-3 text-sm font-semibold text-ink-900">{c.label}</p>
+                    <p className="text-sm font-semibold text-ink-900">{c.label}</p>
                     <p className="mt-1 text-sm text-ink-500">{c.value}</p>
                   </div>
                 ))}

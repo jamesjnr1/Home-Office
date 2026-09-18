@@ -1,31 +1,9 @@
 import { Link } from 'react-router-dom';
-import type { ComponentType } from 'react';
-import {
-  ShieldCheck,
-  Clock,
-  Home as HomeIcon,
-  ArrowRight,
-  Stethoscope,
-  Pill,
-  HeartHandshake,
-  BookOpen,
-  Microscope,
-  Users,
-  Phone,
-} from 'lucide-react';
+import { ArrowRight, Phone } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { services } from '@/data/content';
 import { business } from '@/data/business';
-
-const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
-  Pill,
-  HeartHandshake,
-  Stethoscope,
-  BookOpen,
-  Microscope,
-  Home: HomeIcon,
-};
 
 export default function Home() {
   const { ref: servicesRef, visible: servicesVisible } = useReveal();
@@ -78,34 +56,17 @@ export default function Home() {
             desc="Services that meet you where you are — medically and physically."
           />
           <div ref={servicesRef} className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => {
-              const Icon = iconMap[s.icon] || Stethoscope;
-              return (
-                <Link
-                  key={s.title}
-                  to="/services"
-                  className={`reveal ${servicesVisible ? 'is-visible' : ''} group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5`}
-                  style={{ transitionDelay: `${i * 60}ms` }}
-                >
-                  <div className="absolute right-0 top-0 h-24 w-24 -translate-y-8 translate-x-8 rounded-full bg-brand-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white">
-                      <Icon className="h-7 w-7" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="mt-5 text-lg font-semibold text-ink-900 group-hover:text-brand-700">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                      {s.desc}
-                    </p>
-                    <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      Learn more
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+            {services.map((s, i) => (
+              <Link
+                key={s.title}
+                to="/services"
+                className={`reveal ${servicesVisible ? 'is-visible' : ''} border-b-2 border-transparent py-4 transition-colors duration-300 hover:border-brand-600`}
+                style={{ transitionDelay: `${i * 40}ms` }}
+              >
+                <h3 className="text-lg font-semibold text-ink-900">{s.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{s.desc}</p>
+              </Link>
+            ))}
           </div>
           <div className="mt-10">
             <Link
@@ -127,21 +88,18 @@ export default function Home() {
             title="Healthcare That Puts You First"
             desc="Every person is unique, and our services are sensitive to individual needs."
           />
-          <div ref={whyRef} className="mt-12 grid gap-6 sm:grid-cols-3">
+          <div ref={whyRef} className="mt-12 grid gap-8 sm:grid-cols-3">
             {[
-              { icon: ShieldCheck, title: 'Registered Pharmacy Team', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
-              { icon: Clock, title: 'Open Every Day', desc: `Open ${business.hours.toLowerCase()} — no need to rush before closing time.` },
-              { icon: Users, title: 'Individual & Sensitive', desc: 'We understand that each person is unique, so our care is sensitive to your individual needs.' },
+              { title: 'Registered Pharmacy Team', desc: 'We work with leading organisations in the medical and pharmaceutical industry to provide quality products.' },
+              { title: 'Open Every Day', desc: `Open ${business.hours.toLowerCase()} — no need to rush before closing time.` },
+              { title: 'Individual & Sensitive', desc: 'We understand that each person is unique, so our care is sensitive to your individual needs.' },
             ].map((item, i) => (
               <div
                 key={item.title}
-                className={`reveal ${whyVisible ? 'is-visible' : ''} rounded-2xl border border-ink-100 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg`}
+                className={`reveal ${whyVisible ? 'is-visible' : ''} border-t-2 border-brand-600 pt-4`}
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <item.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-4 text-base font-semibold text-ink-900">{item.title}</h3>
+                <h3 className="text-base font-semibold text-ink-900">{item.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{item.desc}</p>
               </div>
             ))}
@@ -152,33 +110,27 @@ export default function Home() {
       {/* ===== CTA ===== */}
       <section className="py-24 sm:py-32">
         <div ref={ctaRef} className={`reveal ${ctaVisible ? 'is-visible' : ''} mx-auto max-w-7xl px-5 sm:px-8`}>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 px-8 py-14 sm:px-16 sm:py-16">
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
-            </div>
-            <div className="relative">
-              <h2 className="max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
-                Ready to Take the Next Step for Your Health?
-              </h2>
-              <p className="mt-4 max-w-xl text-lg text-brand-100">
-                Book an appointment today, or call us — we are here to help.
-              </p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  to="/book"
-                  className="group flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl sm:w-auto"
-                >
-                  Book an Appointment
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-                <a
-                  href={`tel:${business.phoneTel}`}
-                  className="flex items-center justify-center gap-2 rounded-full border border-white/50 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/10 sm:w-auto"
-                >
-                  <Phone className="h-5 w-5" />
-                  Call {business.phoneDisplay}
-                </a>
-              </div>
+          <div className="rounded-3xl bg-brand-700 px-8 py-14 sm:px-16 sm:py-16">
+            <h2 className="max-w-2xl text-balance font-display text-3xl font-bold text-white sm:text-4xl">
+              Ready to Take the Next Step for Your Health?
+            </h2>
+            <p className="mt-4 max-w-xl text-lg text-brand-100">
+              Book an appointment today, or call us — we are here to help.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link
+                to="/book"
+                className="flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50 sm:w-auto"
+              >
+                Book an Appointment
+              </Link>
+              <a
+                href={`tel:${business.phoneTel}`}
+                className="flex items-center justify-center gap-2 rounded-full border border-white/50 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-white/10 sm:w-auto"
+              >
+                <Phone className="h-5 w-5" />
+                Call {business.phoneDisplay}
+              </a>
             </div>
           </div>
         </div>

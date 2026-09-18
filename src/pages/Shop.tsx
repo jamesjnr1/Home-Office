@@ -26,13 +26,6 @@ const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: 
   Leaf,
 };
 
-const tintClasses: Record<string, { chip: string; hover: string }> = {
-  brand: { chip: 'bg-brand-50 text-brand-600', hover: 'group-hover:bg-brand-600 group-hover:text-white' },
-  accent: { chip: 'bg-accent-50 text-accent-700', hover: 'group-hover:bg-accent-600 group-hover:text-white' },
-  amber: { chip: 'bg-amber-50 text-amber-600', hover: 'group-hover:bg-amber-500 group-hover:text-white' },
-  rose: { chip: 'bg-rose-50 text-rose-600', hover: 'group-hover:bg-rose-500 group-hover:text-white' },
-};
-
 export default function Shop() {
   return (
     <div className="page-enter">
@@ -72,18 +65,13 @@ export default function Shop() {
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {stockCategories.map((cat) => {
               const Icon = iconMap[cat.icon] || Pill;
-              const tint = tintClasses[cat.tint] || tintClasses.brand;
               return (
                 <a
                   key={cat.id}
                   href={`#${cat.id}`}
-                  className="group flex items-center gap-4 rounded-2xl border border-ink-100 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg"
+                  className="group flex items-center gap-3 border border-ink-100 bg-white p-5 transition-colors duration-300 hover:border-brand-200"
                 >
-                  <div
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 ${tint.chip} ${tint.hover}`}
-                  >
-                    <Icon className="h-6 w-6" strokeWidth={1.75} />
-                  </div>
+                  <Icon className="h-5 w-5 shrink-0 text-brand-600" strokeWidth={1.75} />
                   <p className="flex-1 font-semibold text-ink-900">{cat.label}</p>
                   <ArrowRight className="h-4 w-4 shrink-0 text-ink-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-brand-600" />
                 </a>
@@ -100,14 +88,11 @@ export default function Shop() {
           <div className="mt-14 space-y-16">
             {stockCategories.map((cat) => {
               const Icon = iconMap[cat.icon] || Pill;
-              const tint = tintClasses[cat.tint] || tintClasses.brand;
               const items = products.filter((p) => p.category === cat.id);
               return (
                 <div key={cat.id} id={cat.id} className="scroll-mt-28">
                   <div className="flex items-center gap-3">
-                    <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${tint.chip}`}>
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
-                    </div>
+                    <Icon className="h-5 w-5 text-brand-600" strokeWidth={1.75} />
                     <h3 className="font-display text-xl font-bold text-ink-900">{cat.label}</h3>
                   </div>
 
@@ -140,27 +125,22 @@ export default function Shop() {
       {/* CTA */}
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 to-brand-600 px-8 py-14 sm:px-16">
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-brand-700 px-8 py-14 sm:flex-row sm:items-center sm:px-16">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                Ready to pick something up?
+              </h2>
+              <p className="mt-3 text-brand-100">
+                Walk in anytime we&rsquo;re open, or call ahead to check stock.
+              </p>
             </div>
-            <div className="relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-              <div>
-                <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
-                  Ready to pick something up?
-                </h2>
-                <p className="mt-3 text-brand-100">
-                  Walk in anytime we&rsquo;re open, or call ahead to check stock.
-                </p>
-              </div>
-              <a
-                href={`tel:${business.phoneTel}`}
-                className="group flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-700 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-              >
-                <Phone className="h-4 w-4" />
-                Call {business.phoneDisplay}
-              </a>
-            </div>
+            <a
+              href={`tel:${business.phoneTel}`}
+              className="flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-700 transition-colors duration-300 hover:bg-brand-50"
+            >
+              <Phone className="h-4 w-4" />
+              Call {business.phoneDisplay}
+            </a>
           </div>
         </div>
       </section>

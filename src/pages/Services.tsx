@@ -1,59 +1,30 @@
 import { Link } from 'react-router-dom';
-import type { ComponentType } from 'react';
-import {
-  Stethoscope,
-  Pill,
-  HeartHandshake,
-  BookOpen,
-  Microscope,
-  Home as HomeIcon,
-  ArrowRight,
-  Clock,
-  Users,
-  ShieldCheck,
-  CheckCircle2,
-  Activity,
-  Droplet,
-  Bug,
-  Baby,
-  Thermometer,
-  Bandage,
-  Scan,
-} from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import SectionHeading from '@/components/SectionHeading';
 import PageHero from '@/components/PageHero';
 import { services } from '@/data/content';
 import { business } from '@/data/business';
 
-const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: string | number }>> = {
-  Pill,
-  HeartHandshake,
-  Stethoscope,
-  BookOpen,
-  Microscope,
-  Home: HomeIcon,
-};
-
 const processSteps = [
-  { icon: Clock, title: 'Walk In or Call', desc: 'Come by anytime we are open, or call ahead so we can prepare for your visit.' },
-  { icon: Users, title: 'Talk to Our Team', desc: 'A member of our pharmacy or clinic team listens and takes your needs seriously.' },
-  { icon: ShieldCheck, title: 'Get Your Care', desc: 'Consultation, treatment, and medicines — handled in one visit wherever possible.' },
+  { title: 'Walk In or Call', desc: 'Come by anytime we are open, or call ahead so we can prepare for your visit.' },
+  { title: 'Talk to Our Team', desc: 'A member of our pharmacy or clinic team listens and takes your needs seriously.' },
+  { title: 'Get Your Care', desc: 'Consultation, treatment, and medicines — handled in one visit wherever possible.' },
 ];
 
 const labTests = [
-  { icon: Droplet, name: 'Haemoglobin Test' },
-  { icon: Activity, name: 'Blood Glucose Test' },
-  { icon: Bug, name: 'Malaria Test' },
-  { icon: Baby, name: 'Pregnancy Test' },
-  { icon: Thermometer, name: 'Typhoid Test' },
-  { icon: Bandage, name: 'Wound Dressing' },
-  { icon: Scan, name: 'Obstetric Scan' },
+  'Haemoglobin Test',
+  'Blood Glucose Test',
+  'Malaria Test',
+  'Pregnancy Test',
+  'Typhoid Test',
+  'Wound Dressing',
+  'Obstetric Scan',
 ];
 
 export default function Services() {
   const { ref, visible } = useReveal();
-  const { ref: labRef, visible: labVisible } = useReveal();
+  const { ref: labRef } = useReveal();
 
   return (
     <div className="page-enter">
@@ -67,39 +38,30 @@ export default function Services() {
       <section className="pb-24 sm:pb-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div ref={ref} className="grid gap-6 sm:grid-cols-2">
-            {services.map((s, i) => {
-              const Icon = iconMap[s.icon] || Stethoscope;
-              return (
-                <div
-                  key={s.title}
-                  className={`reveal ${visible ? 'is-visible' : ''} group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl`}
-                  style={{ transitionDelay: `${i * 70}ms` }}
-                >
-                  <div className="absolute right-0 top-0 h-28 w-28 -translate-y-10 translate-x-10 rounded-full bg-brand-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white">
-                      <Icon className="h-7 w-7" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                      {s.desc}
-                    </p>
-                    <p className="mt-4 text-xs leading-relaxed text-ink-500">
-                      {s.features.map((f, i) => (
-                        <span key={f}>
-                          {f}
-                          {i < s.features.length - 1 && (
-                            <span className="mx-2 text-ink-300">·</span>
-                          )}
-                        </span>
-                      ))}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+            {services.map((s, i) => (
+              <div
+                key={s.title}
+                className={`reveal ${visible ? 'is-visible' : ''} border border-ink-100 bg-white p-7 transition-colors duration-300 hover:border-brand-200`}
+                style={{ transitionDelay: `${i * 70}ms` }}
+              >
+                <h3 className="font-display text-lg font-bold text-ink-900">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-500">
+                  {s.desc}
+                </p>
+                <p className="mt-4 text-xs leading-relaxed text-ink-500">
+                  {s.features.map((f, i) => (
+                    <span key={f}>
+                      {f}
+                      {i < s.features.length - 1 && (
+                        <span className="mx-2 text-ink-300">·</span>
+                      )}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -112,20 +74,16 @@ export default function Services() {
             title="On-Site Testing, Same Visit"
             desc="No second trip needed — our lab tests and clinical procedures happen right here, so you get answers faster."
           />
-          <div ref={labRef} className="mt-14 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+          <p ref={labRef} className="mt-10 text-lg leading-relaxed text-ink-700">
             {labTests.map((test, i) => (
-              <div
-                key={test.name}
-                className={`reveal ${labVisible ? 'is-visible' : ''} group flex flex-col items-center gap-3 rounded-2xl border border-ink-100 bg-white p-5 text-center transition-all duration-500 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg`}
-                style={{ transitionDelay: `${i * 50}ms` }}
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white">
-                  <test.icon className="h-6 w-6" />
-                </div>
-                <p className="text-sm font-medium text-ink-700">{test.name}</p>
-              </div>
+              <span key={test}>
+                {test}
+                {i < labTests.length - 1 && (
+                  <span className="mx-3 text-ink-300">·</span>
+                )}
+              </span>
             ))}
-          </div>
+          </p>
         </div>
       </section>
 
@@ -143,14 +101,11 @@ export default function Services() {
                 {i < processSteps.length - 1 && (
                   <div className="absolute left-full top-[3.75rem] hidden w-8 border-t-2 border-dashed border-brand-200 md:block" />
                 )}
-                <div className="group relative overflow-hidden rounded-3xl border border-ink-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <span className="pointer-events-none absolute -right-2 -top-6 select-none font-display text-8xl font-bold text-ink-50 transition-colors duration-300 group-hover:text-brand-50">
+                <div className="relative overflow-hidden border border-ink-100 bg-white p-8">
+                  <span className="pointer-events-none absolute -right-2 -top-6 select-none font-display text-8xl font-bold text-ink-50">
                     0{i + 1}
                   </span>
-                  <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-lg shadow-brand-500/25">
-                    <step.icon className="h-7 w-7" strokeWidth={1.75} />
-                  </div>
-                  <h3 className="relative mt-6 font-display text-xl font-bold text-ink-900">
+                  <h3 className="relative font-display text-xl font-bold text-ink-900">
                     {step.title}
                   </h3>
                   <p className="relative mt-2 text-sm leading-relaxed text-ink-500">
@@ -160,13 +115,13 @@ export default function Services() {
               </div>
             ))}
           </div>
-          <div className="mt-12 flex flex-col items-center gap-4">
+          <div className="mt-12 flex flex-col gap-4">
             <Link
               to="/book"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
             >
               Book an Appointment
-              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
             <div className="flex items-center gap-2 text-sm text-ink-500">
               <CheckCircle2 className="h-4 w-4 text-brand-500" />
