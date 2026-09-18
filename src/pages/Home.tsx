@@ -34,45 +34,48 @@ export default function Home() {
 
   return (
     <div className="page-enter">
-      {/* ===== HERO — full-height photo, text pinned to the bottom ===== */}
-      <section id="home" className="relative flex min-h-screen w-full flex-col justify-end overflow-hidden pb-16 pt-32 sm:pb-20">
-        <img
-          src="/images/hero-staff.png"
-          alt="Home-Office Pharmacy & Clinic pharmacy team member in scrubs with a stethoscope"
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/40 to-transparent" />
-
-        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <h1 className="max-w-2xl text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Our Care &amp; Medicines are Channels of God&rsquo;s Healing
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">
-            {business.description}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/book"
-              className="flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
+      {/* ===== HERO — gradient background, photo shown at its own size ===== */}
+      <section id="home" className="relative overflow-hidden bg-gradient-to-br from-ink-950 via-brand-950 to-ink-900 pb-16 pt-32 sm:pb-24">
+        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h1 className="text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Our Care &amp; Medicines are Channels of God&rsquo;s Healing
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">
+              {business.description}
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                to="/book"
+                className="flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-300 hover:bg-brand-700"
+              >
+                Book an Appointment
+              </Link>
+              <Link
+                to="/shop"
+                className="flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/20"
+              >
+                Browse Medicines
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <a
+              href={`tel:${business.phoneTel}`}
+              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white"
             >
-              Book an Appointment
-            </Link>
-            <Link
-              to="/shop"
-              className="flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/20"
-            >
-              Browse Medicines
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              <Phone className="h-4 w-4" />
+              Or call {business.phoneDisplay} to talk to a pharmacist
+            </a>
           </div>
-          <a
-            href={`tel:${business.phoneTel}`}
-            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white"
-          >
-            <Phone className="h-4 w-4" />
-            Or call {business.phoneDisplay} to talk to a pharmacist
-          </a>
+
+          <div className="mx-auto w-full max-w-xs lg:max-w-sm">
+            <img
+              src="/images/hero-staff.png"
+              alt="Home-Office Pharmacy & Clinic pharmacy team member in scrubs with a stethoscope"
+              className="w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
+              loading="eager"
+            />
+          </div>
         </div>
       </section>
 
