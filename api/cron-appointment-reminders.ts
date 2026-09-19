@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getSupabaseAdmin } from './_lib/supabase';
-import { sendSms } from './_lib/arkesel';
-import { appointmentReminderSms } from './_lib/smsTemplates';
-import { verifyCron } from './_lib/verifyCron';
+import { getSupabaseAdmin } from './_lib/supabase.js';
+import { sendSms } from './_lib/arkesel.js';
+import { appointmentReminderSms } from './_lib/smsTemplates.js';
+import { verifyCron } from './_lib/verifyCron.js';
 
 // Runs daily (see vercel.json). Ghana has no UTC offset, so "today" in
 // UTC is also "today" in Accra — no timezone math needed.

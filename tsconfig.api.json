@@ -2,11 +2,14 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["ES2022"],
-    "module": "ESNext",
+    "module": "NodeNext",
     "skipLibCheck": true,
 
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    // Matches how Vercel actually builds these functions (Node ESM,
+    // package.json has "type": "module") — this is what caught the
+    // missing ".js" extensions on relative imports that "bundler"
+    // resolution silently allowed but Node's real loader rejected.
+    "moduleResolution": "NodeNext",
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
@@ -17,5 +20,5 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["api", "src/data/business.ts"]
+  "include": ["api"]
 }

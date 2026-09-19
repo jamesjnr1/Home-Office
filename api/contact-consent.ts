@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getSupabaseAdmin } from './_lib/supabase';
+import { getSupabaseAdmin } from './_lib/supabase.js';
 
 // Called from Contact.tsx after a successful Formspree submission, only
 // when the visitor checked the SMS consent box. Just saves them to the
