@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getSupabaseAdmin } from './_lib/supabase';
-import { sendSms } from './_lib/arkesel';
-import { bookingConfirmationSms } from './_lib/smsTemplates';
+import { getSupabaseAdmin } from './_lib/supabase.js';
+import { sendSms } from './_lib/arkesel.js';
+import { bookingConfirmationSms } from './_lib/smsTemplates.js';
 
 // Called from BookAppointment.tsx after a successful Formspree submission.
 // Best-effort: the booking's real confirmation is the Formspree email:
@@ -64,7 +64,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         await supabase.from('appointments').update({ confirmation_sent: true }).eq('id', appointment.id);
       }
 
-      res.status(200).json({ ok: result.ok, reason: result.ok ? undefined : result.reason });
+      const failureReason = 'reason' in result ? result.reason : undefined;
+      res.status(200).json({ ok: result.ok, reason: failureReason });
       return;
     }
 

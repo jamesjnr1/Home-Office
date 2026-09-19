@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getSupabaseAdmin } from './_lib/supabase';
-import { sendSms } from './_lib/arkesel';
-import { weeklyAwarenessSms, monthlyRefillSms } from './_lib/smsTemplates';
-import { verifyCron } from './_lib/verifyCron';
+import { getSupabaseAdmin } from './_lib/supabase.js';
+import { sendSms } from './_lib/arkesel.js';
+import { weeklyAwarenessSms, monthlyRefillSms } from './_lib/smsTemplates.js';
+import { verifyCron } from './_lib/verifyCron.js';
 
 function isoWeekNumber(date: Date) {
   const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
