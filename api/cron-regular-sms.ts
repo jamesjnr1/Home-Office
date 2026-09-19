@@ -17,29 +17,34 @@ function isoWeekNumber(date: Date) {
 // idempotent per calendar day, so a retry or a second trigger the same
 // day won't double-send.
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (!verifyCron(req, res)) return;
+  try {
+    if (!verifyCron(req, res)) return;
 
-  const supabase = getSupabaseAdmin();
-  if (!supabase) {
-    res.status(200).json({ ok: false, reason: 'supabase_not_configured' });
-    return;
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      res.status(200).json({ ok: false, reason: 'supabase_not_configured' });
+      return;
+    }
+
+    const now = new Date();
+    const todayStr = now.toISOString().slice(0, 10);
+    const isMonday = now.getUTCDay() === 1;
+    const isFirstOfMonth = now.getUTCDate() === 1;
+
+    const results: Record<string, unknown> = {};
+
+    if (isMonday) {
+      results.weekly = await sendBatch(supabase, 'weekly_awareness', todayStr, weeklyAwarenessSms(isoWeekNumber(now)));
+    }
+    if (isFirstOfMonth) {
+      results.monthly = await sendBatch(supabase, 'monthly_refill', todayStr, monthlyRefillSms());
+    }
+
+    res.status(200).json({ ok: true, isMonday, isFirstOfMonth, results });
+  } catch (err) {
+    console.error('cron-regular-sms crashed', err);
+    res.status(500).json({ ok: false, reason: 'unexpected_error', error: String(err) });
   }
-
-  const now = new Date();
-  const todayStr = now.toISOString().slice(0, 10);
-  const isMonday = now.getUTCDay() === 1;
-  const isFirstOfMonth = now.getUTCDate() === 1;
-
-  const results: Record<string, unknown> = {};
-
-  if (isMonday) {
-    results.weekly = await sendBatch(supabase, 'weekly_awareness', todayStr, weeklyAwarenessSms(isoWeekNumber(now)));
-  }
-  if (isFirstOfMonth) {
-    results.monthly = await sendBatch(supabase, 'monthly_refill', todayStr, monthlyRefillSms());
-  }
-
-  res.status(200).json({ ok: true, isMonday, isFirstOfMonth, results });
 }
 
 async function sendBatch(
