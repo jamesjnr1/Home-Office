@@ -1,3 +1,8 @@
+// This page is temporarily removed from the site — no nav link and no
+// route in App.tsx point here for now. The component itself is left in
+// place so the Careers page can be brought back quickly later: re-add
+// the import and <Route path="/careers" .../> in App.tsx, and the nav
+// links in Header.tsx / Footer.tsx.
 import { useState } from 'react';
 import { CheckCircle2, ArrowRight, ShieldCheck, Clock, MessageCircle, AlertCircle } from 'lucide-react';
 import PageHero from '@/components/PageHero';
