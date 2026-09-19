@@ -7,7 +7,7 @@ export const business = {
   address: 'Buduburam, Estate Junction, Ghana',
   phoneDisplay: '055 880 2400',
   phoneTel: '+233558802400',
-  hours: '8:00 AM – 10:00 PM, Every Day',
+  hours: '8:00 AM – 10:00 PM, Monday–Saturday · 12:00 PM – 10:00 PM, Sunday',
   mapQuery: 'Home-Office Pharmacy, Buduburam Estate Junction, Ghana',
 
   // Formspree needs ONE destination email — no account/signup required.
