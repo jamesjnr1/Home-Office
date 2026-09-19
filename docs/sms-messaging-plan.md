@@ -92,18 +92,53 @@ ones so the same customer doesn't get an identical text every week.
   send — this is done in the Arkesel dashboard, not something I can do
   for you.
 
-## What's still needed to actually send these (not yet built)
+## Status: infrastructure is built, waiting on your Arkesel credentials
 
-1. An Arkesel account with a funded balance and an **approved sender ID**.
-2. The Arkesel **API key**, stored as a server-side secret (never in
-   frontend code) — e.g. a Vercel environment variable.
-3. Somewhere to store the **customer phone list** with consent — this
-   site currently has no database. Booking/Contact submissions only go to
-   an email inbox via Formspree; nothing is saved in a queryable list yet.
-4. A small backend piece (e.g. a Vercel serverless function + Vercel Cron
-   Job) to actually call the Arkesel API — a static site has nothing
-   running to trigger sends on its own.
+Everything below now exists in the repo:
 
-None of that can be faked — it needs real credentials and a real decision
-on where customer numbers live. See the chat for the specific questions
-this raises.
+- `api/booking-confirmation.ts` — saves the appointment to Supabase and
+  sends the booking-confirmation SMS if the visitor opted in.
+- `api/contact-consent.ts` — saves a Contact-form visitor to the SMS list
+  if they opted in.
+- `api/cron-regular-sms.ts` — runs daily via Vercel Cron, only actually
+  sends on Mondays (weekly rotation) and the 1st of the month (refill
+  reminder), and won't double-send if triggered twice the same day.
+- `api/cron-appointment-reminders.ts` — runs daily, texts anyone with a
+  confirmed appointment tomorrow who opted in.
+- A dedicated Supabase project (`Home-Office-Pharmacy`) with `customers`,
+  `appointments`, and `sms_log` tables, locked down with Row Level
+  Security so only the server-side service-role key can read/write them
+  — the frontend has no direct access.
+- Both forms (Contact, BookAppointment) now have an SMS opt-in checkbox.
+
+**None of this will actually send a message yet.** Every send goes
+through `sendSms()` in `api/_lib/arkesel.ts`, which explicitly checks for
+`ARKESEL_API_KEY` and `ARKESEL_SENDER_ID` and returns
+`{ ok: false, reason: 'not_configured' }` — never a fake success — if
+either is missing. Right now, both are missing.
+
+### What you need to do (I can't do these — they need your accounts)
+
+1. **Get your Arkesel sender ID approved** in the Arkesel dashboard (you
+   said this is pending).
+2. **Add these environment variables in the Vercel project settings**
+   (Project → Settings → Environment Variables), for Production:
+
+   | Variable | Value |
+   |---|---|
+   | `ARKESEL_API_KEY` | Your Arkesel API key (Arkesel dashboard → API) |
+   | `ARKESEL_SENDER_ID` | Your approved sender ID, once live |
+   | `SUPABASE_URL` | `https://nzswpmevuzxnjpzoxvhw.supabase.co` |
+   | `SUPABASE_SERVICE_ROLE_KEY` | From the Supabase dashboard → this project → Settings → API → `service_role` secret key (**not** the anon/publishable key) |
+   | `CRON_SECRET` | `f5586928651e80d11b581074bb4b7291bfb2b9c30dba1e562303a3b80446b916` |
+
+   That `CRON_SECRET` value is freshly generated and only shown here —
+   save it now. It stops anyone who finds the cron URLs from triggering a
+   mass SMS send; Vercel sends it automatically when it calls your cron
+   jobs, once it's set as an env var.
+3. **Redeploy** after adding the variables (env var changes need a new
+   deploy to take effect).
+
+Once those are set, everything works immediately — no further code
+changes needed. Until then, the site behaves exactly as it does today;
+nothing is broken or blocked by this being unconfigured.

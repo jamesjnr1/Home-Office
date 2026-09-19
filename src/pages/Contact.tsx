@@ -19,6 +19,7 @@ export default function Contact() {
     const phone = String(form.get('phone') || '');
     const reason = String(form.get('reason') || '');
     const message = String(form.get('message') || '');
+    const smsConsent = form.get('smsConsent') === 'on';
 
     const ok = await submitToFormspree({
       _subject: 'New contact message — Home-Office Pharmacy & Clinic',
@@ -31,6 +32,16 @@ export default function Contact() {
     setSubmitting(false);
     if (ok) {
       setSubmitted(true);
+      if (smsConsent) {
+        // Best-effort — the contact submission above already succeeded,
+        // so we don't want an SMS-list failure to affect the visitor's
+        // experience.
+        fetch('/api/contact-consent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone }),
+        }).catch(() => {});
+      }
     } else {
       setFallbackWhatsAppUrl(
         buildWhatsAppUrl(
@@ -155,6 +166,10 @@ export default function Contact() {
                     <label className="mb-1.5 block text-sm font-medium text-ink-700">Message</label>
                     <textarea required name="message" rows={5} placeholder="Tell us how we can help..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                   </div>
+                  <label className="flex items-start gap-2 text-xs text-ink-500">
+                    <input type="checkbox" name="smsConsent" className="mt-0.5 h-4 w-4 rounded border-ink-300 text-brand-600 focus:ring-brand-400" />
+                    I agree to receive occasional SMS updates from Home-Office Pharmacy & Clinic.
+                  </label>
                   <button
                     type="submit"
                     disabled={submitting}
