@@ -64,3 +64,11 @@ export const timeSlots = [
   '07:00 PM',
 ];
 
+export const careerAreas = [
+  'Pharmacist',
+  'Pharmacy Technician / Assistant',
+  'Clinical / Nursing',
+  'Administrative / Front Desk',
+  'Other',
+];
+

@@ -11,6 +11,7 @@ const footerSections = [
       { label: 'Pharmacy', path: '/pharmacy' },
       { label: 'Shop', path: '/shop' },
       { label: 'Book Appointment', path: '/book' },
+      { label: 'Careers', path: '/careers' },
       { label: 'Contact', path: '/contact' },
     ],
   },
