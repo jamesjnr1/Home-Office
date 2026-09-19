@@ -10,19 +10,10 @@ export const business = {
   hours: '8:00 AM – 10:00 PM, Monday–Saturday · 12:00 PM – 10:00 PM, Sunday',
   mapQuery: 'Home-Office Pharmacy, Buduburam Estate Junction, Ghana',
 
-  // Formspree's old "no signup, just use your email as the URL" mode is
-  // deprecated and no longer reliable (Formspree phased it out — see
-  // https://help.formspree.io/articles/troubleshooting/phasing-out-legacy-forms-email-urls).
-  // A real dashboard-created form is required now:
-  //   1. Sign up free at https://formspree.io/register
-  //   2. Create a new form in the dashboard, set its destination to the
-  //      inbox below (or whichever address should receive submissions)
-  //   3. Copy its endpoint — looks like "https://formspree.io/f/xxxxxxxx"
-  //      — into formspreeEndpoint below
-  // Forms won't deliver anywhere until formspreeEndpoint is set to a
-  // real form ID.
+  // Dashboard-created Formspree form (the old email-URL mode is
+  // deprecated — see the git history of this file for why).
   formspreeEmail: 'valorant.ethereal69@gmail.com',
-  formspreeEndpoint: '',
+  formspreeEndpoint: 'https://formspree.io/f/xjykkdwl',
 
   description:
     "Home-Office Pharmacy and Clinic provides customers with medicines, counselling, clinical care and other services that meet their needs. Our medicines, counselling and clinical care are channels for God's healing to all who desire lasting healing and solutions to their medical problems.",
