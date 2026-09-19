@@ -119,26 +119,25 @@ either is missing. Right now, both are missing.
 
 ### What you need to do (I can't do these — they need your accounts)
 
-1. **Get your Arkesel sender ID approved** in the Arkesel dashboard (you
-   said this is pending).
-2. **Add these environment variables in the Vercel project settings**
-   (Project → Settings → Environment Variables), for Production:
+Your sender ID is approved (`Home-Office`), so the only remaining step is
+adding environment variables in the Vercel project settings
+(Project → Settings → Environment Variables), for Production:
 
-   | Variable | Value |
-   |---|---|
-   | `ARKESEL_API_KEY` | Your Arkesel API key (Arkesel dashboard → API) |
-   | `ARKESEL_SENDER_ID` | Your approved sender ID, once live |
-   | `SUPABASE_URL` | `https://nzswpmevuzxnjpzoxvhw.supabase.co` |
-   | `SUPABASE_SERVICE_ROLE_KEY` | From the Supabase dashboard → this project → Settings → API → `service_role` secret key (**not** the anon/publishable key) |
-   | `CRON_SECRET` | `f5586928651e80d11b581074bb4b7291bfb2b9c30dba1e562303a3b80446b916` |
+| Variable | Value |
+|---|---|
+| `ARKESEL_API_KEY` | Your Arkesel API key — Arkesel dashboard → API/Settings. I don't have this and can't set it for you; paste it directly into Vercel, no need to share it elsewhere. |
+| `ARKESEL_SENDER_ID` | `Home-Office` |
+| `SUPABASE_URL` | `https://nzswpmevuzxnjpzoxvhw.supabase.co` |
+| `SUPABASE_SERVICE_ROLE_KEY` | From the Supabase dashboard → `Home-Office-Pharmacy` project → Settings → API → `service_role` secret key (**not** the anon/publishable key) |
+| `CRON_SECRET` | `f5586928651e80d11b581074bb4b7291bfb2b9c30dba1e562303a3b80446b916` |
 
-   That `CRON_SECRET` value is freshly generated and only shown here —
-   save it now. It stops anyone who finds the cron URLs from triggering a
-   mass SMS send; Vercel sends it automatically when it calls your cron
-   jobs, once it's set as an env var.
-3. **Redeploy** after adding the variables (env var changes need a new
-   deploy to take effect).
+That `CRON_SECRET` value is freshly generated and only shown here — save
+it now. It stops anyone who finds the cron URLs from triggering a mass
+SMS send; Vercel sends it automatically when it calls your cron jobs,
+once it's set as an env var.
 
-Once those are set, everything works immediately — no further code
-changes needed. Until then, the site behaves exactly as it does today;
-nothing is broken or blocked by this being unconfigured.
+**Then redeploy** — env var changes need a new deploy to take effect.
+Once that's done, everything works immediately: no further code changes
+needed, and no test message will go out until a real form is submitted
+or the next cron fire (Monday, the 1st, or the day before a consented
+appointment).
