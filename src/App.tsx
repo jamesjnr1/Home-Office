@@ -10,6 +10,7 @@ import Shop from '@/pages/Shop';
 // file. Re-add the import and <Route> below to bring the page back.
 import Contact from '@/pages/Contact';
 import BookAppointment from '@/pages/BookAppointment';
+import Careers from '@/pages/Careers';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/book" element={<BookAppointment />} />
+          <Route path="/careers" element={<Careers />} />
         </Routes>
       </main>
       <Footer />
