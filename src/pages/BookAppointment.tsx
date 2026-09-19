@@ -20,6 +20,7 @@ export default function BookAppointment() {
     const phone = String(form.get('phone') || '');
     const date = String(form.get('date') || '');
     const notes = String(form.get('notes') || '');
+    const smsConsent = form.get('smsConsent') === 'on';
 
     const ok = await submitToFormspree({
       _subject: 'New appointment request — Home-Office Pharmacy & Clinic',
@@ -34,6 +35,20 @@ export default function BookAppointment() {
     setSubmitting(false);
     if (ok) {
       setSubmitted(true);
+      // Best-effort — the request above already succeeded via Formspree,
+      // so this only adds the reminder/confirmation SMS on top.
+      fetch('/api/booking-confirmation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          phone,
+          reason: dept,
+          preferredDate: date,
+          preferredTime: time,
+          smsConsent,
+        }),
+      }).catch(() => {});
     } else {
       setFallbackWhatsAppUrl(
         buildWhatsAppUrl(
@@ -168,6 +183,11 @@ export default function BookAppointment() {
                   </label>
                   <textarea name="notes" rows={3} placeholder="Share any details that might help us prepare for your visit..." className="w-full resize-none rounded-xl border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-800 outline-none transition-all focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100" />
                 </div>
+
+                <label className="flex items-start gap-2 text-xs text-ink-500">
+                  <input type="checkbox" name="smsConsent" className="mt-0.5 h-4 w-4 rounded border-ink-300 text-brand-600 focus:ring-brand-400" />
+                  Text me a confirmation and a reminder the day before my appointment.
+                </label>
 
                 <button
                   type="submit"
