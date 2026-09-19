@@ -6,11 +6,11 @@ import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import Pharmacy from '@/pages/Pharmacy';
 import Shop from '@/pages/Shop';
-// About.tsx is temporarily unrouted — see the note at the top of that
-// file. Re-add the import and <Route> below to bring the page back.
+// About.tsx and Careers.tsx are temporarily unrouted — see the note at
+// the top of each file. Re-add the import and <Route> below to bring
+// a page back.
 import Contact from '@/pages/Contact';
 import BookAppointment from '@/pages/BookAppointment';
-import Careers from '@/pages/Careers';
 
 function App() {
   return (
@@ -25,7 +25,6 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/book" element={<BookAppointment />} />
-          <Route path="/careers" element={<Careers />} />
         </Routes>
       </main>
       <Footer />
