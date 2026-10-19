@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="robots" content="noindex, nofollow">
+<title>Customer Follow-up · Home-Office Pharmacy &amp; Clinic</title>
+<link rel="icon" type="image/png" href="/logo-mark.png">
+<link rel="apple-touch-icon" href="/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@1.59.0/dist/umd/lucide.min.js"></script>
+<style>
+:root{
+  --blue:#198FCC; --blue-dark:#1576A8; --navy:#285679; --tint:#EBF4F9;
+  --ink:#0F172A; --body:#334155; --mute:#64748B; --line:#E2E8F0; --bg:#F8FAFC;
+  --red:#DC2626; --red-bg:#FEF2F2; --amber:#B45309; --amber-bg:#FFFBEB; --green:#15803D; --green-bg:#F0FDF4; --wa:#1FA855;
+  --head:"Plus Jakarta Sans",Poppins,system-ui,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5}
+h1,h2,h3{font-family:var(--head);margin:0;letter-spacing:-.01em}
+.hidden{display:none!important}
+svg.lucide{width:18px;height:18px;stroke-width:2;flex:none}
+
+/* Buttons */
+button,a.btn{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:11px 18px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:background .15s,transform .05s;white-space:nowrap}
+button{color:inherit;background:none}
+button:active,a.btn:active{transform:scale(.97)}
+button:disabled{opacity:.6;cursor:default}
+.primary{background:var(--blue);color:#fff}
+.primary:hover{background:var(--blue-dark)}
+.soft{background:var(--tint);color:var(--blue-dark)}
+.soft:hover{background:#DCEDF7}
+.plain{background:#fff;color:var(--body);border:1px solid var(--line)}
+.plain:hover{background:var(--bg)}
+.wa{background:var(--wa);color:#fff}
+.wa:hover{background:#178f47}
+.text{color:var(--mute);padding:8px 10px;font-weight:500}
+.text:hover{color:var(--ink);background:var(--bg)}
+.text.red{color:var(--red)}
+.text.red:hover{background:var(--red-bg)}
+.iconbtn{padding:9px;border-radius:12px;color:var(--body)}
+.iconbtn:hover{background:var(--tint);color:var(--blue-dark)}
+
+/* Inputs */
+input,select,textarea{font:inherit;font-size:16px;width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(25,143,204,.12)}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--body);margin-bottom:6px}
+.field label i{font-style:normal;color:var(--mute);font-weight:400}
+.withicon{position:relative}
+.withicon>svg.lucide{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--mute);pointer-events:none}
+.withicon input{padding-left:44px}
+.withicon .eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);padding:8px;color:var(--mute)}
+
+/* ---------- Login ---------- */
+.login{min-height:100vh;display:grid;grid-template-rows:1fr auto;background:
+  radial-gradient(1200px 500px at 50% -10%,rgba(25,143,204,.16),transparent 60%),var(--bg)}
+.login-in{display:grid;place-items:center;padding:24px 16px}
+.login-card{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:32px 28px 28px;box-shadow:0 20px 50px rgba(15,23,42,.08);display:grid;gap:18px}
+.login-logo{display:block;width:min(260px,80%);height:auto;margin:0 auto 4px}
+.login-card h1{font-size:22px;text-align:center}
+.login-card .sub{text-align:center;color:var(--mute);font-size:14px;margin-top:-10px}
+.login-card .primary{padding:14px;font-size:15px}
+.err{background:var(--red-bg);color:var(--red);font-size:14px;border-radius:12px;padding:10px 12px;display:flex;gap:8px;align-items:center}
+.login-foot{text-align:center;color:var(--mute);font-size:12px;padding:16px}
+.demo{background:var(--amber-bg);color:var(--amber);font-size:12px;border-radius:12px;padding:8px 12px;text-align:center}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.hbar{display:flex;align-items:center;gap:14px;height:72px}
+.hlogo{height:52px;width:auto;display:block}
+.hdiv{width:1px;height:30px;background:var(--line)}
+.happ{flex:1;font-family:var(--head);font-weight:700;font-size:15px;color:var(--navy);line-height:1.2}
+.happ small{display:block;font-family:Poppins,sans-serif;font-weight:400;font-size:12px;color:var(--mute)}
+@media(max-width:520px){.hlogo{height:44px}.hdiv,.happ{display:none}.hbar{justify-content:space-between}}
+.me{position:relative}
+.mebtn{padding:5px 6px 5px 5px;gap:8px;border:1px solid var(--line);background:#fff}
+.mebtn:hover{background:var(--bg)}
+.av{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-family:var(--head);font-weight:700;font-size:13px;flex:none}
+.mename{font-size:14px;font-weight:500;max-width:120px;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:520px){.mename{display:none}}
+.dropdown{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 40px rgba(15,23,42,.14);min-width:230px;padding:8px;z-index:20}
+.dropdown .who{padding:8px 10px 10px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.dropdown .who b{display:block;font-size:14px}
+.dropdown .who span{font-size:12px;color:var(--mute)}
+.dropdown button{width:100%;justify-content:flex-start;border-radius:10px;padding:10px;font-weight:500;color:var(--body)}
+.dropdown button:hover{background:var(--bg)}
+.dropdown button.red{color:var(--red)}
+
+/* ---------- Hero ---------- */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue-dark) 55%,var(--blue) 100%);color:#fff}
+.hero .wrap{padding-top:22px;padding-bottom:24px}
+.hero h1{font-size:24px;font-weight:800}
+.hero p{margin:4px 0 16px;color:rgba(255,255,255,.88);font-size:14px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.hero .add{background:#fff;color:var(--blue-dark);padding:13px 22px;font-size:15px}
+.hero .add:hover{background:var(--tint)}
+.search{flex:1;min-width:220px;position:relative}
+.search svg.lucide{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.85)}
+.search input{border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:12px 16px 12px 44px}
+.search input::placeholder{color:rgba(255,255,255,.75)}
+.search input:focus{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.6);box-shadow:none}
+
+main.wrap{padding-bottom:80px}
+
+/* ---------- Tabs ---------- */
+.tabs{display:flex;gap:6px;margin:18px 0 14px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:#fff;border:1px solid var(--line);color:var(--body);font-weight:500;padding:9px 15px}
+.tab .n{background:var(--bg);border-radius:99px;padding:0 8px;font-size:12px;font-weight:600;min-width:22px}
+.tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.tab.on .n{background:rgba(255,255,255,.2)}
+.tab.alert .n{background:var(--red);color:#fff}
+@media(max-width:520px){.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.tab{padding:8px 4px;font-size:13px;gap:4px;flex-direction:column;border-radius:14px}.tab .n{min-width:0}}
+
+/* ---------- Call cards (To call / Coming up / Done) ---------- */
+.list{display:grid;gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.card.overdue{border-left:4px solid var(--red)}
+.card.today{border-left:4px solid var(--amber)}
+.ctop{display:flex;gap:12px;align-items:center}
+.ini{width:44px;height:44px;border-radius:14px;background:var(--tint);color:var(--blue-dark);font-family:var(--head);font-weight:700;display:grid;place-items:center;flex:none;font-size:15px}
+.cwho{flex:1;min-width:0}
+.namebtn{display:inline;padding:0;border-radius:6px;font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);white-space:normal;text-align:left;line-height:1.3}
+.namebtn{text-decoration:underline;text-decoration-color:#CBD5E1;text-decoration-thickness:2px;text-underline-offset:4px}
+.namebtn:hover{color:var(--blue-dark);text-decoration-color:var(--blue)}
+.namebtn svg.lucide{width:16px;height:16px;color:var(--mute);vertical-align:-2px;margin-left:4px}
+.cwho .ph{color:var(--mute);font-size:14px}
+.cwho .med{font-size:13px;color:var(--body);display:flex;align-items:center;gap:5px;margin-top:2px}
+.cwho .med svg.lucide{width:14px;height:14px;color:var(--mute)}
+.pill{font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;white-space:nowrap;align-self:flex-start}
+.p-overdue{background:var(--red-bg);color:var(--red)}
+.p-today{background:var(--amber-bg);color:var(--amber)}
+.p-upcoming{background:var(--tint);color:var(--blue-dark)}
+.p-done{background:var(--green-bg);color:var(--green)}
+.p-none{background:var(--bg);color:var(--mute)}
+.btns{display:flex;gap:8px;margin-top:14px}
+.btns>*{flex:1;padding:11px 10px}
+@media(max-width:420px){.btns .lbl-long{display:none}}
+
+/* ---------- Everyone list ---------- */
+.people{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.letter{font-family:var(--head);font-weight:700;font-size:12px;color:var(--mute);background:var(--bg);padding:6px 16px;border-top:1px solid var(--line)}
+.letter:first-child{border-top:0}
+.person{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-radius:0;border-top:1px solid var(--line);text-align:left;font-weight:400;justify-content:flex-start;white-space:normal}
+.letter+.person{border-top:0}
+.person:hover{background:var(--tint)}
+.person .ini{width:38px;height:38px;border-radius:12px;font-size:13px}
+.person .pn{flex:1;min-width:0}
+.person .pn b{display:block;font-weight:600;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.person .pn span{font-size:13px;color:var(--mute)}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.d-overdue{background:var(--red)}.d-today{background:#F59E0B}.d-upcoming{background:var(--blue)}.d-done{background:#22C55E}.d-none{background:#CBD5E1}
+.person .st{font-size:12px;color:var(--mute);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.person>svg.lucide{color:#94A3B8}
+
+.empty{text-align:center;padding:48px 20px;background:#fff;border:1px dashed #CBD5E1;border-radius:18px;color:var(--mute)}
+.empty .eic{width:56px;height:56px;border-radius:18px;background:var(--tint);color:var(--blue-dark);display:grid;place-items:center;margin:0 auto 10px}
+.empty .eic svg.lucide{width:26px;height:26px}
+.empty h3{color:var(--ink);font-size:17px;margin-bottom:4px}
+.loading{display:flex;justify-content:center;padding:40px;color:var(--mute);gap:8px;align-items:center}
+.spin{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- Sheets ---------- */
+dialog{border:0;padding:0;background:#fff;color:var(--ink);width:min(580px,100vw);max-height:92vh;border-radius:24px;box-shadow:0 24px 60px rgba(15,23,42,.3)}
+dialog::backdrop{background:rgba(15,23,42,.5)}
+@media(max-width:600px){dialog{margin:auto 0 0;width:100vw;max-width:100vw;border-radius:24px 24px 0 0;max-height:94vh}}
+.sheet{padding:20px 20px calc(20px + env(safe-area-inset-bottom));display:grid;gap:16px}
+.shead{display:flex;align-items:center;gap:10px}
+.shead h2{flex:1;font-size:19px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:#fff;border:1.5px solid var(--line);color:var(--body);font-weight:500;padding:9px 14px}
+.chip.on{background:var(--tint);border-color:var(--blue);color:var(--blue-dark)}
+.hint{font-size:12px;color:var(--mute);margin-top:6px}
+details{border:1.5px dashed var(--line);border-radius:14px;padding:12px 14px}
+details summary{cursor:pointer;font-weight:600;color:var(--blue-dark);font-size:14px;list-style:none;display:flex;align-items:center;gap:6px}
+details summary::-webkit-details-marker{display:none}
+details[open] summary{margin-bottom:14px}
+details .inner{display:grid;gap:14px}
+.foot{display:flex;gap:10px}
+.foot button{flex:1;padding:14px}
+.outcomes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.outcome{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 10px;flex-direction:column;gap:6px;font-weight:600;color:var(--ink);white-space:normal;text-align:center;line-height:1.3}
+.outcome svg.lucide{width:26px;height:26px}
+.outcome.on{border-color:var(--blue);background:var(--tint)}
+.o-good svg{color:var(--green)}.o-same svg{color:var(--mute)}.o-bad svg{color:var(--red)}.o-refill svg{color:var(--blue)}.o-miss svg{color:var(--amber)}
+
+/* Details sheet */
+.dhead{display:flex;gap:14px;align-items:center}
+.dhead .ini{width:56px;height:56px;border-radius:18px;font-size:19px}
+.dhead h2{font-size:21px}
+.dhead .ph{color:var(--mute)}
+.dact{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.dact>*{flex-direction:column;gap:4px;border-radius:16px;padding:12px 6px;font-size:12px}
+.dact svg.lucide{width:20px;height:20px}
+.alertbox{display:flex;gap:10px;align-items:flex-start;background:var(--red-bg);color:var(--red);border-radius:14px;padding:12px 14px;font-size:14px}
+.alertbox b{display:block}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.info>div{background:#fff;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.info>div.wide{grid-column:1/-1}
+.info svg.lucide{color:var(--blue);margin-top:2px;width:17px;height:17px}
+.info small{display:block;color:var(--mute);font-size:12px}
+.info span{font-size:14px;font-weight:500;word-break:break-word}
+@media(max-width:420px){.info{grid-template-columns:1fr}}
+.sec{font-family:var(--head);font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+.sec svg.lucide{color:var(--blue)}
+.timeline{display:grid;gap:0}
+.tl{display:grid;grid-template-columns:20px 1fr;gap:12px;position:relative;padding-bottom:16px}
+.tl:not(:last-child)::before{content:"";position:absolute;left:9px;top:22px;bottom:0;width:2px;background:var(--line)}
+.tl .tdot{width:20px;height:20px;border-radius:50%;background:var(--tint);display:grid;place-items:center}
+.tl .tdot svg.lucide{width:12px;height:12px;color:var(--blue-dark)}
+.tl b{font-size:14px;font-weight:600}
+.tl .tm{font-size:12px;color:var(--mute);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tl .tm .by{display:inline-flex;align-items:center;gap:4px;background:var(--bg);border-radius:99px;padding:1px 8px;color:var(--body)}
+.tl .tm .by svg.lucide{width:12px;height:12px}
+.tl p{margin:4px 0 0;font-size:14px;color:var(--body)}
+.muted{color:var(--mute);font-size:14px}
+.dfoot{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:12px;flex-wrap:wrap;gap:6px}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;font-size:14px;font-weight:500;z-index:60;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis;box-shadow:0 10px 30px rgba(15,23,42,.3);display:flex;gap:8px;align-items:center}
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section id="loginView" class="login hidden">
+  <div class="login-in">
+    <form class="login-card" id="loginForm" novalidate>
+      <img class="login-logo" src="/logo-lockup.png" alt="Home-Office Pharmacy &amp; Clinic">
+      <h1>Staff sign in</h1>
+      <div class="sub">Customer follow-up</div>
+      <div id="loginErr" class="err hidden"><i data-lucide="triangle-alert"></i><span></span></div>
+      <div class="field"><label for="email">Email</label>
+        <div class="withicon"><i data-lucide="mail"></i><input id="email" name="email" type="email" autocomplete="username" placeholder="you@home-officegroup.com" required></div></div>
+      <div class="field"><label for="password">Password</label>
+        <div class="withicon"><i data-lucide="lock"></i><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Your password" required>
+          <button type="button" class="eye" id="eyeBtn" aria-label="Show password"><i data-lucide="eye"></i></button></div></div>
+      <button type="submit" class="primary" id="loginBtn"><i data-lucide="log-in"></i>Sign in</button>
+      <div class="demo hidden" id="demoNote">Demo mode: any email and a password of 4+ characters will sign in. Connect the backend before real use.</div>
+    </form>
+  </div>
+  <div class="login-foot">Home-Office Pharmacy &amp; Clinic · Buduburam Estate Junction</div>
+</section>
+
+<!-- ================= APP ================= -->
+<div id="appView" class="hidden">
+  <header>
+    <div class="wrap hbar">
+      <img class="hlogo" src="/logo-lockup.png" alt="Home-Office Pharmacy &amp; Clinic">
+      <div class="hdiv"></div>
+      <div class="happ">Customer Follow-up<small>Staff portal</small></div>
+      <div class="me">
+        <button class="mebtn" id="meBtn" aria-haspopup="true"><span class="av" id="meAv">?</span><span class="mename" id="meName"></span><i data-lucide="chevron-down"></i></button>
+        <div class="dropdown hidden" id="meMenu">
+          <div class="who"><b id="meFull"></b><span id="meEmail"></span></div>
+          <button id="exportBtn"><i data-lucide="download"></i>Download list for Excel</button>
+          <button id="logoutBtn" class="red"><i data-lucide="log-out"></i>Sign out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1 id="greet">Good day</h1>
+      <p id="summary">&nbsp;</p>
+      <div class="hero-actions">
+        <button class="add" id="addBtn"><i data-lucide="user-plus"></i>Add customer</button>
+        <label class="search"><i data-lucide="search"></i><input id="q" type="search" placeholder="Search name, phone or medicine" aria-label="Search customers"></label>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div id="list"></div>
+  </main>
+</div>
+
+<!-- ================= CUSTOMER DETAILS ================= -->
+<dialog id="detailDlg"><div class="sheet" id="detailBody"></div></dialog>
+
+<!-- ================= ADD / EDIT ================= -->
+<dialog id="custDlg">
+  <form class="sheet" id="custForm" method="dialog">
+    <div class="shead"><h2 id="custTitle">Add customer</h2><button type="button" class="iconbtn" data-close aria-label="Close"><i data-lucide="x"></i></button></div>
+    <div class="field"><label>Customer's name</label><input name="name" required autocomplete="off" placeholder="e.g. Akosua Mensah"></div>
+    <div class="field"><label>Phone number</label><input name="phone" type="tel" required autocomplete="off" placeholder="e.g. 024 123 4567"></div>
+    <div class="field"><label>What did they get? <i>(medicine or service)</i></label><input name="meds" autocomplete="off" placeholder="e.g. Amoxicillin 500mg, BP check"></div>
+    <div class="field">
+      <label>When should we check on them?</label>
+      <div class="chips" id="whenChips">
+        <button type="button" class="chip" data-days="2">In 2 days</button>
+        <button type="button" class="chip" data-days="3">In 3 days</button>
+        <button type="button" class="chip" data-days="7">In 1 week</button>
+        <button type="button" class="chip" data-days="14">In 2 weeks</button>
+        <button type="button" class="chip" data-days="30">In 1 month</button>
+      </div>
+      <input name="follow" type="date" style="margin-top:10px" aria-label="Follow-up date">
+      <div class="hint" id="whenHint"></div>
+    </div>
+    <details id="moreDetails">
+      <summary><i data-lucide="plus"></i>More details (optional)</summary>
+      <div class="inner">
+        <div class="field"><label>Reason for visit</label><input name="condition" autocomplete="off" placeholder="e.g. Malaria, cough, blood pressure"></div>
+        <div class="field"><label>Allergies</label><input name="allergies" autocomplete="off" placeholder="e.g. Penicillin"></div>
+        <div class="two">
+          <div class="field"><label>Age</label><input name="age" type="number" min="0" max="120" inputmode="numeric"></div>
+          <div class="field"><label>Gender</label><select name="gender"><option value="">—</option><option>Female</option><option>Male</option></select></div>
+        </div>
+        <div class="field"><label>Where they live</label><input name="address" autocomplete="off"></div>
+        <div class="two">
+          <div class="field"><label>Visit date</label><input name="visit" type="date"></div>
+          <div class="field"><label>Best way to reach</label><select name="method"><option>Phone call</option><option>WhatsApp</option><option>SMS</option><option>Home visit</option></select></div>
+        </div>
+        <div class="field"><label>Notes</label><textarea name="notes" rows="3"></textarea></div>
+      </div>
+    </details>
+    <div class="foot"><button type="button" class="plain" data-close>Cancel</button><button type="submit" class="primary" id="custSave">Save customer</button></div>
+  </form>
+</dialog>
+
+<!-- ================= LOG CHECK-UP ================= -->
+<dialog id="logDlg">
+  <form class="sheet" id="logForm" method="dialog">
+    <div class="shead"><h2 id="logTitle">How did it go?</h2><button type="button" class="iconbtn" data-close aria-label="Close"><i data-lucide="x"></i></button></div>
+    <div class="outcomes" id="outcomes">
+      <button type="button" class="outcome o-good" data-o="Feeling better"><i data-lucide="smile"></i>Feeling better</button>
+      <button type="button" class="outcome o-same" data-o="No change"><i data-lucide="meh"></i>No change</button>
+      <button type="button" class="outcome o-bad" data-o="Feeling worse – advised to come in"><i data-lucide="frown"></i>Feeling worse</button>
+      <button type="button" class="outcome o-refill" data-o="Needs a refill"><i data-lucide="pill"></i>Needs a refill</button>
+      <button type="button" class="outcome o-miss" data-o="Didn't pick up" style="grid-column:1/-1"><i data-lucide="phone-missed"></i>Didn't pick up</button>
+    </div>
+    <div class="field"><label>Anything to note? <i>(optional)</i></label><textarea name="note" rows="2" placeholder="What did they say?"></textarea></div>
+    <div class="field">
+      <label>Check on them again?</label>
+      <div class="chips" id="nextChips">
+        <button type="button" class="chip" data-days="0">No, all done</button>
+        <button type="button" class="chip" data-days="1">Tomorrow</button>
+        <button type="button" class="chip" data-days="3">In 3 days</button>
+        <button type="button" class="chip" data-days="7">In 1 week</button>
+        <button type="button" class="chip" data-days="30">In 1 month</button>
+      </div>
+    </div>
+    <div class="foot"><button type="button" class="plain" data-close>Cancel</button><button type="submit" class="primary" id="logSave">Save</button></div>
+  </form>
+</dialog>
+
+<script>
+/* =====================================================================
+   BACKEND ADAPTER
+   ---------------------------------------------------------------------
+   Every read/write goes through `api`. Replace the bodies below with
+   calls to your backend (Supabase, Firebase, your own REST API...).
+   Keep the same function names and return shapes and the UI will work
+   unchanged. The current bodies are a DEMO that stores data in this
+   browser's localStorage so the app can be tried before the backend
+   exists — turn DEMO_MODE off once the backend is connected.
+
+   Data shapes
+   -----------
+   User      { id, name, email }
+   Customer  { id, name, phone, meds, condition, allergies, age, gender,
+               address, visit:'YYYY-MM-DD', follow:'YYYY-MM-DD'|'',
+               method, notes, done:boolean,
+               createdAt:ISO, createdBy:{id,name},
+               updatedAt:ISO,
+               checkups: Checkup[] }          // oldest → newest
+   Checkup   { id, at:ISO, outcome, note, nextFollow:'YYYY-MM-DD'|'',
+               by:{id,name} }                 // set by the SERVER from the
+                                              // signed-in user, not the client
+   ===================================================================== */
+const DEMO_MODE = true;
+
+const api = (() => {
+  const K = { db:'hop_customers_v2', old:'hop_customers_v1', session:'hop_session_v1' };
+  const read = k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
+  const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { throw new Error('Could not save on this device.'); } };
+  const id = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  const wait = (ms = 150) => new Promise(r => setTimeout(r, ms));
+  const nowISO = () => new Date().toISOString();
+
+  function all() {
+    let db = read(K.db);
+    if (!db) { // one-time migration from the first version of this app
+      const old = read(K.old) || [];
+      db = old.map(c => ({
+        ...c, createdAt: new Date(c.created || Date.now()).toISOString(), createdBy: null, updatedAt: nowISO(),
+        checkups: (c.logs || []).map(l => ({ id: id(), at: l.date + 'T12:00:00', outcome: l.outcome, note: l.note || '', nextFollow: '', by: l.by ? { id: null, name: l.by } : null }))
+      })).map(({ logs, created, ...c }) => c);
+      write(K.db, db);
+    }
+    return db;
+  }
+  const me = () => read(K.session);
+  const needAuth = () => { const u = me(); if (!u) throw Object.assign(new Error('Please sign in again.'), { code: 401 }); return u; };
+  const clone = x => JSON.parse(JSON.stringify(x));
+
+  return {
+    /** Returns the signed-in User, or null. */
+    async currentUser() { await wait(50); return me(); },
+
+    /** Signs in. Resolves to a User; throws Error(message) on bad credentials. */
+    async login(email, password) {
+      await wait(400);
+      if (!/^\S+@\S+\.\S+$/.test(email) || String(password).length < 4) throw new Error('Wrong email or password.');
+      const local = email.split('@')[0].replace(/[._-]+/g, ' ');
+      const user = { id: 'u_' + email.toLowerCase(), email, name: local.replace(/\b\w/g, m => m.toUpperCase()) };
+      write(K.session, user); return user;
+    },
+
+    async logout() { localStorage.removeItem(K.session); },
+
+    /** All customers the user may see, each with its checkups. */
+    async listCustomers() { needAuth(); await wait(); return clone(all()); },
+
+    async createCustomer(data) {
+      const u = needAuth(); await wait();
+      const db = all();
+      const c = { ...data, id: id(), done: false, createdAt: nowISO(), createdBy: { id: u.id, name: u.name }, updatedAt: nowISO(), checkups: [] };
+      db.push(c); write(K.db, db); return clone(c);
+    },
+
+    async updateCustomer(cid, data) {
+      needAuth(); await wait();
+      const db = all(); const c = db.find(x => x.id === cid); if (!c) throw new Error('Customer not found.');
+      Object.assign(c, data, { updatedAt: nowISO() }); write(K.db, db); return clone(c);
+    },
+
+    async deleteCustomer(cid) {
+      needAuth(); await wait();
+      write(K.db, all().filter(x => x.id !== cid));
+    },
+
+    /** Records a check-up. `nextFollow` '' means the follow-up is finished. */
+    async addCheckup(cid, { outcome, note, nextFollow }) {
+      const u = needAuth(); await wait();
+      const db = all(); const c = db.find(x => x.id === cid); if (!c) throw new Error('Customer not found.');
+      c.checkups = c.checkups || [];
+      c.checkups.push({ id: id(), at: nowISO(), outcome, note, nextFollow, by: { id: u.id, name: u.name } });
+      if (nextFollow) { c.follow = nextFollow; c.done = false; } else { c.done = true; }
+      c.updatedAt = nowISO(); write(K.db, db); return clone(c);
+    }
+  };
+})();
+
+/* =====================================================================
+   UI
+   ===================================================================== */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+let user = null, db = [], tab = 'due', editId = null, logId = null, outcome = null, nextDays = null, detailId = null;
+
+const icons = () => window.lucide && lucide.createIcons();
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const today = () => iso(new Date());
+const addDays = n => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
+const daysFrom = d => Math.round((new Date(d + 'T00:00:00') - new Date(today() + 'T00:00:00')) / 864e5);
+const niceDate = d => { if (!d) return ''; const n = daysFrom(d); if (n === 0) return 'Today'; if (n === 1) return 'Tomorrow'; if (n === -1) return 'Yesterday';
+  return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { weekday: n > 0 && n < 7 ? 'long' : undefined, day: 'numeric', month: 'short', year: Math.abs(n) > 300 ? 'numeric' : undefined }); };
+const niceTime = t => { const d = new Date(t); return niceDate(iso(d)) + ', ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); };
+const longDate = d => d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : '—';
+const intl = p => { let d = String(p || '').replace(/\D/g, ''); if (d.startsWith('233')) return d; if (d.startsWith('0')) d = '233' + d.slice(1); return d; };
+const initials = n => String(n || '?').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+const byId = id => db.find(x => x.id === id);
+function toast(msg, icon = 'circle-check') { const t = document.createElement('div'); t.className = 'toast'; t.innerHTML = `<i data-lucide="${icon}"></i><span>${esc(msg)}</span>`; document.body.appendChild(t); icons(); setTimeout(() => t.remove(), 2400); }
+async function guard(fn, btn) {
+  if (btn) btn.disabled = true;
+  try { return await fn(); }
+  catch (e) { if (e.code === 401) { await signOut(); } else { toast(e.message || 'Something went wrong. Try again.', 'triangle-alert'); } throw e; }
+  finally { if (btn) btn.disabled = false; }
+}
+
+function status(c) {
+  if (c.done) return 'done';
+  if (!c.follow) return 'none';
+  const n = daysFrom(c.follow);
+  return n < 0 ? 'overdue' : n === 0 ? 'today' : 'upcoming';
+}
+function statusText(c) {
+  const s = status(c);
+  if (s === 'done') return 'Done';
+  if (s === 'none') return 'No date set';
+  const n = daysFrom(c.follow);
+  if (s === 'overdue') return n === -1 ? '1 day late' : (-n) + ' days late';
+  if (s === 'today') return 'Call today';
+  return niceDate(c.follow);
+}
+
+/* ---------- Views ---------- */
+function showLogin() {
+  $('#appView').classList.add('hidden'); $('#loginView').classList.remove('hidden');
+  $$('dialog').forEach(d => d.open && d.close());
+  $('#demoNote').classList.toggle('hidden', !DEMO_MODE);
+  $('#loginForm').reset(); $('#loginErr').classList.add('hidden');
+  icons(); setTimeout(() => $('#email').focus(), 50);
+}
+async function showApp() {
+  $('#loginView').classList.add('hidden'); $('#appView').classList.remove('hidden');
+  $('#meAv').textContent = initials(user.name);
+  $('#meName').textContent = user.name.split(' ')[0];
+  $('#meFull').textContent = user.name; $('#meEmail').textContent = user.email || '';
+  $('#list').innerHTML = '<div class="loading"><i data-lucide="loader-circle" class="spin"></i>Loading customers…</div>'; icons();
+  try { db = await guard(() => api.listCustomers()); } catch { return; }
+  render();
+}
+async function signOut() { await api.logout(); user = null; db = []; showLogin(); }
+
+/* ---------- Main render ---------- */
+function render() {
+  const h = new Date().getHours();
+  $('#greet').textContent = (h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening') + ', ' + user.name.split(' ')[0];
+  const st = db.map(status);
+  const due = st.filter(s => s === 'overdue' || s === 'today').length, late = st.filter(s => s === 'overdue').length;
+  $('#summary').textContent = !db.length ? 'Add a customer after they buy medicine, and we\'ll remind you to check on them.'
+    : due ? `You have ${due} customer${due > 1 ? 's' : ''} to check on today${late ? ` (${late} overdue)` : ''}.` : 'Nobody to call today. Great work!';
+
+  const tabs = [['due', 'To call', due], ['upcoming', 'Coming up', st.filter(s => s === 'upcoming').length], ['all', 'Everyone', db.length], ['done', 'Done', st.filter(s => s === 'done').length]];
+  $('#tabs').innerHTML = tabs.map(([k, l, n]) => `<button role="tab" aria-selected="${tab === k}" class="tab ${tab === k ? 'on' : ''} ${k === 'due' && late ? 'alert' : ''}" data-tab="${k}">${l} <span class="n">${n}</span></button>`).join('');
+
+  const q = $('#q').value.trim().toLowerCase(), qd = q.replace(/\D/g, '');
+  if (q) {
+    const rows = db.filter(c => [c.name, c.phone, c.meds, c.condition, c.address].join(' ').toLowerCase().includes(q) || (qd.length >= 3 && String(c.phone).replace(/\D/g, '').includes(qd)));
+    $('#list').innerHTML = rows.length ? peopleList(rows, false) : empty('search-x', 'No match', `No customer matches “${esc(q)}”.`);
+    return icons();
+  }
+
+  if (tab === 'all') {
+    $('#list').innerHTML = db.length ? peopleList(db, true) : empty('users', 'No customers yet', 'Tap “Add customer” to record your first one.');
+    return icons();
+  }
+
+  let rows = db.filter(c => { const s = status(c); return tab === 'due' ? (s === 'overdue' || s === 'today') : s === tab; });
+  rows.sort(tab === 'done' ? (a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)) : (a, b) => (a.follow || '9999').localeCompare(b.follow || '9999'));
+  if (!rows.length) {
+    const m = !db.length ? ['user-plus', 'No customers yet', 'Tap “Add customer” to record your first one.']
+      : tab === 'due' ? ['circle-check', 'All caught up', 'No one needs a call today.']
+      : tab === 'upcoming' ? ['calendar', 'Nothing coming up', 'No future check-ups are scheduled.']
+      : ['clipboard-check', 'Nothing finished yet', 'Customers move here once their follow-up is done.'];
+    $('#list').innerHTML = empty(...m); return icons();
+  }
+  $('#list').innerHTML = `<div class="list">${rows.map(callCard).join('')}</div>`;
+  icons();
+}
+
+const empty = (ic, t, s) => `<div class="empty"><div class="eic"><i data-lucide="${ic}"></i></div><h3>${t}</h3><div>${s}</div></div>`;
+
+function callCard(c) {
+  const s = status(c), ph = intl(c.phone);
+  return `<article class="card ${s === 'overdue' || s === 'today' ? s : ''}">
+    <div class="ctop">
+      <div class="ini">${esc(initials(c.name))}</div>
+      <div class="cwho">
+        <button class="namebtn" data-open="${c.id}">${esc(c.name)}${c.allergies ? '<i data-lucide="triangle-alert" style="color:var(--red)" aria-label="Has allergies"></i>' : ''}</button>
+        <div class="ph">${esc(c.phone)}</div>
+        ${c.meds ? `<div class="med"><i data-lucide="pill"></i>${esc(c.meds)}</div>` : ''}
+      </div>
+      <span class="pill p-${s}">${statusText(c)}</span>
+    </div>
+    <div class="btns">
+      <a class="btn soft" href="tel:+${ph}"><i data-lucide="phone"></i>Call</a>
+      <a class="btn wa" href="https://wa.me/${ph}" target="_blank" rel="noopener"><i data-lucide="message-circle"></i>WhatsApp</a>
+      <button class="primary" data-log="${c.id}"><i data-lucide="circle-check"></i><span>${s === 'done' ? 'Check<span class="lbl-long"> again</span>' : 'Done<span class="lbl-long"> calling</span>'}</span></button>
+    </div>
+  </article>`;
+}
+
+function peopleList(rows, grouped) {
+  rows = rows.slice().sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+  let out = '', cur = '';
+  for (const c of rows) {
+    const L = (c.name.trim()[0] || '#').toUpperCase();
+    if (grouped && L !== cur) { cur = L; out += `<div class="letter">${esc(L)}</div>`; }
+    const s = status(c);
+    out += `<button class="person" data-open="${c.id}">
+      <span class="ini">${esc(initials(c.name))}</span>
+      <span class="pn"><b>${esc(c.name)}</b><span>${esc(c.phone)}</span></span>
+      <span class="st"><span class="dot d-${s}"></span>${statusText(c)}</span>
+      <i data-lucide="chevron-right"></i>
+    </button>`;
+  }
+  return `<div class="people">${out}</div>`;
+}
+
+/* ---------- Details ---------- */
+function openDetail(id) {
+  const c = byId(id); if (!c) return;
+  detailId = id;
+  const ph = intl(c.phone), s = status(c), logs = (c.checkups || []).slice().reverse();
+  const row = (ic, label, val, wide) => val ? `<div class="${wide ? 'wide' : ''}"><i data-lucide="${ic}"></i><div><small>${label}</small><span>${esc(val)}</span></div></div>` : '';
+  const info = [
+    row('pill', 'Medicine / service', c.meds),
+    row('stethoscope', 'Reason for visit', c.condition),
+    row('calendar-clock', 'Next check-up', s === 'done' ? 'Finished' : c.follow ? longDate(c.follow) : 'Not set'),
+    row('calendar', 'Visit date', c.visit ? longDate(c.visit) : ''),
+    row('cake', 'Age', c.age ? c.age + ' years' : ''),
+    row('user-round', 'Gender', c.gender),
+    row('map-pin', 'Area', c.address),
+    row('phone-call', 'Best way to reach', c.method),
+    row('notebook-pen', 'Notes', c.notes, true),
+    row('user-plus', 'Added', (c.createdAt ? niceTime(c.createdAt) : '') + (c.createdBy ? ' by ' + c.createdBy.name : ''), true)
+  ].join('');
+  const outcomeIcon = o => /better/i.test(o) ? 'smile' : /worse/i.test(o) ? 'frown' : /refill/i.test(o) ? 'pill' : /pick up|answer/i.test(o) ? 'phone-missed' : 'meh';
+
+  $('#detailBody').innerHTML = `
+    <div class="shead" style="margin-bottom:-6px"><span class="pill p-${s}">${statusText(c)}</span><span style="flex:1"></span><button type="button" class="iconbtn" data-close aria-label="Close"><i data-lucide="x"></i></button></div>
+    <div class="dhead"><div class="ini">${esc(initials(c.name))}</div><div><h2>${esc(c.name)}</h2><div class="ph">${esc(c.phone)}</div></div></div>
+    <div class="dact">
+      <a class="btn soft" href="tel:+${ph}"><i data-lucide="phone"></i>Call</a>
+      <a class="btn wa" href="https://wa.me/${ph}" target="_blank" rel="noopener"><i data-lucide="message-circle"></i>WhatsApp</a>
+      <a class="btn soft" href="sms:+${ph}"><i data-lucide="message-square"></i>SMS</a>
+      <button class="primary" data-log="${c.id}"><i data-lucide="circle-check"></i>Log call</button>
+    </div>
+    ${c.allergies ? `<div class="alertbox"><i data-lucide="triangle-alert"></i><div><b>Allergies</b>${esc(c.allergies)}</div></div>` : ''}
+    <div class="info">${info}</div>
+    <div class="sec"><i data-lucide="history"></i>Check-ups${logs.length ? ` (${logs.length})` : ''}</div>
+    ${logs.length ? `<div class="timeline">${logs.map(l => `<div class="tl">
+        <span class="tdot"><i data-lucide="${outcomeIcon(l.outcome)}"></i></span>
+        <div><b>${esc(l.outcome)}</b>
+          <div class="tm"><span>${niceTime(l.at)}</span>${l.by ? `<span class="by"><i data-lucide="user-round"></i>${esc(l.by.name)}</span>` : ''}${l.nextFollow ? `<span>· next ${esc(niceDate(l.nextFollow).toLowerCase())}</span>` : ''}</div>
+          ${l.note ? `<p>${esc(l.note)}</p>` : ''}</div></div>`).join('')}</div>`
+      : '<div class="muted">No calls logged yet.</div>'}
+    <div class="dfoot">
+      <button class="text" data-edit="${c.id}"><i data-lucide="pencil"></i>Edit details</button>
+      <button class="text red" data-del="${c.id}"><i data-lucide="trash-2"></i>Remove customer</button>
+    </div>`;
+  if (!$('#detailDlg').open) $('#detailDlg').showModal();
+  bindClose($('#detailDlg')); icons();
+}
+
+/* ---------- Delegated clicks ---------- */
+document.addEventListener('click', async e => {
+  const t = e.target.closest('[data-open],[data-log],[data-edit],[data-del],[data-tab]'); if (!t) return;
+  if (t.dataset.tab) { tab = t.dataset.tab; $('#q').value = ''; render(); return; }
+  if (t.dataset.open) return openDetail(t.dataset.open);
+  if (t.dataset.log) return openLog(byId(t.dataset.log));
+  if (t.dataset.edit) { $('#detailDlg').close(); return openCust(byId(t.dataset.edit)); }
+  if (t.dataset.del) {
+    const c = byId(t.dataset.del);
+    if (!confirm(`Remove ${c.name}? Their check-up history will also be deleted. This can't be undone.`)) return;
+    try { await guard(() => api.deleteCustomer(c.id), t); } catch { return; }
+    db = db.filter(x => x.id !== c.id); $('#detailDlg').close(); render(); toast('Customer removed', 'trash-2');
+  }
+});
+$('#q').oninput = render;
+
+function bindClose(root) { root.querySelectorAll('[data-close]').forEach(b => b.onclick = () => b.closest('dialog').close()); }
+$$('dialog').forEach(d => { bindClose(d); d.addEventListener('click', e => { if (e.target === d) d.close(); }); });
+$('#detailDlg').addEventListener('close', () => detailId = null);
+
+/* ---------- Add / edit ---------- */
+const FIELDS = ['name', 'phone', 'meds', 'follow', 'condition', 'allergies', 'age', 'gender', 'address', 'visit', 'method', 'notes'];
+function setChips(box, days) { $$(box + ' .chip').forEach(c => c.classList.toggle('on', days !== null && +c.dataset.days === days)); }
+function whenHint() { const v = $('#custForm').elements.follow.value; $('#whenHint').textContent = v ? 'We\'ll remind you on ' + longDate(v) + '.' : 'Pick one, or choose a date.'; }
+function openCust(c) {
+  editId = c ? c.id : null;
+  const f = $('#custForm'); f.reset();
+  $('#custTitle').textContent = c ? 'Edit customer' : 'Add customer';
+  if (c) { FIELDS.forEach(k => f.elements[k].value = c[k] || ''); $('#moreDetails').open = !!(c.condition || c.allergies || c.age || c.address || c.notes); }
+  else { f.elements.visit.value = today(); f.elements.follow.value = addDays(3); $('#moreDetails').open = false; }
+  const v = f.elements.follow.value; setChips('#whenChips', v ? daysFrom(v) : null);
+  whenHint(); $('#custDlg').showModal(); icons();
+  if (!c) setTimeout(() => f.elements.name.focus(), 50);
+}
+$('#whenChips').onclick = e => { const b = e.target.closest('.chip'); if (!b) return; const n = +b.dataset.days; $('#custForm').elements.follow.value = addDays(n); setChips('#whenChips', n); whenHint(); };
+$('#custForm').elements.follow.oninput = () => { const v = $('#custForm').elements.follow.value; setChips('#whenChips', v ? daysFrom(v) : null); whenHint(); };
+$('#addBtn').onclick = () => openCust();
+
+$('#custForm').onsubmit = async e => {
+  e.preventDefault();
+  const f = e.target.elements, d = {};
+  FIELDS.forEach(k => d[k] = f[k].value.trim());
+  if (!d.name) return f.name.focus();
+  if (intl(d.phone).length < 10) { toast('Please enter a full phone number', 'triangle-alert'); return f.phone.focus(); }
+  if (!editId) {
+    const dup = db.find(x => intl(x.phone) === intl(d.phone));
+    if (dup && !confirm(`${dup.name} already has this phone number. Add as a new customer anyway?`)) return;
+  } else if (d.follow && daysFrom(d.follow) >= 0) d.done = false;
+  let c; try { c = await guard(() => editId ? api.updateCustomer(editId, d) : api.createCustomer(d), $('#custSave')); } catch { return; }
+  const i = db.findIndex(x => x.id === c.id); i >= 0 ? db[i] = c : db.push(c);
+  $('#custDlg').close();
+  if (!editId) { const s = status(c); tab = (s === 'overdue' || s === 'today') ? 'due' : s === 'upcoming' ? 'upcoming' : 'all'; render(); toast('Customer added'); }
+  else { render(); toast('Changes saved'); openDetail(c.id); }
+};
+
+/* ---------- Log a call ---------- */
+function openLog(c) {
+  logId = c.id; outcome = null; nextDays = null;
+  $('#logForm').reset(); $('#logTitle').textContent = 'How is ' + c.name.split(' ')[0] + '?';
+  $$('.outcome').forEach(o => o.classList.remove('on')); setChips('#nextChips', null);
+  $('#logDlg').showModal(); icons();
+}
+$('#outcomes').onclick = e => {
+  const b = e.target.closest('.outcome'); if (!b) return;
+  outcome = b.dataset.o; $$('.outcome').forEach(o => o.classList.toggle('on', o === b));
+  nextDays = { 'Feeling better': 0, 'No change': 3, 'Feeling worse – advised to come in': 1, 'Needs a refill': 7, "Didn't pick up": 1 }[outcome];
+  setChips('#nextChips', nextDays);
+};
+$('#nextChips').onclick = e => { const b = e.target.closest('.chip'); if (!b) return; nextDays = +b.dataset.days; setChips('#nextChips', nextDays); };
+$('#logForm').onsubmit = async e => {
+  e.preventDefault();
+  if (!outcome) return toast('Tap how it went first', 'info');
+  const payload = { outcome, note: e.target.elements.note.value.trim(), nextFollow: nextDays ? addDays(nextDays) : '' };
+  let c; try { c = await guard(() => api.addCheckup(logId, payload), $('#logSave')); } catch { return; }
+  db[db.findIndex(x => x.id === c.id)] = c;
+  $('#logDlg').close(); render();
+  if (detailId === c.id) openDetail(c.id);
+  toast(payload.nextFollow ? `Saved · next check ${niceDate(c.follow).toLowerCase()}` : 'Saved · follow-up finished');
+};
+
+/* ---------- Account menu ---------- */
+$('#meBtn').onclick = e => { e.stopPropagation(); $('#meMenu').classList.toggle('hidden'); };
+document.addEventListener('click', e => { if (!e.target.closest('.me')) $('#meMenu').classList.add('hidden'); });
+$('#logoutBtn').onclick = () => { $('#meMenu').classList.add('hidden'); signOut(); };
+$('#exportBtn').onclick = () => {
+  $('#meMenu').classList.add('hidden');
+  const cols = [['name','Name'],['phone','Phone'],['meds','Medicine / service'],['condition','Reason'],['allergies','Allergies'],['age','Age'],['gender','Gender'],['address','Area'],['visit','Visit date'],['follow','Next check-up'],['method','Contact by'],['notes','Notes']];
+  const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const lines = [cols.map(c => c[1]).concat(['Status', 'Added by', 'Check-ups']).map(q).join(',')]
+    .concat(db.map(c => cols.map(([k]) => q(c[k])).concat([q(statusText(c)), q(c.createdBy?.name), q((c.checkups || []).map(l => `${l.at.slice(0, 10)}: ${l.outcome}${l.note ? ' – ' + l.note : ''}${l.by ? ' (' + l.by.name + ')' : ''}`).join(' | '))]).join(',')));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv' }));
+  a.download = 'pharmacy-customers-' + today() + '.csv'; document.body.appendChild(a); a.click(); a.remove();
+  toast('Spreadsheet downloaded', 'download');
+};
+
+/* ---------- Login ---------- */
+$('#eyeBtn').onclick = () => { const p = $('#password'); const show = p.type === 'password'; p.type = show ? 'text' : 'password'; $('#eyeBtn').innerHTML = `<i data-lucide="${show ? 'eye-off' : 'eye'}"></i>`; icons(); };
+$('#loginForm').onsubmit = async e => {
+  e.preventDefault();
+  const email = $('#email').value.trim(), pw = $('#password').value, btn = $('#loginBtn'), err = $('#loginErr');
+  err.classList.add('hidden');
+  if (!email || !pw) { err.querySelector('span').textContent = 'Enter your email and password.'; err.classList.remove('hidden'); return; }
+  btn.disabled = true; btn.innerHTML = '<i data-lucide="loader-circle" class="spin"></i>Signing in…'; icons();
+  try { user = await api.login(email, pw); tab = 'due'; $('#q').value = ''; await showApp(); }
+  catch (ex) { err.querySelector('span').textContent = ex.message || 'Could not sign in.'; err.classList.remove('hidden'); $('#password').value = ''; $('#password').focus(); }
+  finally { btn.disabled = false; btn.innerHTML = '<i data-lucide="log-in"></i>Sign in'; icons(); }
+};
+
+// Refresh "today" if the page is left open overnight
+document.addEventListener('visibilitychange', () => { if (!document.hidden && user) render(); });
+
+(async () => { icons(); user = await api.currentUser(); user ? showApp() : showLogin(); })();
+</script>
+</body>
+</html>
