@@ -41,8 +41,8 @@ export default function Shop() {
           <Info className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
           <p className="text-sm leading-relaxed text-ink-600">
             We don&rsquo;t offer online ordering, delivery, or payment through
-            this site. Prices shown are a guide — please confirm current
-            price and availability by calling{' '}
+            this site. Ask us for current prices and
+            availability by calling{' '}
             <a
               href={`tel:${business.phoneTel}`}
               className="font-semibold text-brand-600 hover:text-brand-700"
@@ -97,12 +97,26 @@ export default function Shop() {
                   </div>
 
                   {items.length > 0 ? (
-                    <div className="mt-6 grid border-l border-t border-ink-200 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="mt-6 grid grid-cols-2 border-l border-t border-ink-200 sm:grid-cols-3 lg:grid-cols-4">
                       {items.map((p) => (
-                        <div key={p.name} className="border-b border-r border-ink-200 bg-white p-5">
-                          <p className="font-semibold text-ink-900">{p.name}</p>
-                          {p.unit && <p className="mt-0.5 text-xs text-ink-400">{p.unit}</p>}
-                          <p className="mt-2 text-base font-bold text-brand-600">{p.price}</p>
+                        <div key={p.name} className="flex flex-col border-b border-r border-ink-200 bg-white">
+                          {p.image && (
+                            <div className="flex aspect-square items-center justify-center bg-white p-4 sm:p-6">
+                              <img
+                                src={p.image}
+                                alt={p.name}
+                                loading="lazy"
+                                className="max-h-full max-w-full object-contain"
+                              />
+                            </div>
+                          )}
+                          <div className="flex flex-1 flex-col border-t border-ink-100 p-4 sm:p-5">
+                            <p className="font-semibold leading-snug text-ink-900">{p.name}</p>
+                            {p.detail && <p className="mt-1 text-sm leading-snug text-ink-500">{p.detail}</p>}
+                            <p className="mt-auto pt-3 text-sm font-semibold text-brand-600">
+                              {p.price || 'Ask in store for price'}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>
