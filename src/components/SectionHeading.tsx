@@ -29,7 +29,7 @@ export default function SectionHeading({
         {title}
       </h2>
       {desc && (
-        <p className="mt-4 text-lg leading-relaxed text-ink-500">{desc}</p>
+        <p className="mt-4 text-lg leading-relaxed text-ink-500 sm:text-xl">{desc}</p>
       )}
     </div>
   );

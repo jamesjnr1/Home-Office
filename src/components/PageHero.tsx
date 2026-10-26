@@ -22,7 +22,7 @@ export default function PageHero({ eyebrow, title, desc }: PageHeroProps) {
           {title}
         </h1>
         {desc && (
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-500">
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-500 sm:text-xl">
             {desc}
           </p>
         )}
