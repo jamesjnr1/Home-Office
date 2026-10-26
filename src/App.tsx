@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import Pharmacy from '@/pages/Pharmacy';
@@ -12,10 +13,17 @@ import Shop from '@/pages/Shop';
 import Contact from '@/pages/Contact';
 import BookAppointment from '@/pages/BookAppointment';
 
+// Per-page title/description/canonical (needs to sit inside the router).
+function PageMeta() {
+  usePageMeta();
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <PageMeta />
       <Header />
       <main>
         <Routes>
