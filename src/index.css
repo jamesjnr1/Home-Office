@@ -3,10 +3,18 @@
 @tailwind utilities;
 
 @layer base {
+  /* Larger type across the whole site (every Tailwind size is in rem,
+     so this scales text, spacing and buttons together): 17px on phones
+     and tablets, 18px from laptop widths up. */
   html {
+    font-size: 106.25%;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (min-width: 1024px) {
+    html { font-size: 112.5%; }
   }
 
   body {

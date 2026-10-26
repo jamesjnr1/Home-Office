@@ -37,9 +37,9 @@ export default function Home() {
       {/* ===== HERO — full-bleed photo, text on the right with a right-to-left gradient ===== */}
       <section id="home" className="relative flex min-h-screen w-full flex-col justify-end overflow-hidden pb-16 pt-32 sm:pb-20">
         <img
-          src="/images/hero-staff.png"
-          alt="Home-Office Pharmacy & Clinic pharmacist consulting with a patient"
-          className="absolute inset-0 h-full w-full object-cover"
+          src="/images/hero-building.jpg"
+          alt="The Home-Office Pharmacy & Clinic building at Buduburam Estate Junction"
+          className="absolute inset-0 h-full w-full object-cover object-[18%_50%] lg:object-center"
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-l from-ink-950/95 via-ink-950/60 to-ink-950/10" />
@@ -50,7 +50,7 @@ export default function Home() {
             <h1 className="text-balance font-display text-3xl font-bold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-5xl">
               Our Care &amp; Medicines are Channels of God&rsquo;s Healing
             </h1>
-            <p className="ml-auto mt-6 max-w-xl text-base leading-relaxed text-white/80">
+            <p className="ml-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
               {business.description}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-end gap-4">
@@ -70,10 +70,10 @@ export default function Home() {
             </div>
             <a
               href={`tel:${business.phoneTel}`}
-              className="mt-6 inline-flex items-center justify-end gap-2 text-sm font-medium text-white/80 hover:text-white"
+              className="mt-6 inline-block text-sm font-medium text-white/80 hover:text-white"
             >
-              <Phone className="h-4 w-4" />
-              Or call {business.phoneDisplay} to talk to a pharmacist
+              <Phone className="mr-2 inline h-4 w-4 align-[-2px]" />
+              Or call <span className="whitespace-nowrap">{business.phoneDisplay}</span> to talk to a pharmacist
             </a>
           </div>
         </div>
