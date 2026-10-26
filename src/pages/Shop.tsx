@@ -7,6 +7,7 @@ import {
   Wind,
   Droplet,
   Leaf,
+  Droplets,
   Phone,
   Info,
   ArrowRight,
@@ -24,6 +25,7 @@ const iconMap: Record<string, ComponentType<{ className?: string; strokeWidth?: 
   Wind,
   Droplet,
   Leaf,
+  Droplets,
 };
 
 export default function Shop() {

@@ -37,6 +37,7 @@ const stockCategories = [
   'Cough & Cold',
   'Anti-Allergic',
   'Herbal Products',
+  'Skin Care',
 ];
 
 export default function Pharmacy() {

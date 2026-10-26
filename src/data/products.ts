@@ -14,6 +14,7 @@ export const stockCategories: StockCategory[] = [
   { id: 'coughcold', label: 'Cough & Cold', icon: 'Wind' },
   { id: 'antiallergic', label: 'Anti-Allergic', icon: 'Droplet' },
   { id: 'herbal', label: 'Herbal Products', icon: 'Leaf' },
+  { id: 'skincare', label: 'Skin Care', icon: 'Droplets' },
 ];
 
 // Individual products — only items actually on our shelves (seen in our
@@ -76,4 +77,14 @@ export const products: Product[] = [
   { category: 'herbal', name: 'Amuzu Garlic Bitters', detail: 'Herbal bitters', image: img('amuzu-garlic-bitters') },
   { category: 'herbal', name: 'Taabea Herbal Mixture', detail: 'Herbal mixture', image: img('taabea') },
   { category: 'herbal', name: 'Gifas Mixture', detail: 'Herbal mixture', image: img('gifas') },
+
+  // Skin Care
+  { category: 'skincare', name: 'Funbact-A', detail: 'Triple action cream · antifungal, antibacterial, anti-inflammatory', image: img('funbact-a') },
+  { category: 'skincare', name: 'Ketazol', detail: 'Cream', image: img('ketazol') },
+  { category: 'skincare', name: 'EpidermiCream', detail: 'Triple action cream', image: img('epidermi-cream') },
+  { category: 'skincare', name: 'Eskyzole', detail: 'Cream', image: img('eskyzole') },
+  { category: 'skincare', name: 'Conbact-A', detail: 'Triple action cream', image: img('conbact-a') },
+  { category: 'skincare', name: 'Supirocin', detail: 'Mupirocin ointment', image: img('supirocin') },
+  { category: 'skincare', name: 'Silverzine', detail: 'Cream', image: img('silverzine') },
+  { category: 'skincare', name: 'Demacot', detail: 'Cream', image: img('demacot') },
 ];
